@@ -1,0 +1,340 @@
+/* css for main */
+
+main {
+    min-height: 78vh;
+}
+
+main h4 {
+    padding: 5px 0 0 50px;
+}
+
+main h4 a {
+    text-decoration: none;
+    color: rgb(9, 0, 139);
+    font-weight: normal;
+}
+
+main h4 a:hover {
+    text-decoration: underline;
+}
+
+.products-wrapper-2 {
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    z-index: 1;
+}
+
+.product {
+    text-align: center;
+}
+
+.products-wrapper .product-image {
+    cursor: pointer;    
+    overflow: hidden;
+    width: 60%;
+    margin: auto;
+    line-height: 150px;
+    border-radius: 100%;
+    background: rgb(148, 148, 148);
+}
+
+.products-wrapper .product-image img {
+    width: 100%;
+    vertical-align: middle;
+    transition: 0.5s;
+}
+
+.products-wrapper .product-image img:hover {    
+    transform: scale(1.5) rotate(-5deg);
+    transition: transform 0.5s;
+}
+
+.product {
+    position: relative;
+    overflow: hidden;
+}
+
+.product .viewDescription {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    right: -100px;
+    margin-top: 75px;
+    transition: all ease 1s;
+    transition-delay: 0.1s;
+}
+
+.product .wishlist {
+    position: absolute;
+    cursor: pointer;
+    top: 30px;
+    right: -100px;
+    margin-top: 80px;
+    transition: all ease 1s;
+}
+
+.product .viewDescription:hover {
+    filter: invert(11%) sepia(66%) saturate(4860%) hue-rotate(246deg) brightness(82%) contrast(135%);
+    transition: all ease 0.5s;
+}
+
+.product .wishlist:hover {
+    filter: invert(36%) sepia(98%) saturate(3866%) hue-rotate(334deg) brightness(109%) contrast(101%);
+    transition: all ease 0.5s;
+}
+
+.product .wishlist {
+    position: absolute;
+    top: 30px;
+    right: -100px;
+}
+
+.product:hover > .viewDescription {
+    right: 20px;
+    transition: all ease 0.5s;
+}
+
+.product:hover > .wishlist {
+    right: 20px;
+    transition: all ease 0.5s;
+    transition-delay: 0.1s;
+}
+
+.product:hover {
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: box-shadow ease 0.1s;
+}
+
+.products-wrapper-2 .product-image {
+    margin: auto;
+    overflow: hidden;
+    height: 200px;
+    width: 200px;
+}
+
+.products-wrapper-2 .product-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.products-wrapper-2 .product-title {
+    margin: auto;
+    max-width: 260px;
+}
+
+.products-wrapper-2 .product-title p {
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.products-wrapper-2 input[type=submit] {
+    /* position: absolute; */
+    width: 75%;
+    bottom: 0;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(9, 0, 139);
+    margin-bottom: 10px;
+    transition: all ease 0.5s;
+}
+
+.products-wrapper-2 input[type=submit]:hover {
+    /* position: absolute; */
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.product-description {
+    width: 100%;
+    background-color: rgb(207, 171, 171);
+}
+
+.product-description #cancelButton {
+    display: none;
+}
+
+.product-description .cancel{
+    text-align: right;
+}
+
+.product-description #cancel {
+    cursor: pointer;
+    filter: invert(9%) sepia(94%) saturate(4879%) hue-rotate(251deg) brightness(77%) contrast(132%);
+    transition: all ease 0.5s;
+}
+
+.product-description #cancel:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+.product-description .container {
+    display: none;
+    grid-row-gap: 20px;
+    position: fixed;
+    overflow: auto;
+    z-index: 3;
+    max-width: 750px;
+    height: 500px;
+    background-color: rgb(255, 255, 255, 0.95);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 2px rgb(9, 0, 139) solid;
+    border-radius: 20px;
+    padding: 20px;
+    animation-name: showDescription;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+@keyframes showDescription {
+    from{
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.product-description .product-information {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
+}
+
+.product-description .product-information .wrapper {
+    height: auto;
+    margin: auto;
+}
+
+.product-description .product-information .image {
+    height: 300px;
+    width: 300px;
+}
+
+.product-description .product-information .image img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+}
+
+.product-description .product-information .title {
+    display: grid;
+}
+
+.product-description .product-information .title h1 {
+    display: -webkit-box;
+   -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.product-description .product-information .title .rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-description .product-information .title .rating  img {
+    cursor: pointer;
+    margin-left: 20px;
+    transition: all ease 0.5s;
+}
+
+.product-description .product-information .title .rating  img:hover {
+    filter: invert(36%) sepia(98%) saturate(3866%) hue-rotate(334deg) brightness(109%) contrast(101%);
+    transition: all ease 0.5s;
+}
+
+.product-description .product-information .title .price p {
+    color: rgb(64,72,90);
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.product-description .product-information .title .price p sup {
+    margin-left: 10px;
+    font-weight: normal;
+    font-size: 10px;
+}
+
+.product-description .product-information .title .buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* see notes below */
+    grid-column-gap: 5px;
+}
+
+.product-description .product-information .title .buttons input[type=number] {
+    padding: 10px;
+}
+
+.product-description .product-information .title .buttons input[type=button] {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: rgb(9, 0, 139);
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    font-weight: bold;
+    padding: 20px;
+    transition: all ease 0.5s;
+}
+
+.product-description .product-information .title .buttons input[type=button]:hover {
+    transform: translateY(-10px);
+    transition: all ease 0.5s;
+}
+
+.product-description .product-information .title .buttons img {
+    display: inline-block;
+    text-align: right;
+}
+
+.product-description .product-information .buttons .button-container-quantity {
+    max-width: 125px;
+}
+
+.product-description .product-information .buttons .button-container-quantity input[type=text] {
+    text-align: center;
+    max-width: 40px;
+}
+
+.product-description .description-rating-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.product-description .container-rate input[type=button] {
+    cursor: pointer;
+    border-top:  2px rgb(9, 0, 139) solid;
+    border-right:  2px rgb(9, 0, 139) solid;
+    border-left:  2px rgb(9, 0, 139) solid;
+    border-bottom: none;
+    padding: 20px;
+}
+
+.product-description .container-rate input[type=button]:hover {
+    cursor: pointer;
+    border-top:  2px rgb(9, 0, 139) solid;
+    border-right:  2px rgb(9, 0, 139) solid;
+    border-left:  2px rgb(9, 0, 139) solid;
+    border-bottom: none;
+    padding: 20px;
+}

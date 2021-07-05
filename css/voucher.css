@@ -1,0 +1,130 @@
+/* main css */
+
+main .main-wrapper .account-navigation {
+	display: none;
+}
+
+main .main-container {
+	display: flex;
+	flex-direction: column;
+}
+
+main .main-container h2 {
+	text-align: center;
+	margin: 20px 0 50px 0;
+}
+
+main .main-container .information-container {
+	display: flex;
+    margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+	flex-wrap: wrap;
+    width: 95%;
+}
+
+main .main-container .information-container .information {
+    display: block;
+	padding: 20px;
+	background-color: rgb(244, 244, 244);
+	border-radius: 10px;
+	box-shadow: 0 10px 20px 0 rgb(109, 109, 109), 0 10px 20px rgb(244, 244, 244);
+    margin-bottom: 50px;
+}
+
+main .main-container .information-container .information table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+main table tr td, main table th {
+    padding: 10px;
+    border: 2px rgb(9, 0, 139) solid;
+}
+
+main table tr td input[type=button], main .main-container .information-container input[type=button] {
+    cursor: pointer;
+    background-color: rgb(9, 0, 139);
+    color: rgb(254, 254, 254);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    transition: all ease 0.5s; 
+}
+
+main table tr td input[type=button]:hover, main .main-container .information-container input[type=button]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+/* responsive website */
+
+@media only screen and (min-width: 1024px) {
+
+    main {
+        min-height: 79vh;
+    }
+
+    main .main-container h2 {
+        text-align: left;
+        margin: 20px 0 0px 20px;
+    }
+
+	main .main-wrapper {
+		display: flex;
+	}
+
+    main .main-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main .main-container .information-container {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+	main .main-wrapper .account-navigation {
+		color: rgb(254, 254, 254);
+		display: block;
+		background-image: linear-gradient(rgb(64, 72, 90), rgb(24, 25, 26));
+		width: 25%;
+		margin: 20px;
+		padding: 20px;
+		border-radius: 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate {
+		padding: 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate h3 a {
+		color: rgb(0, 174, 255);
+		text-decoration: none;
+	}
+
+	main .main-wrapper .account-navigation .navigate li {
+		list-style: none;
+		padding: 5px 0 0 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate li a {
+		cursor: pointer;
+		text-decoration: none;
+		color: rgb(254, 254, 254);
+        transition: all ease 0.5s;
+	}
+
+	main .main-wrapper .account-navigation .navigate li a:hover {
+        color: rgb(0, 174, 255);
+		margin-left: 5px;
+		transition: all ease 0.5s;
+	}
+
+
+}

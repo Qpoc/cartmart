@@ -1,0 +1,283 @@
+/* main css */
+
+main .main-wrapper .account-navigation {
+	display: none;
+}
+
+main .main-container {
+	display: flex;
+	flex-direction: column;
+}
+
+main .main-container h2 {
+	text-align: center;
+	margin: 20px 0 20px 0;
+}
+
+main .main-container .information-container {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+	grid-gap: 100px;
+}
+
+main .main-container .information-container .information {
+	padding: 20px;
+	height: 100%;
+	background-color: rgb(244, 244, 244);
+	border-radius: 10px;
+	box-shadow: 0 10px 20px 0 rgb(109, 109, 109), 0 10px 20px rgb(244, 244, 244);
+}
+
+main .main-container .information-container .information p {
+	font-size: 15px;
+}
+
+main .main-container .information-container .information h4 {
+	margin-bottom: 10px;
+}
+
+main .main-container .information-container .information h4 sup {
+	cursor: pointer;
+	color: rgb(0, 174, 255);
+	transition: all ease 0.5s;
+}
+
+main .main-container .information-container .information h4 sup a {
+	text-decoration: none;
+	color: rgb(0, 174, 255);
+}
+
+main .main-container .information-container .information h4 sup:hover {
+	text-decoration: underline;
+	text-decoration-color: black;
+	transition: all ease 0.5s;
+}
+
+main .main-container .recent-container  {
+	margin: auto;
+}
+
+main .main-container .recent-container .recent {
+	margin-top: 50px;
+}
+
+main .main-container .recent-container .recent table {
+	width: 250px;
+	text-align: center;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+main .main-container .recent-container .recent table thead th,
+main .main-container .recent-container .recent table tbody tr td {
+	padding: 15px;
+	border: 2px rgb(9, 0, 139) solid;
+}
+
+main .main-container .recent-container .recent table tbody tr td {
+	font-size: 12px;
+}
+
+main .main-container .recent-container .recent table tbody tr .product-container {
+	display: block;
+	margin: auto;
+	width: 64px;
+	height: 64px;
+}
+
+main .main-container .recent-container .recent table tbody tr td .product-container img {
+	display: block;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/* Modal CSS */
+
+body {
+	position: relative;
+}
+
+#description-wrapper {
+	display: none;
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 500px;
+	height: 325px;
+	background-color: rgb(64, 72, 90, 0.9);
+	border-radius: 10px;
+	animation-name: showEdit;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+#description-wrapper .title {
+	display: flex;
+	justify-content: space-between;
+}
+
+#description-wrapper .title img {
+	cursor: pointer;
+	filter: invert(100%);
+	padding: 8px;
+	transition: all ease 0.5s;
+}
+
+#description-wrapper .title img:hover {
+	transform: translateY(-5px);
+	transition: all ease 0.5s;
+}
+
+#description-wrapper h3 {
+	color: rgb(254, 254, 254);
+	padding: 5px;
+}
+
+#description-wrapper .editInfo {
+	position: relative;
+}
+
+#description-wrapper .editInfo span {
+	position: absolute;
+	right: 0;
+	top: 25px;
+	left: 20px;
+	pointer-events: none;
+	font-size: small;
+	color: rgb(109, 109, 109);
+	transition: all ease 0.5s;
+}
+
+#description-wrapper .editInfo sup {
+	color: rgb(254,254,254);
+}
+
+#description-wrapper form {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0 20px 20px 20px;
+	
+}
+
+#description-wrapper .editInfo input[type=text], #description-wrapper .editInfo input[type=email], #description-wrapper .editInfo input[type=date], #description-wrapper .editInfo select {
+	padding: 5px;
+	margin: 15px;
+}
+
+#description-wrapper .editInfo input[type=text]:focus ~ span,  #description-wrapper .editInfo input[type=text]:valid ~ span, #description-wrapper .editInfo input[type=email]:focus ~ span,  #description-wrapper .editInfo input[type=email]:valid ~ span {
+	color: rgb(254, 254, 254);
+	left: 15px;
+	font-size: x-small;
+	top: -1px;
+	transition: all ease 0.5s;
+}
+
+#description-wrapper form .button {
+	margin-left: 175px;
+	margin-top: 15px;
+}
+
+#description-wrapper form .button input[type=submit] {
+	cursor: pointer;
+	padding: 10px;
+	color: rgb(254, 254, 254);
+	background-color: rgb(9, 0, 139);
+	border: none;
+	border-radius: 5px;
+	transition: all ease 0.5s;
+}
+
+
+#description-wrapper form .button input[type=submit]:hover {
+	transform: scale(1.1);
+	transition: all ease 0.5s;
+}
+
+/* Css for showing edit */
+
+@keyframes showEdit {
+	from{
+		opacity: 0;
+	}to{
+		opacity: 1;
+	}
+}
+
+/* responsive website */
+
+@media only screen and (min-width: 1024px) {
+	main .main-wrapper {
+		display: flex;
+	}
+
+	main .main-wrapper .account-navigation {
+		color: rgb(254, 254, 254);
+		display: block;
+		background-image: linear-gradient(rgb(64, 72, 90), rgb(24, 25, 26));
+		width: 25%;
+		margin: 20px;
+		padding: 20px;
+		border-radius: 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate {
+		padding: 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate h3 a {
+		color: rgb(0, 174, 255);
+		text-decoration: none;
+	}
+
+	main .main-wrapper .account-navigation .navigate li {
+		list-style: none;
+		padding: 5px 0 0 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate li a {
+		cursor: pointer;
+		text-decoration: none;
+		color: rgb(254, 254, 254);
+        transition: all ease 0.5s;
+	}
+
+	main .main-wrapper .account-navigation .navigate li a:hover {
+        color: rgb(0, 174, 255);
+		margin-left: 5px;
+		transition: all ease 0.5s;
+	}
+
+    main .main-container h2 {
+        text-align: left;
+        margin: 20px 0 20px 20px;
+    }
+
+    main .main-container .information-container {
+        display: flex;
+    }
+
+	main .main-container .recent-container {
+		width: 95%;
+	}	
+
+	main .main-container .recent-container .recent {
+		overflow: auto;
+		height: 400px;
+	}	
+
+	main .main-container .recent-container .recent table {
+		width: 100%;
+	}	
+
+
+}

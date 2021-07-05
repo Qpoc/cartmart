@@ -1,0 +1,451 @@
+/* Global declaration */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Artifakt Element;
+}
+
+body {
+    position: relative;
+    height: 100%;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+header , main, footer {
+    width: 100%;
+}
+
+/* header */
+
+header {
+    z-index: 1;
+}
+
+header .wrapper {
+    background-color: rgb(9, 0, 139);
+    color: rgb(255, 255, 255);
+}
+
+header .wrapper .container .branding {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+header .wrapper .container .branding label img {
+    cursor: pointer;
+    filter: invert(100%);
+    margin: 0 20px 0 20px;
+}
+
+header .wrapper .container .branding h2 {
+    margin-left: 10px;
+}
+
+/* Css for navigation side bar */
+main {
+    display: flex;
+    min-height: 93vh;
+}
+
+.navigation-wrapper {
+    overflow: hidden;
+    background-image: linear-gradient(rgb(64,72,90),rgb(24, 25, 26));
+    width: 0;
+    max-height: 100%;
+    transition: all ease 1s;
+}
+
+#show-nav:checked ~ .navigation-wrapper {
+    width: 25%;
+    transition: all ease 1s;
+}
+
+.navigation-wrapper .navigation-container {
+    display: flex;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.navigation-wrapper .navigation-container li {
+    margin-top: 10px;
+    list-style: none;
+}
+
+.navigation-wrapper .navigation-container li a {
+    text-decoration: none;
+}
+
+.navigation-wrapper .navigation-container li h5 {
+    margin-bottom: 20px;
+    color: rgba(109, 124, 160, 0.9);
+    padding: 10px;
+    background-color: rgb(34, 39, 49);
+}
+
+.navigation-wrapper .navigation-container .profile {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.navigation-wrapper .navigation-container .profile .image {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+}
+
+.navigation-wrapper .navigation-container .profile .image img {
+    margin-right: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+}
+
+.navigation-wrapper .navigation-container .profile .image  {
+    margin-right: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+}
+
+.navigation-wrapper .navigation-container .reports {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin: auto;
+    margin-top: 15px;
+    transition: all ease 0.5s;
+}
+
+.navigation-wrapper .navigation-container .reports:hover {
+   transform: translateY(-5px);
+   background-color: rgb(34, 39, 49, 0.5);
+   transition: all ease 0.5s;
+}
+
+.navigation-wrapper .navigation-container .reports img {
+    filter: invert(100%);
+}
+
+.navigation-wrapper .navigation-container .reports P {
+    border: none;
+    text-overflow: ellipsis;
+    width: 150px;
+    background-color: rgb(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+
+/* Main css */
+
+main .wrapper {
+    width: 100%;
+    background-color: rgb(226, 229, 238);
+}
+
+main .wrapper h1 {
+    color: rgb(34, 39, 49);
+}
+
+main .wrapper .container {
+    padding: 20px;
+}
+
+main .wrapper .container .title {
+    margin-bottom: 25px;
+}
+
+main .wrapper .container .product-list {
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    min-height: 450px;
+}
+
+main .wrapper .container .product-list .buttons .new-list, main .wrapper .container .product-list .buttons .entry {
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+
+main .wrapper .container .product-list .buttons .new-list input[type=button] {
+    cursor: pointer;
+    background-color: rgb(96, 162, 201);
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container .product-list .buttons .new-list input[type=button]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+main .wrapper .table-container {
+    overflow: auto;
+    width: 100%;
+    height: 500px;
+}
+
+main .wrapper .container table {
+    width: 100%;
+    max-height: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+
+main .wrapper .container table thead th, main .wrapper .container table tbody td {
+    padding: 5px;
+    width: 200px;
+    border: 1px rgb(64,72,90) solid;
+}
+
+main .wrapper .container table thead th, main .wrapper .container table tbody td {
+    padding: 5px;
+    width: 200px;
+    border: 1px rgb(64,72,90) solid;
+}
+
+main .wrapper .container table .image  {
+    width: 64px;
+    height: 64px;
+    margin: auto;
+}
+
+main .wrapper .container table p  {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+main .wrapper .container table .image img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+main .wrapper .container table .view input[type=button] {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(121, 112, 240);
+    width: 100px;
+    padding: 10px;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container table .view input[type=button]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container table .buttons input[type=button] {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(121, 112, 240);
+    width: 75px;
+    margin: 5px;
+    padding: 10px;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container table .buttons input[type=button]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container table .buttons #edit {
+    background-color: rgb(38, 132, 187);
+}
+
+main .wrapper .container table .buttons #delete {
+    background-color: rgb(172, 37, 93);
+}
+
+/* Adding new product css */
+
+body #productcontainer, body .container-edit-product {
+    display: none;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+    background-color: rgb(34, 39, 49, 0.95);
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 20px;
+    animation-name: showAddProduct;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+@keyframes showAddProduct {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+
+#productcontainer, body .container-edit-product {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#productcontainer .title , body .container-edit-product .title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#productcontainer .title img , body .container-edit-product .title img {
+    cursor: pointer;
+    filter: invert(100%);
+    transition: all ease 0.5s;
+}
+
+#productcontainer .title img:hover, body .container-edit-product .title img:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+#productcontainer .product-information label, body .container-edit-product .product-information label {
+    font-size: 12px;
+}
+
+#productcontainer .product-information, body .container-edit-product .product-information {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#productcontainer .product-information .preview-image, body .container-edit-product .product-information .preview-image {
+    width: 64px;
+    height: 64px;
+    border: 2px rgb(255, 255, 255) solid;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#productcontainer .product-information .preview-image img, body .container-edit-product .product-information .preview-image img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#limit, #editlimit {
+    color: rgb(255, 0, 106);
+}
+
+#productcontainer .product-information .product-input, body .container-edit-product .product-information .product-input {
+    position: relative;
+    margin: 20px 0 20px 0;
+}
+
+#productcontainer .product-information .product-input span, body .container-edit-product .product-information .product-input span {
+    position: absolute;
+    left: 0;
+}
+
+#productcontainer .product-information input[type=submit], body .container-edit-product .product-information input[type=submit] {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(96, 162, 201);
+    transition: all ease 0.5s;
+}
+
+#productcontainer .product-information input[type=submit]:hover, body .container-edit-product .product-information input[type=submit]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+body .container-edit-product {
+    display:none;
+}
+
+/* css for showing description */
+
+body #containerDescription {
+    display: none;
+    overflow: auto;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+    background-color: rgb(34, 39, 49, 0.95);
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 20px;
+    animation-name: showProductDescription;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+@keyframes showProductDescription {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+
+#containerDescription .title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#containerDescription .title img {
+    cursor: pointer;
+    filter: invert(100%);
+    transition: all ease 0.5s;
+}
+
+#containerDescription .title img:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+
+
+/* Footer */
+
+footer {
+    width: 100%;
+}
+
+#footer-wrapper {
+    color: rgb(255, 255, 255);
+    background-color: rgb(9, 0, 139);
+    text-align: center;
+}

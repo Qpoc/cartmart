@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+    height: 100%;
+}
+
+/* Css for main */
+
+main {
+    min-height: 90%;
+    height: 90%;
+    background-image: linear-gradient( rgb(211,235,239), rgb(255, 255, 255));
+}
+
+main .wrapper {
+    padding: 10px;
+}
+
+main .header select {
+    padding: 5px;
+}
+
+main .header input[type=button] {
+    padding: 5px;
+    background-color: rgb(42,166,243);
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    margin-left: 5px;
+}
+
+main .wrapper, main .wrapper .container {
+    max-height: 100%;
+    height: 100%;
+}
+
+main .wrapper .container {
+    display: flex;
+    overflow: auto;
+    justify-content: center;
+    padding-top: 30px;
+    height: 450px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+table th, table td {
+   padding: 5px;
+}
+
+table td a {
+    text-decoration: none;
+    color: rgb(216,54,53);    
+}
+
+table tr td {
+    border-bottom: 2px rgb(194, 194, 194) solid;
+    max-width: 50%;
+    width: 50%;
+}
+
+table td img {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+/* css for chat box */
+body {
+    position: relative;
+}
+
+.wrapper-chat {
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 5px 5px 0 rgb(179, 179, 179), 0 5px 5px 2px rgb(194, 194, 194);
+    height: 420px;
+    width: 405px;
+    border-radius: 10px;
+    animation-name: showChatBox;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showChatBox {
+    from{
+        transform: scale(0);
+    }to{
+        transform: scale(1);
+    }
+}
+
+.wrapper-chat .back {
+    width: 24px;
+    height: 24px;
+}
+
+.wrapper-chat .back img {
+    cursor: pointer;
+    margin: 0 0 10px 10px;
+    max-height: 100%;
+    max-width: 100%;
+    transition: all ease 0.1s;
+}
+
+.wrapper-chat .back img:hover {
+    filter: invert(50%);
+    transition: all ease 0.1s;
+}
+
+
+.wrapper-chat .container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 20px 20px 0 20px;
+    height: 300px;
+}
+
+.wrapper-chat .container .customer {
+    padding: 10px;
+    margin: 20px 0 0 0;
+    background-color: rgb(70, 70, 70);
+    width: 50%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.wrapper-chat .container .customer p {
+    color: rgb(255, 255, 255);
+    text-align: justify;
+    text-justify: auto;
+}
+
+.wrapper-chat .container .rider {
+    padding: 10px;
+    margin: 20px 0 0 170px;
+    background-color: rgb(116, 148, 255);
+    width: 45%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.wrapper-chat .container .rider p {
+    text-align: justify;
+    text-justify: auto;
+}
+
+.wrapper-chat .textfield {
+    display: flex;
+    align-items: center;
+    background-color: rgb(51,77,107);
+    padding: 10px;
+    height: 15%;
+    max-height: 15%;
+    overflow: hidden;
+}
+
+.wrapper-chat .textfield img {
+    filter: invert(100%);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    transition: all ease 0.1s;
+    margin-left: 10px;
+    transform: rotate(180deg);
+    transition: all ease 0.5s;
+}
+
+.wrapper-chat .textfield img:hover {
+    filter: invert(75%);
+    transition: all ease 0.1s;
+}
+
+textarea {
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    background-color: rgb(18, 26, 36);
+    padding-top: 15px;
+    padding-left: 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    width: 20%;
+    resize: none;
+    border: none;
+    transition: all ease 0.5s;
+}
+
+textarea:focus, .textfield:hover > textarea {
+    width: 85%;
+    outline: none;
+    transition: all ease 0.5s;
+}
+
+
+.textfield:hover > img {
+    transform: rotate(0deg);
+    transition: all ease 0.5s;
+}
+
+/* css for footer */
+
+footer {
+    min-height: 10%;
+    height: 10%;
+}
+
+footer .wrapper {
+    width: 100%;
+}
+
+footer .wrapper .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+footer .wrapper .container .nav .active {
+    color: rgb(13, 9, 158);
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    padding: 0 0 10px 0;
+}
+
+footer .wrapper .container .nav h3 {
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav .imgactive {
+    filter: invert(8%) sepia(75%) saturate(5793%) hue-rotate(246deg) brightness(95%) contrast(122%);
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav img {
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 16px;
+    height: 16px;
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav h3:hover {
+    color: rgb(13, 9, 158, 0.5);
+    transition: all ease 0.5s;
+}
+
+/* responsive website */
+
+@media only screen and (max-width: 375px) {
+    .wrapper-chat {
+        width: 100%;
+    }
+
+    .wrapper-chat .container .rider {
+        margin: 20px 0 10px 150px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .wrapper-chat .container .rider {
+        margin: 20px 0 10px 110px;
+    }
+}

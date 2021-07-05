@@ -1,0 +1,238 @@
+/* Global declaration */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Artifakt Element;
+}
+
+body {
+    position: relative;
+    height: 100%;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+header , main, footer {
+    width: 100%;
+}
+
+/* header */
+
+header {
+    z-index: 1;
+}
+
+header .wrapper {
+    background-color: rgb(9, 0, 139);
+    color: rgb(255, 255, 255);
+}
+
+header .wrapper .container .branding {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+header .wrapper .container .branding label img {
+    cursor: pointer;
+    filter: invert(100%);
+    margin: 0 20px 0 20px;
+}
+
+header .wrapper .container .branding h2 {
+    margin-left: 10px;
+}
+
+/* Css for navigation side bar */
+main {
+    display: flex;
+    max-height: 100%;
+}
+
+.navigation-wrapper {
+    overflow: hidden;
+    background-image: linear-gradient(rgb(64,72,90),rgb(24, 25, 26));
+    width: 0;
+    max-height: 100%;
+    transition: all ease 1s;
+}
+
+#show-nav:checked ~ .navigation-wrapper {
+    width: 25%;
+    transition: all ease 1s;
+}
+
+.navigation-wrapper .navigation-container {
+    display: flex;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.navigation-wrapper .navigation-container li {
+    margin-top: 10px;
+    list-style: none;
+}
+
+.navigation-wrapper .navigation-container li a {
+    text-decoration: none;
+}
+
+.navigation-wrapper .navigation-container li h5 {
+    margin-bottom: 20px;
+    color: rgba(109, 124, 160, 0.9);
+    padding: 10px;
+    background-color: rgb(34, 39, 49);
+}
+
+.navigation-wrapper .navigation-container .profile {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.navigation-wrapper .navigation-container .profile .image {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+}
+
+.navigation-wrapper .navigation-container .profile .image img {
+    margin-right: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+}
+
+.navigation-wrapper .navigation-container .profile .image  {
+    margin-right: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+}
+
+.navigation-wrapper .navigation-container .reports {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin: auto;
+    margin-top: 15px;
+    transition: all ease 0.5s;
+}
+
+.navigation-wrapper .navigation-container .reports:hover {
+   transform: translateY(-5px);
+   background-color: rgb(34, 39, 49, 0.5);
+   transition: all ease 0.5s;
+}
+
+.navigation-wrapper .navigation-container .reports img {
+    filter: invert(100%);
+}
+
+.navigation-wrapper .navigation-container .reports P {
+    border: none;
+    text-overflow: ellipsis;
+    width: 150px;
+    background-color: rgb(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+/* css for main content */
+
+main {
+    background-color: rgb(226,229,238);
+}
+
+main .wrapper {
+    padding: 10px;
+    width: 100%;
+}
+
+main .container {
+    display: flex;
+    flex-direction: column;
+}
+
+main .dashboard-report {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 50px;
+    overflow: hidden;
+    margin-top: 35px;
+}
+
+main .dashboard-report .report {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgb(9, 0, 139, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(64,72,90);
+    padding: 20px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+main .dashboard-report .report:nth-child(odd) {
+    background-color: rgb(9, 0, 139);
+}
+
+main .dashboard-report .report:hover > .image img {
+    transform: scale(3);
+    opacity: 0.1;
+    transition: all ease 1s;
+}
+
+main .dashboard-report .report > .text h2 {
+    margin-bottom: 10px;
+}
+
+main .dashboard-report .report > .text p {
+    max-width: 100px;
+}
+
+main .dashboard-report .report .image {
+    margin-left: 30px;
+}
+
+main .dashboard-report .report .image img {
+    position: absolute;
+    top: 0;
+    filter: invert(100%);
+    opacity: 1;
+    transition: all ease 1s;
+}
+
+main .wrapper-chart {
+    width: 100%;
+    padding-top: 50px;
+}
+
+main .wrapper-chart .container-chart  {
+    width: 90%;
+    margin: auto;
+}
+
+
+/* Footer */
+
+footer {
+    width: 100%;
+}
+
+#footer-wrapper {
+    color: rgb(255, 255, 255);
+    background-color: rgb(9, 0, 139);
+    text-align: center;
+}

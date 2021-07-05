@@ -1,0 +1,184 @@
+html, body {
+    min-height: 100%;
+    height: 100%;
+}
+
+main {
+    min-height: 100%;
+    height: 100%;
+}
+
+main .wrapper .mycontainer {
+    text-align: center;
+    width: 100%;
+    height: 300px;
+}
+
+main .wrapper .mycontainer img {
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 20px;
+}
+
+main .wrapper .chat {
+    display: block;
+    margin: auto;
+    width: 64px;
+    height: 64px;
+}
+
+main .wrapper .chat img {
+    cursor: pointer;
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 75px;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .chat img:hover {
+    transform: scale(1.1);
+    transition: all ease 0.5s;
+}
+
+/* css for chat box */
+body {
+    position: relative;
+}
+
+.wrapper-chat {
+    display: none;
+    position: fixed;
+    z-index: 3;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 5px 5px 0 rgb(179, 179, 179), 0 5px 5px 2px rgb(194, 194, 194);
+    height: 420px;
+    width: 405px;
+    border-radius: 10px;
+    animation-name: showChatBox;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showChatBox {
+    from{
+        transform: scale(0);
+    }to{
+        transform: scale(1);
+    }
+}
+
+.wrapper-chat .back {
+    width: 24px;
+    height: 24px;
+}
+
+.wrapper-chat .back img {
+    cursor: pointer;
+    margin: 0 0 10px 10px;
+    max-height: 100%;
+    max-width: 100%;
+    transition: all ease 0.1s;
+}
+
+.wrapper-chat .back img:hover {
+    filter: invert(50%);
+    transition: all ease 0.1s;
+}
+
+
+.wrapper-chat .container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 20px 20px 0 20px;
+    height: 300px;
+}
+
+.wrapper-chat .container .customer {
+    padding: 10px;
+    margin: 20px 0 0 0;
+    background-color: rgb(70, 70, 70);
+    width: 50%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.wrapper-chat .container .customer p {
+    color: rgb(255, 255, 255);
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.wrapper-chat .container .rider {
+    padding: 10px;
+    margin: 20px 0 0 170px;
+    background-color: rgb(116, 148, 255);
+    width: 45%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.wrapper-chat .container .rider p {
+    text-align: justify;
+    text-justify: auto;
+}
+
+.wrapper-chat .textfield {
+    display: flex;
+    align-items: center;
+    background-color: rgb(51,77,107);
+    padding: 10px;
+    height: 15%;
+    max-height: 15%;
+    overflow: hidden;
+}
+
+.wrapper-chat .textfield img {
+    filter: invert(100%);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    transition: all ease 0.1s;
+    margin-left: 10px;
+    transform: rotate(180deg);
+    transition: all ease 0.5s;
+}
+
+.wrapper-chat .textfield img:hover {
+    filter: invert(75%);
+    transition: all ease 0.1s;
+}
+
+textarea {
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    background-color: rgb(18, 26, 36);
+    padding-top: 15px;
+    padding-left: 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    width: 20%;
+    resize: none;
+    border: none;
+    transition: all ease 0.5s;
+}
+
+textarea:focus, .textfield:hover > textarea {
+    width: 85%;
+    outline: none;
+    transition: all ease 0.5s;
+}
+
+
+.textfield:hover > img {
+    transform: rotate(0deg);
+    transition: all ease 0.5s;
+}
+

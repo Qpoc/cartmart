@@ -1,0 +1,463 @@
+/* Global declaration */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Artifakt Element;
+}
+
+select {
+    cursor: pointer;
+}
+
+body {
+    position: relative;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+/* header */
+
+header {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+}
+
+.wrapper-header {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(242, 242, 242);
+}
+
+.shared-social {
+    flex: 2;
+}
+
+.shared-social li {
+    display: inline-block;
+    list-style: none;
+}
+
+.shared-social {
+    margin-left: 121px;
+}
+
+.shared-social a {
+    margin-right: 104px;
+}
+
+.shared-social a img:hover {
+    filter: invert(17%) sepia(34%) saturate(4930%) hue-rotate(236deg) brightness(79%) contrast(141%);
+    transition: all ease 0.1s;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 121px;
+}
+
+#separator {
+    margin: 0 20px 0 20px;
+}
+
+.wrapper-header-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: center;
+    background-color: rgb(255, 255, 255);
+}
+
+#branding {
+    display: flex;
+    margin-left: 50px;
+    flex-wrap: wrap;
+    align-items: center;
+    align-self: center;
+}
+
+#menu, .container-menu {
+    display: none;
+}
+
+.wrapper-header-2 #menu-icon {
+    display: none;
+}
+
+#logo {
+    margin-right: 10px;
+}
+
+.field-wrapper {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    top: 5px;
+    left: 475px;
+}
+
+#search-bar input[type=text] {
+    width: 500px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+#search-bar input[type=text]:focus {
+    outline: none;
+}
+
+#account-wrapper {
+    display: flex;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+}
+
+#account-wrapper #profile-container {
+    width: 32px;
+    height: 32px;
+}
+
+#account-wrapper #profile-container img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+#account-wrapper #profile{
+    display: flex;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+}
+
+#account-wrapper {
+    display: flex;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+}
+
+#account-wrapper a {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(9, 0, 0);
+}
+
+#cart {
+    position: relative;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+}
+
+#cart-image {
+    margin-top: 7px;
+}
+
+#cart-image img {
+    cursor: pointer;
+}
+
+#cart-image #cart-icon img:hover {
+    filter: invert(17%) sepia(34%) saturate(4930%) hue-rotate(236deg) brightness(79%) contrast(141%);
+    transition: 0.1s;
+}
+
+#cart-image input[type=checkbox] {
+    display: none;
+}
+
+#cart-image input[type=checkbox]:checked ~ .cart-wrapper {
+    box-shadow: 0 4px 8px 0 rgb(9, 0, 139, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 2px rgb(9, 0, 139) solid;
+    border-radius: 10px;
+    padding: 20px;
+    height: 275px;
+    transition: all ease 0.5s;
+}
+
+#cart-image .cart-wrapper {
+    cursor: default;
+    position: absolute;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    width: 250px;
+    left: -260px;
+    height: 0px;
+    transition: all ease 0.5s;
+}
+
+.cart-item {
+    display: flex;
+}
+
+.cart-item-wrapper {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.button-container-quantity {
+    display: flex;
+}
+
+.button-wrapper {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    width: 120px;
+}
+
+.button-wrapper img {
+    filter: invert(15%) sepia(83%) saturate(2985%) hue-rotate(347deg) brightness(112%) contrast(105%);
+    margin-left: 5px;
+    transition: all ease 0.5s;
+}
+
+.button-wrapper img:hover {
+    transform: translateY(-2px);
+    transition: all ease 0.5s;
+}
+
+.button-container-quantity {
+    background-color: rgb(9, 0, 139);
+    min-width: 100px;
+    border-radius: 10px;
+}
+
+.button-container-quantity button {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    border: transparent;
+    outline: none;
+    overflow: hidden;
+    background-color: transparent;
+    width: 100%;
+   
+    transition: all ease 0.5s;
+}
+
+.button-container-quantity button:hover {
+    transform: scale(1.5);
+    transition: all ease 0.5s;
+}
+
+header .buttons {
+    text-align: center;
+}
+
+header .buttons button {
+    cursor: pointer;
+    border: transparent;
+    color: rgb(255, 255, 255);
+    background-color: rgb(9, 0, 139);
+    padding: 10px;
+    border-radius: 20px;
+    transition: all ease 0.5s;
+}
+
+header .buttons button:hover {
+    transform: scale(1.1);
+    transition: all ease 0.5s;
+}
+
+.button-container {
+    margin-top: 5px;
+    border-top: 2px rgb(9, 0, 0) solid;
+}
+
+.button-container h4 {
+    text-align: right;
+}
+
+.item-information-wrapper {
+    max-width: 150px;
+}
+
+.item-information {
+    margin-left: 10px;
+}
+
+.item-information .product-name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+}
+
+#cart-image .image-container {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+#cart-image .image-container img {
+    cursor: default;
+    max-width: 100%;
+    max-height: 100%;
+    transition: all ease 0.5s;
+}
+
+#cart-number {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 50%;
+    font-size: 50px;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    background: rgb(9, 0, 139);
+    top: 0;
+    right: 2px;
+}
+
+#cart-number #cart-quantity {
+    font-size: 10px;
+}
+
+#branding {
+    margin-right: 200px;
+}
+
+#search-bar {
+    margin-right: 75px;
+}
+
+#dropdown {
+    margin-right: 30px;
+}
+
+#dropdown select {
+    border: none;
+    outline: none;
+}
+
+.wrapper-header-3 {
+    display: flex;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    background-color: rgb(9, 0, 139);
+}
+
+#category-wrapper {
+    background-color: rgb(255, 255, 255);
+    margin-left: 100px;
+    width: 14%;
+}
+
+#category-wrapper .category-container {
+    position: relative;
+    border: 1px rgb(9, 0, 139) solid;
+    padding: 10px;
+    text-align: center;
+}
+
+#category-wrapper .category-container .categories {
+    position: absolute;
+    text-align: left;
+    overflow: hidden;
+    left: 0;
+    top: 45px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 5px;
+    box-shadow: 0 5px 5px 0 rgb(148, 148, 148), 0 5px 5px 0 rgb(24, 25, 26);
+    width: 200px;
+    height: 0;
+    transition: all ease 0.5s;
+}
+
+#category-wrapper .category-container .categories h5 {
+    cursor: default;
+    padding: 10px 0 0 10px;
+}
+
+#category-wrapper .category-container .category-title label {
+    cursor: default;
+}
+
+#category-drop:checked ~ .categories {
+    overflow: auto;
+    height: 400px;
+    transition: all ease 0.5s;
+}
+
+#category-wrapper .category-container .categories li {
+    display: block;
+    cursor: pointer;
+    padding: 5px 0 0 20px;
+    transition: all ease 0.5s;
+}
+
+#category-wrapper .category-container .categories label h5 sup {
+    cursor: pointer;
+    font-size: 10px;
+    color: rgb(9, 0, 139);
+    font-weight: normal;
+}
+
+#category-wrapper .category-container .categories label h5 sup:hover {
+    text-decoration: underline;
+    transition: all ease 0.5s;
+}
+
+#category-wrapper .category-container .categories li:hover {
+    margin-left: 5px;
+    transition: all ease 0.5s;
+}
+
+#category-wrapper .category-container .categories .category-button {
+    cursor: default;
+}
+
+#category-wrapper .category-container .categories .category-type {
+    font-size: 12px;
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+    height: 0;
+    overflow: hidden;
+    transition: all ease 1s;
+}
+
+#category-wrapper .category-container .categories .category-button:hover > .category-type {
+    height: auto;
+    transition: all ease 1s;
+}
+
+#navigation-bar {
+    margin-left: 400px;
+}
+
+.wrapper-header-3 ul {
+    list-style: none;
+}
+
+.wrapper-header-3 li {
+    display: inline-block;
+}
+
+.wrapper-header-3 a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 20px;
+    transition: 0.5s;
+}
+
+.wrapper-header-3 a:hover {
+    border-bottom: 2px rgb(255, 255, 255) solid;
+    font-size: 20px;
+    transition: 0.1s;
+}
