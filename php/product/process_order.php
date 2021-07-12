@@ -2,7 +2,9 @@
 
     session_start();
 
-    $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+    require_once('../connection.php');
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     if (mysqli_connect_errno($con)) {
         die("An error occurred: " . mysqli_connect_error());
@@ -10,6 +12,7 @@
     }else {
         $combiStr = "abcdefghijklmnopqrstuvwxyz0123456789";
         $transactionid = substr(uniqid(str_shuffle($combiStr)), 3 , 9);
+        $_SESSION['transactionid'] = $transactionid;
         $orderid = substr(uniqid(str_shuffle($combiStr)), 3 , 9);
         $branchid = $_POST['branchid'];
         $customerid = $_SESSION['sessioncustomerid'];

@@ -1,6 +1,8 @@
 <?php
 
-    $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+    require_once('connection.php');
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     $product_ID = $_POST['productid'];
     $branch_ID = $_POST['branchid'];

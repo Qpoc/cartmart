@@ -20,6 +20,8 @@ function showEdit(productid, branchid) {
                     document.getElementById('editgetCategory').innerHTML = "<option value=" + data[i].productcategory + ">" + data[i].productcategory + "</option>";
                     document.getElementById('editgetType').innerHTML = "<option value=" + data[i].producttype + ">" + data[i].producttype + "</option>";
                     document.getElementById('editBrand').value = data[i].productbrand;
+                    document.getElementById('editProdid').value = productid;
+                    document.getElementById('editBranchid').value = branchid;
                 }
             }
 
@@ -33,4 +35,61 @@ function showEdit(productid, branchid) {
 
 function closeEditModal() {
     document.getElementById('editproductcontainer').style.display = 'none';
+}
+
+function salesToday() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/sales/get_sales_today.php", true);
+    xhr.onload = function () {
+        if (this.status == 200){
+            if (this.responseText != '' && this.responseText != null){
+                var data = JSON.parse(this.responseText);
+            
+                for (var i in data){
+                    if (data[i].totalsales !== null) {
+                        document.getElementById('salesToday').innerHTML = "&#8369;" + data[i].totalsales;
+                    } 
+                }
+            }
+        }
+    }
+
+    xhr.send();
+
+    getNumProd();
+    getNumUser();
+}
+
+function getNumProd() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/sales/get_num_prod.php", true);
+    xhr.onload = function () {
+        if (this.status == 200){
+            if (this.responseText != '' && this.responseText != null){
+                var data = JSON.parse(this.responseText);
+                
+                document.getElementById('numProd').innerHTML = data[0].totalproducts;
+                
+            }
+        }
+    }
+
+    xhr.send();
+}
+
+function getNumUser() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/sales/get_num_user.php", true);
+    xhr.onload = function () {
+        if (this.status == 200){
+            if (this.responseText != '' && this.responseText != null){
+                var data = JSON.parse(this.responseText);
+                
+                document.getElementById('numUser').innerHTML = data[0].totalcust;
+                
+            }
+        }
+    }
+
+    xhr.send();
 }

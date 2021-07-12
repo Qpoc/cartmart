@@ -6,6 +6,10 @@
     font-family: Artifakt Element;
 }
 
+a {
+    text-decoration:none;
+}
+
 body {
     position: relative;
     height: 100%;

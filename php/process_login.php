@@ -1,15 +1,18 @@
 <?php
-    session_start();
+      session_start();
 
-    require_once('createDB.php');
+      require_once('createDB.php');
+      require_once('connection.php');
 
-    $database = new CreateDB();
+      $database = new CreateDB();
 
-    $username = $_REQUEST['username'];
-    $password = hash('sha256', $_REQUEST['password']);
+      $username = $_REQUEST['username'];
+      $password = hash('sha256', $_REQUEST['password']);
   
      //connection
-     $con = mysqli_connect('localhost','root','','marketdb');
+      $database = new CreateDB();
+      $connection = new Connection();
+      $con = $connection->get_connection();
 
      //check
      if (mysqli_connect_errno($con)) {

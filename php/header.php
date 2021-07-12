@@ -56,6 +56,7 @@
                         echo "<select name='usersetting' id='' onchange='selectedSetting(this.value)'>";
                         echo "<option value=$_SESSION[sessioncustomername] selected hidden disabled>$_SESSION[sessioncustomername]</option>";
                         echo "<option value='manage'>Manage My Account</option>";
+                        echo "<option value='track'>Track My Order</option>";
                         echo "<option value='logout'>Log out</option>";
                         echo "</select>";
                     }else {
@@ -105,7 +106,9 @@
                     <div class='ind-category'>
                         <?php
 
-                            $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+                            require_once('php/connection.php');
+                            $connection = new Connection();
+                            $con = $connection->get_connection();
                             
                             if (mysqli_connect_errno($con)) {
                                 die("An error occurred: " . mysqli_connect_error());

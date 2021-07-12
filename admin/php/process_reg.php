@@ -2,7 +2,9 @@
 
     session_start();
 
-    $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+    require_once('connection.php');
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     if (mysqli_connect_errno($con)) {
         die("An error occured: " . mysqli_connect_error());
@@ -32,17 +34,22 @@
                     $password = hash("sha256", $_POST['password']);
                     $confirm_pass = $_POST['confirmpass'];
                     $isAdmin = $_POST['choose'];
+                    $date = date('Y-m-d');
 
                     if ($isAdmin == 'admin') {
                         $new_file_name = uniqid('', true).".".$act_ext;
                         $new_path = "../images/admin_ID/" . $new_file_name;
                         $db_path = "images/admin_ID/" . $new_file_name;
+                    }else if ($isAdmin == 'rider'){
+                        $new_file_name = uniqid('', true).".".$act_ext;
+                        $new_path = "../images/rider_ID/" . $new_file_name;
+                        $db_path = "images/rider_ID/" . $new_file_name;
                     }
                 
                     if ($isAdmin == 'admin') {
-                        $query = "INSERT INTO admintable (email, fname, lname, mobile, adminpassword, govID, approved) VALUES ('$email', '$fname', '$lname', '$mobile', '$password', '$db_path', 'false')";
+                        $query = "INSERT INTO admintable (email, fname, lname, mobile, adminpassword, govID, approved, dateadded) VALUES ('$email', '$fname', '$lname', '$mobile', '$password', '$db_path', 'false', '$date')";
                     }else if ($isAdmin == 'rider') {
-                        $query = "INSERT INTO ridertable (email, fname, lname, mobile, riderpassword, govID, approved) VALUES ('$email', '$fname', '$lname', '$mobile', '$password', '$db_path', 'false')";
+                        $query = "INSERT INTO ridertable (email, fname, lname, mobile, riderpassword, govID, approved, dateadded) VALUES ('$email', '$fname', '$lname', '$mobile', '$password', '$db_path', 'false', '$date')";
                     }
             
                     if (!mysqli_query($con, $query)) {

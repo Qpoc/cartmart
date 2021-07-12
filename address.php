@@ -20,6 +20,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +42,12 @@
     <script src="script/userSettings.js"></script>
     <script src="script/utilities.js"></script>
     <script src="script/product.js"></script>
+    <script src="script/map.js"></script>
+    <!-- mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
 </head>
 <?php
     if (isset($_SESSION['sessioncustomerid'])) {
@@ -68,7 +78,7 @@
                 <div class="navigate">
                     <h3><a href="my_orders.php">My Orders</a></h3>
                     <ul>
-                        <li><a href="">Track My Order</a></li>
+                        <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
                         <li><a href="cancellation.php">My Cancellations</a></li>
@@ -88,18 +98,17 @@
                                 <th>Address</th>
                                 <th>Mobile Number</th>
                             </thead>
-                            <tbody>
+                            <tbody id="tablebody">
                                 <tr>
-                                    <td id="infoName">John Cyrus Patungan</td>
-                                    <td id="infoAddress">93 C Ermin Garcia St. Cubao Quezon City Barangay Pinagkaisahan</td>
+                                    <td><p id="infoName"></p></td>
+                                    <td><p id="infoAddress"></p></td>
                                     <td>
-                                        <p id="cellNum">09954059308</p> 
-                                        <input type="button" value="EDIT">
+                                        <p id="cellNum"></p>
+                                        <input type="button" value="EDIT" onclick="viewMap()">
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="button" value="+ ADD NEW ADDRESS">
                     </div>
                 </div>
             </div>
@@ -110,9 +119,19 @@
             <P>Copyright &copy; 2021 CartMart</P>
         </div>
     </footer>
-    <div class="product-description">
-        <div class="wrapper" id="description-wrapper">
-            
+    <div class="map-wrapper" id="mapWrapper">
+        <img src="images/Icon/cancel.png" width="32" alt="" id="closeMap" onclick="closeMap();">
+        <div class="address-info">
+            <form action="php/user_settings/update_address.php" method="POST">
+                <input type="hidden" id="longitude" name="longitude">
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="text" id="addressField" name="addressField">
+                <input type="submit" id="editChanges" value="EDIT CHANGES">
+            </form>
+        </div>
+        <div class="map-container">
+            <div id="map"></div>
+            <pre id="coordinates" class="coordinates"></pre>
         </div>
     </div>
 <?php

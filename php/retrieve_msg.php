@@ -2,15 +2,19 @@
 
     session_start();
 
-    $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+    require_once('connection.php');
+
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     if (mysqli_connect_errno($con)) {
         die("An error occurred: " . mysqli_connect_error());
     }else {
     
         $offset = $_POST['offset'];
+        $transactionid = $_POST['transactionid'];
 
-        $query = "SELECT txtmessage FROM messages WHERE fromuser = '000000000' AND touser = '000000001' LIMIT 1 OFFSET $offset";
+        $query = "SELECT txtmessage FROM ridermessages WHERE transactionID = '$transactionid' LIMIT 1 OFFSET $offset";
 
 
         if ($result = mysqli_query($con, $query)) {

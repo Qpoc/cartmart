@@ -22,6 +22,10 @@
     if (isset($_SESSION['descriptionquantity'])) {
         unset($_SESSION['descriptionquantity']);
     }
+
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -146,7 +150,9 @@
                     <div class='ind-category'>
                         <?php
 
-                            $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+                            require_once('php/connection.php');
+                            $connection = new Connection();
+                            $con = $connection->get_connection();
                             
                             if (mysqli_connect_errno($con)) {
                                 die("An error occurred: " . mysqli_connect_error());

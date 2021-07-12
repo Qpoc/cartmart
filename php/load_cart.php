@@ -2,16 +2,19 @@
 
     session_start();
 
+    require_once('connection.php');
+
     if (isset($_SESSION['sessioncustomerid'])) {
         $customerid = $_SESSION['sessioncustomerid'];
     }
 
-    $con = mysqli_connect('localhost','root','','marketdb');
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     if (isset($_POST['productid']) && isset($_SESSION['buynow']) || (isset($_POST['productid']) && isset($_POST['showDescription']))) {
-        $query = "SELECT producttable.branchID, producttable.productID, producttable.productimg, producttable.productname, producttable.quantity, producttable.price, producttable.productdescription, producttable.productcategory, producttable.producttype, producttable.productbrand FROM producttable WHERE producttable.productID = '$_POST[productid]' AND producttable.branchID = '$_POST[branchid]'";
+        $query = "SELECT producttable.branchID, producttable.productID, producttable.productimg, producttable.productname, producttable.quantity, producttable.price, producttable.productdescription, producttable.productcategory, producttable.producttype, producttable.productbrand, branchtable.longitude, branchtable.latitude FROM producttable INNER JOIN branchtable ON producttable.branchID = branchtable.branchID WHERE producttable.productID = '$_POST[productid]' AND producttable.branchID = '$_POST[branchid]'";
     }else {
-        $query = "SELECT carttable.customerID, carttable.productid, carttable.inccheckout, producttable.branchid, producttable.productimg, producttable.productname, producttable.price, carttable.quantity, CONCAT(customertable.customerfname, ' ' , customertable.customerlname) as customername, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress from carttable INNER JOIN producttable ON carttable.productID = producttable.productID INNER JOIN customertable ON carttable.customerID = customertable.customerID WHERE carttable.customerID = '$customerid'";
+        $query = "SELECT carttable.customerID, carttable.productid, carttable.inccheckout, producttable.branchid, producttable.productimg, producttable.productname, producttable.price, carttable.quantity, CONCAT(customertable.customerfname, ' ' , customertable.customerlname) as customername, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress, customertable.longitude AS custLng, customertable.latitude AS custLat, branchtable.longitude, branchtable.latitude from carttable INNER JOIN producttable ON carttable.productID = producttable.productID INNER JOIN customertable ON carttable.customerID = customertable.customerID INNER JOIN branchtable ON producttable.branchID = branchtable.branchID WHERE carttable.customerID = '$customerid'";
     }
 
     $result = mysqli_query($con,$query);
@@ -29,7 +32,7 @@
     );
 
     if (isset($_SESSION['buynow'])) {
-        $query = "SELECT CONCAT(customertable.customerfname, ' ' , customertable.customerlname) as customername, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress FROM customertable WHERE customerID = '$customerid'";
+        $query = "SELECT CONCAT(customertable.customerfname, ' ' , customertable.customerlname) as customername, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress, customertable.longitude AS custLng, customertable.latitude AS custLat FROM customertable WHERE customerID = '$customerid'";
 
         $result = mysqli_query($con, $query);
 

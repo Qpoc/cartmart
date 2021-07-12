@@ -51,7 +51,7 @@
                         <input type="submit" value="+ ADD CATEGORY" name="submit" class = "submit-button">
                     </div>
                     <div class="button">
-                        <input type="button" value="+ ADD BACKGROUND IMAGE TO CATEGORY" onclick="showModal('showAddbgImg', 'false')">
+                        <input type="button" value="+ ADD/EDIT BACKGROUND IMAGE TO CATEGORY" onclick="showModal('showAddbgImg', 'false')">
                     </div>
                 </div>
             </form>
@@ -103,6 +103,26 @@
                     <span>Category:</span>
                 </div>
                 <input type="submit" value="CHANGE BACKGROUND" name="submit">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="category-modal" id="categoryModal">
+    <div class="wrapper">
+        <div class="close" onclick="closeModal('editcategory')">
+            <img src="images/icon/cancel.png" alt="" width="32" height="32">
+        </div>
+        <form action="php/edit_category.php" method="POST">
+            <div class="info">
+                <input id="editCategory" name="editCategory" type="text">
+            </div>
+            <div class="info">
+                <input id="editType" name="editType" type="text">
+            </div>
+            <input type="hidden" id="hidCategory" name="hidCategory">
+            <input type="hidden" id="hidType" name="hidType">
+            <div class="info">
+                <input type="submit" value="EDIT CHANGES">
             </div>
         </form>
     </div>

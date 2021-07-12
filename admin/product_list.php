@@ -45,9 +45,11 @@
                     <div class="buttons">
                         <div class="new-list">
                             <input type="button" value="NEW" onclick="showModal('addproduct', false)">
-                            <select name="" id="category">
+                            <select name="" id="category" onchange="getProductList(this.value)">
                                 <?php
-                                     $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+                                     require_once('php/connection.php');
+                                     $connection = new Connection();
+                                     $con = $connection->get_connection();
 
                                      echo "<option value='' selected hidden>CATEGORIES</option>";
 
@@ -70,13 +72,13 @@
                             </select>
                         </div>
                         <div class="entry">
-                            <select name="" id="category">
-                                <option value="" selected hidden>Entries</option>
+                            <select name="" id="category" onchange="getProductList(this.value)">
+                                <option value="5" selected hidden>Entries</option>
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="15">15</option>
                             </select>
-                            <input type="text" placeholder="Search">
+                            <input type="text" id="searchProduct" placeholder="Search" onkeyup="searchProduct()">
                         </div>
                     </div>
                     <div class="table-container" id="tableContainer">
@@ -186,24 +188,24 @@
                 </div>
                 <div>
                     <label for="myfile">Select a image product : <sup id="editlimit">1mb limit</sup> </label>
-                    <input type="file" id="editmyfile" name="myfile" onchange="showPreviewImage(event)" required>
+                    <input type="file" id="editmyfile" name="editmyfile" onchange="showPreviewImage(event)" required>
                 </div>
                 <div class="product-input">
-                    <select name="branch" id="editgetBranch">
+                    <select name="editbranch" id="editgetBranch">
                         
                     </select>
                     <span>Branch:</span>
                 </div>
                 <div class="product-input">
-                    <input type="text" required name="name" id="editName">
+                    <input type="text" required name="editname" id="editName">
                     <span>Product Name:</span>
                 </div>
                 <div class="product-input">
-                    <input type="text" required name="quantity" id="editQty">
+                    <input type="text" required name="editquantity" id="editQty">
                     <span>Quantity:</span>
                 </div>
                 <div class="product-input">
-                    <input type="text" required name="price" id="editPrice">
+                    <input type="text" required name="editprice" id="editPrice">
                     <span>Price:</span>
                 </div>
                 <span>Product Description</span>
@@ -212,21 +214,23 @@
                         CKEDITOR.replace('editdescription');
                 </script>
                 <div class="product-input">
-                    <select name="category" id="editgetCategory" onchange="getCategoryTypes(this.value)">
+                    <select name="editcategory" id="editgetCategory" onchange="getCategoryTypes(this.value)">
                         
                     </select>
                     <span>Product Category:</span>
                 </div>
                 <div class="product-input">
-                    <select name="type" id="editgetType">
+                    <select name="edittype" id="editgetType">
                         
                     </select>
                     <span>Product Type:</span>
                 </div>
                 <div class="product-input">
-                    <input type="text" required name="brand" id="editBrand">
+                    <input type="text" required name="editbrand" id="editBrand">
                     <span>Product Brand:</span>
                 </div>
+                <input type="hidden" id="editProdid" name="editProdid">
+                <input type="hidden" id="editBranchid" name="editBranchid">
                 <input type="submit" value="EDIT PRODUCT" name="submit">
             </div>
         </form>

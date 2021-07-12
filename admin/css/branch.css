@@ -212,6 +212,17 @@ main .wrapper .container .information span {
     transition: all ease 0.5s;
 }
 
+main .wrapper .container .information img {
+    position:absolute;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container .information img:hover {
+    transform: scale(1.1);
+    transition: all ease 0.5s;
+}
+
 main .wrapper .container .information input[type=text]:focus ~ span , main .wrapper .container .information input[type=text]:valid ~ span {
     color: rgb(9, 0, 139);
     font-size: 12px;
@@ -250,9 +261,9 @@ main .wrapper .container .table-container table th, main .wrapper .container .ta
 main .wrapper .container .table-container table tr td p {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
     margin: auto;
-    max-width: 130px;
+    width: 200px;
     text-overflow: ellipsis;
     overflow: hidden;
 }
@@ -270,6 +281,67 @@ main .wrapper .container .table-container table tr td input[type=button] {
 main .wrapper .container .table-container table tr td input[type=button]:hover {
     transform: translateY(-3px);
     transition: all ease 0.5s;
+}
+
+/* Map */
+body {
+    position: relative;
+}
+
+.map-wrapper {
+    display: none;
+    z-index: 5;
+    background-color: rgb(24, 25, 26, 0.8);
+    text-align:right;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin-left:auto;
+    margin-right:auto;
+    animation: showMap 0.5s ease 0s;
+}
+
+.map-wrapper img {
+    cursor: pointer;
+    filter: invert(100%);
+    transition: all ease 0.5s
+}
+
+.map-wrapper img:hover {
+    transform:translateY(-5px);
+    transition: all ease 0.5s
+}
+
+.map-container {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.map-container pre {
+    position: absolute;
+    top: 0;
+    font-size: 12px;
+    color:rgba(255, 255, 255);
+    background-color: rgb(24, 25, 26, 0.8);
+}
+
+.map-container #map {
+    max-width: 100%;
+    max-height: 100%;
+    width: 500px;
+    height: 500px;
+}
+
+@keyframes showMap {
+    from {
+        transform: scale(0);
+    }to {
+        transform: scale(1);
+    }
 }
 
 /* Footer */

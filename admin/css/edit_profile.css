@@ -164,9 +164,10 @@ main .wrapper h1 {
 }
 
 main .wrapper .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    grid-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     width: 80%;
     background-color: rgb(255, 255, 255);
@@ -176,6 +177,7 @@ main .wrapper .container {
 
 main .wrapper .container .information {
     position: relative;
+    margin-top: 20px;
 }
 
 main .wrapper .container .button input[type=submit] {
@@ -186,6 +188,7 @@ main .wrapper .container .button input[type=submit] {
     border-radius: 5px;
     padding: 10px;
     transition: all ease 0.5s;
+    margin-top: 20px;
 }
 
 main .wrapper .container .button input[type=submit]:hover {
@@ -224,6 +227,36 @@ main .wrapper .container .information input[type=email]:focus ~ span , main .wra
     left: 0;
     top: -20px;
     transition: all ease 0.5s;
+}
+
+main .wrapper .container .wrapper-profile {
+    text-align: left;
+}
+
+main .wrapper .container .profile-pic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+main .wrapper .container .profile-pic img {
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+main .wrapper .container .profile-pic input[type=file] {
+    display:none;
+}
+
+main .wrapper .container .profile-pic input[type=submit] {
+    cursor: pointer;
+    padding: 5px;
+    background-color: rgb(9, 0, 139);
+    color: rgb(255, 255, 255);
+    border:none;
+    border-radius: 5px;
+    margin-top: 5px;
 }
 
 /* Footer */

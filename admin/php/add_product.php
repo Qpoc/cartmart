@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     if (isset($_POST['submit'])) {
         $image =  $_FILES['myfile'];
         $image_name = $image['name'];
@@ -24,7 +26,10 @@
 
                     move_uploaded_file($image_tmp_name, $image_destination);
 
-                    $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+                    require_once('connection.php');
+
+                    $connection = new Connection();
+                    $con = $connection->get_connection();
 
                     $combiStr = "abcdefghijklmnopqrstuvwxyz0123456789";
                     $productID = substr(uniqid(str_shuffle($combiStr)), 3 , 9);
@@ -69,3 +74,5 @@
 
       
     }
+    
+?>

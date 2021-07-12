@@ -19,8 +19,9 @@
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/admin_home.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+    <script src="script/product.js"></script>
 </head>
-<body>
+<body onload="salesToday()">
     <header>
         <div class="wrapper">
             <div class="container">
@@ -46,34 +47,38 @@
                 <div class="dashboard-report">
                     <div class="report">
                         <div class="text">
-                            <h2>&#8369; 2556.56</h2>
-                            <p>Total Sales</p>
+                            <h2 id="totalSalesMonth">0</h2>
+                            <p>Monthly Total Sales</p>
                         </div>
                         <div class="image">
                             <img src="images/icon/sales.png" alt="" width="64">
                         </div>
                     </div>
+                    <a href="product_list.php">
+                        <div class="report">
+                            <div class="text">
+                                <h2 id="numProd"></h2>
+                                <p>Number of Products</p>
+                            </div>
+                            <div class="image">
+                                <img src="images/icon/sales.png" alt="" width="64">
+                            </div>
+                        </div>
+                    </a>
+                    <a href="user.php">
+                        <div class="report">
+                            <div class="text">
+                                <h2 id="numUser"></h2>
+                                <p>Number of Users</p>
+                            </div>
+                            <div class="image">
+                                <img src="images/icon/sales.png" alt="" width="64">
+                            </div>
+                        </div>
+                    </a>
                     <div class="report">
                         <div class="text">
-                            <h2>&#8369; 2556.56</h2>
-                            <p>Number of Products</p>
-                        </div>
-                        <div class="image">
-                            <img src="images/icon/sales.png" alt="" width="64">
-                        </div>
-                    </div>
-                    <div class="report">
-                        <div class="text">
-                            <h2>&#8369; 2556.56</h2>
-                            <p>Number of Users</p>
-                        </div>
-                        <div class="image">
-                            <img src="images/icon/sales.png" alt="" width="64">
-                        </div>
-                    </div>
-                    <div class="report">
-                        <div class="text">
-                            <h2>&#8369; 2556.56</h2>
+                            <h2 id="salesToday">&#8369;0</h2>
                             <p>Sales Today</p>
                         </div>
                         <div class="image">
@@ -95,25 +100,48 @@
         </div>
     </footer>
     <script>
-        let myChart = document.getElementById('mychart').getContext('2d');
-        
-        let massPopChart = new Chart(myChart, {
-            type:'bar',
-            data:{
-                labels:['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                datasets:[{
-                    label:'Sales in Pesos',
-                    data:[
-                        "100",
-                        "500",
-                        "1000",
-                        "5000",
-                        "8505",
-                    ]
-                }]
-            },
-            options:{}
-        });
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'php/sales/get_sales.php', true);
+        xhr.onload = function(){
+            if (this.status == 200) {
+                if (this.responseText != '' && this.responseText != null) {
+                    var data = JSON.parse(this.responseText);
+                
+                    for (var i in data) {
+                        var salesForMonth = new Date();
+                        var realSalesMonth = salesForMonth.toLocaleString('default', {month: 'long'})
+                        var date = new Date(Date.parse(data[i].salesyear+ " " +data[i].monthSales));
+                        var month = date.toLocaleString('default', {month: 'long'});
+                        
+                        let myChart = document.getElementById('mychart').getContext('2d');
+
+                        if (realSalesMonth === month) {
+                            document.getElementById('totalSalesMonth').innerHTML = "&#8369;" + data[i].totalsales;
+                        }
+
+                        let massPopChart = new Chart(myChart, {
+                            type:'bar',
+                            data:{
+                                datasets:[{
+                                    label:'Sales in Pesos',
+                                }]
+                            },
+                            options:{}
+                        });
+
+                        massPopChart.data.labels.push(month);
+                        massPopChart.data.datasets.forEach((dataset) => {
+                            dataset.data.push(data[i].totalsales);
+                        });
+                        massPopChart.update();
+                    }
+                 
+                }
+            }
+        }
+
+        xhr.send();
+
     </script>
 </body>
 </html>

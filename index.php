@@ -20,6 +20,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
     // if (isset($_POST['btnAdd'])) {
     //     if (!isset($_SESSION['sessionusername']) && !isset($_SESSION['sessionpassword'])) {
     //         header("location:login.php");

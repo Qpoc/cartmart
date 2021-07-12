@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    require_once('php/navigation.php');
+
+    if (isset($_SESSION['transactionid']) && isset($_SESSION['customerid'])) {
+        unset($_SESSION['transactionid']);
+        unset($_SESSION['customerid']);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,22 +66,9 @@
         </div>
     </main>
     <footer>
-        <div class="wrapper">
-            <div class="container">
-                <div class="nav">
-                    <img class="imgactive" name="imgnav" src="images/icon/home.png" alt="">
-                    <h3 class="active">HOME</h3>
-                </div>
-                <div class="nav">
-                    <img src="images/icon/incentive.png" name="imgnav" alt="">
-                    <h3>INCENTIVES</h3>
-                </div>
-                <div class="nav">
-                    <img src="images/icon/feedback.png" name="imgnav" alt="">
-                    <h3>FEEDBACK</h3>
-                </div>
-            </div>
-        </div>
+        <?php
+            navigation();
+        ?>
     </footer>
     <div class="wrapper-chat" id="chatBox">
         <div class="back">

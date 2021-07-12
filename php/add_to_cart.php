@@ -1,11 +1,13 @@
 <?php
     session_start();
 
+    require_once('connection.php');
   
     if (!isset($_SESSION['sessionusername']) && !isset($_SESSION['sessionpassword'])) {
         echo "false";
     }else {
-        $con = mysqli_connect('localhost','root','','marketdb');
+        $connection = new Connection();
+        $con = $connection->get_connection();
     
         $customerid = $_SESSION['sessioncustomerid'];
 

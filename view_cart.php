@@ -24,6 +24,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +44,13 @@
     <script src="script/userSettings.js"></script>
     <script src="script/utilities.js"></script>
     <script src="script/product.js"></script>
+    <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 </head>
 <?php
     if (isset($_SESSION['sessioncustomerid'])) {

@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Css for main */
+
+main {
+    min-height: 90%;
+    height: 90%;
+    background-image: linear-gradient( rgb(211,235,239), rgb(255, 255, 255));
+}
+
+main .wrapper {
+    overflow: auto;
+    padding-top: 20px;
+    height: 95%;
+    max-height: 95%;
+}
+
+main .transaction {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+}
+
+main .transaction .header {
+    margin-bottom: 20px;
+}
+
+main .transaction .header input[type=button] {
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(42,166,243);
+    color: rgb(255, 255, 255);
+}
+
+main .transaction .header select {
+    padding: 5px;
+}
+
+
+main .transaction .header p  {
+    margin-top: 10px;
+}
+
+main .transaction .header p a {
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+}
+
+main .transaction .header p a:hover {
+    text-decoration: underline;
+}
+
+main .transaction .reports {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 130px;
+    height: 130px;
+    max-width: 91%;
+    width: 91%;
+    background-color: rgba(80, 80, 80);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+main .transaction .reports .profile { 
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 3fr;
+}
+
+main .transaction .reports .profile .customer-img { 
+    width: 64px;
+    height: 64px;
+}
+
+main .transaction .reports .profile .customer-img img { 
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+main .transaction .reports .profile .information { 
+    padding: 10px;
+    height: 100px;
+    width: 200px;
+    max-width: 200px;
+    max-height: 100px;
+    overflow: hidden;
+    background-color: rgb(54, 54, 54);
+    border-radius: 10px;
+}
+
+main .transaction .reports .profile .information p { 
+    display: -webkit-box;
+    font-size: 12px;
+    margin-top: 5px;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+main .transaction .reports .profile .button {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right; 
+    grid-column: 1/4;
+}
+
+main .transaction .reports .profile .button img {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    margin-left: 5px;
+    filter: invert(100%);
+    transition:  all ease 0.5s;
+}
+
+main .transaction .reports .profile .button img:hover {
+    transform: scale(1.1);
+    transition:  all ease 0.5s;
+}
+
+main .transaction .reports .profile .button input[type=button] {
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    transition: all ease 0.5s;
+}
+
+main .transaction .reports .profile .button input[type=button]:hover {
+    transform: scale(1.1);
+    transition: all ease 0.5s;
+}
+
+main .transaction .reports .profile .button input[type=button]:nth-child(1) {
+    background-color: rgb(0, 66, 128);
+}
+
+main .transaction .reports .profile .button input[type=button]:nth-child(2) {
+    background-color: rgb(0,132,255);
+}
+
+main .transaction .reports .profile .button input[type=button]:nth-child(3) {
+    background-color: rgb(216,54,53);
+}
+
+/* css for chat box */
+body {
+    position: relative;
+}
+
+.wrapper-chat {
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 5px 5px 0 rgb(179, 179, 179), 0 5px 5px 2px rgb(194, 194, 194);
+    height: 420px;
+    width: 405px;
+    border-radius: 10px;
+    animation-name: showChatBox;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showChatBox {
+    from{
+        transform: scale(0);
+    }to{
+        transform: scale(1);
+    }
+}
+
+.wrapper-chat .back {
+    width: 24px;
+    height: 24px;
+}
+
+.wrapper-chat .back img {
+    cursor: pointer;
+    margin: 0 0 10px 10px;
+    max-height: 100%;
+    max-width: 100%;
+    transition: all ease 0.1s;
+}
+
+.wrapper-chat .back img:hover {
+    filter: invert(50%);
+    transition: all ease 0.1s;
+}
+
+
+.wrapper-chat .container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 20px 20px 0 20px;
+    height: 300px;
+}
+
+.wrapper-chat .container .customer {
+    padding: 10px;
+    margin: 20px 0 0 0;
+    background-color: rgb(70, 70, 70);
+    width: 50%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.wrapper-chat .container .customer p {
+    color: rgb(255, 255, 255);
+    text-align: justify;
+    text-justify: auto;
+}
+
+.wrapper-chat .container .rider {
+    padding: 10px;
+    margin: 20px 0 0 170px;
+    background-color: rgb(116, 148, 255);
+    width: 45%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.wrapper-chat .container .rider p {
+    text-align: justify;
+    text-justify: auto;
+}
+
+.wrapper-chat .textfield {
+    display: flex;
+    align-items: center;
+    background-color: rgb(51,77,107);
+    padding: 10px;
+    height: 15%;
+    max-height: 15%;
+    overflow: hidden;
+}
+
+.wrapper-chat .textfield img {
+    filter: invert(100%);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    transition: all ease 0.1s;
+    margin-left: 10px;
+    transform: rotate(180deg);
+    transition: all ease 0.5s;
+}
+
+.wrapper-chat .textfield img:hover {
+    filter: invert(75%);
+    transition: all ease 0.1s;
+}
+
+textarea {
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    background-color: rgb(18, 26, 36);
+    padding-top: 15px;
+    padding-left: 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    width: 20%;
+    resize: none;
+    border: none;
+    transition: all ease 0.5s;
+}
+
+textarea:focus, .textfield:hover > textarea {
+    width: 85%;
+    outline: none;
+    transition: all ease 0.5s;
+}
+
+
+.textfield:hover > img {
+    transform: rotate(0deg);
+    transition: all ease 0.5s;
+}
+
+/* css for footer */
+
+footer {
+    min-height: 10%;
+    height: 10%;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(0,0,0);
+}
+
+
+footer .wrapper {
+    width: 100%;
+}
+
+footer .wrapper .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+footer .wrapper .container .nav .active {
+    color: rgb(13, 9, 158);
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    padding: 0 0 10px 0;
+}
+
+footer .wrapper .container .nav h3 {
+    cursor: pointer;
+    font-size: 12px;
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav .imgactive {
+    filter: invert(8%) sepia(75%) saturate(5793%) hue-rotate(246deg) brightness(95%) contrast(122%);
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav img {
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 16px;
+    height: 16px;
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav h3:hover {
+    color: rgb(13, 9, 158, 0.5);
+    transition: all ease 0.5s;
+}
+
+/* responsive website */
+
+@media only screen and (max-width: 360px) {
+    main .transaction .reports .profile .information { 
+        width: 160px;
+        max-width: 160px;
+    }
+}
+
+
+@media only screen and (max-width: 280px) {
+    main .transaction .reports .profile .information { 
+        width: 120px;
+        max-width: 120px;
+    }
+}

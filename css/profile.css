@@ -32,6 +32,40 @@ main .main-container .information-container .information {
     margin-bottom: 50px;
 }
 
+main .main-container .information-container .information .profile-pic {
+	display: flex;
+	align-items: center;
+	width: 64px;
+	height: 64px;
+}
+
+main .main-container .information-container .information .profile-pic form input[type=file] {
+	display: none;
+}
+
+main .main-container .information-container .information .profile-pic form input[type=submit] {
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 5px;
+	border: none;
+	color: rgb(254, 254, 254);
+	background-color: rgb(9, 0, 139);
+	transition: all ease 0.5s;
+}
+
+main .main-container .information-container .information .profile-pic form input[type=submit]:hover {
+	transform: translateY(-5px);
+	transition: all ease 0.5s;
+}
+
+main .main-container .information-container .information .profile-pic img {
+	cursor: pointer;
+	margin-right: 20PX;
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 50%;
+}
+
 main .main-container .information-container .information p {
 	font-size: 15px;
 }
@@ -42,13 +76,7 @@ main .main-container .information-container .information h4 {
 
 main .main-container .information-container .information h4 sup {
 	cursor: pointer;
-	color: rgb(0, 174, 255);
-	transition: all ease 0.5s;
-}
-
-main .main-container .information-container .information h4 sup:hover {
-	text-decoration: underline;
-	text-decoration-color: black;
+	color: rgb(216,54,53);
 	transition: all ease 0.5s;
 }
 
@@ -226,11 +254,35 @@ body {
     
     main .main-container .information-container .information {
         padding: 20px;
-        height: 50%;
+        height: 70%;
         background-color: rgb(244, 244, 244);
         border-radius: 10px;
         box-shadow: 0 10px 20px 0 rgb(109, 109, 109), 0 10px 20px rgb(244, 244, 244);
         margin-bottom: 50px;
+    }
+
+	main .main-container .information-container .information:nth-child(5) form input[type="text"] {
+        margin-bottom: 10px;
+    }
+
+	main .main-container .information-container .information:nth-child(5) form .btnsubmit {
+		padding-top: 20px;
+        text-align: center;
+    }
+
+	main .main-container .information-container .information:nth-child(5) form .btnsubmit input[type="submit"] {
+		cursor: pointer;
+        padding: 5px;
+		border: none;
+		border-radius: 5px;
+		background-color: rgb(9, 0, 139);
+		color: rgb(255, 255, 255);
+		transition: all ease 0.5s
+    }
+
+	main .main-container .information-container .information:nth-child(5) form .btnsubmit input[type="submit"]:hover {
+		transform: translateY(-5px);
+		transition: all ease 0.5s
     }
 
 	main .main-wrapper .account-navigation {

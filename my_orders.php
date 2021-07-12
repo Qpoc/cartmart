@@ -20,6 +20,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +72,7 @@
                 <div class="navigate">
                     <h3><a href="my_orders.php">My Orders</a></h3>
                     <ul>
-                        <li><a href="">Track My Order</a></li>
+                        <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
                         <li><a href="cancellation.php">My Cancellations</a></li>
@@ -81,12 +85,12 @@
             <div class="main-container">
                 <h2>My Orders</h2>
                 <div class="recent-container">
-                    <div class="recent">
+                    <div class="recent" id="recent">
                         <div class="options">
                             <h3>All Orders</h3>
                             <select name="" id="">
                                 <option value="5">Show last 5 orders</option>
-                                <option value="5">All Orders</option>
+                                <option value="">All Orders</option>
                             </select>
                         </div>
                         <table>
@@ -96,31 +100,13 @@
                                 <th>Items</th>
                                 <th>Total</th>
                             </thead>
-                            <tbody>
-                                <tr>
-                                   <td data-label="Order ID">6356985847</td>
-                                   <td data-label="Date">June 28, 2021</td>
-                                   <td data-label="Items"> 
-                                        <div class="product-container">
-                                            <img src="images/products/60d4a7df815aa4.75843459.jpg" alt="">
-                                        </div>
-                                        <p>Vita Coco Milk</p>
-                                   </td>
-                                   <td data-label="Total">&#8369; 350.25</td>
-                                </tr>
-                                <tr>
-                                   <td data-label="Order ID">6356985847</td>
-                                   <td data-label="Date">June 28, 2021</td>
-                                   <td data-label="Items"> 
-                                        <div class="product-container">
-                                            <img src="images/products/60d4a7df815aa4.75843459.jpg" alt="">
-                                        </div>
-                                        <p>Vita Coco Milk</p>
-                                   </td>
-                                   <td data-label="Total">&#8369; 350.25</td>
-                                </tr>
+                            <tbody id="orderDetails">
+                               
                             </tbody>
                         </table>
+                        <script type="text/javascript">
+                            getOrderDetails();
+                        </script>
                     </div>
                 </div>
             </div>
@@ -131,11 +117,6 @@
             <P>Copyright &copy; 2021 CartMart</P>
         </div>
     </footer>
-    <div class="product-description">
-        <div class="wrapper" id="description-wrapper">
-            
-        </div>
-    </div>
 <?php
     get_navigation();
 ?>

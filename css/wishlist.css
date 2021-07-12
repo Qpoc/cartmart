@@ -19,6 +19,8 @@ main .main-container .recent-container  {
 	background-color: rgb(244, 244, 244);
 	border-radius: 10px;
 	box-shadow: 0 10px 20px 0 rgb(109, 109, 109), 0 10px 20px rgb(244, 244, 244);
+	height: 400px;
+	overflow: auto;
 }
 
 main .main-container .recent-container .options {
@@ -104,7 +106,6 @@ main .main-container .recent-container .recent table tbody tr td .product-contai
 }
 
 /* responsive website */
-
 
 @media only screen and (min-width: 1024px) {
 

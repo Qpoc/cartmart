@@ -14,8 +14,14 @@
     <title>Admin</title>
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/branch.css">
+    <!-- mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
     <script src="script/utilities.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+    <script src="script/map.js"></script>
 </head>
 <body onload="showBranch()">
     <header>
@@ -44,9 +50,12 @@
                         <span>Branch Name</span>
                     </div>
                     <div class="information">
-                        <input type="text" name="branch_address" required>
+                        <input id="addressField" type="text" name="branch_address" required>
                         <span>Branch Address</span>
+                        <img src="images/icon/location.png" alt="" width="32" height="32" onclick="viewMap()">
                     </div>
+                    <input type="hidden" id="longitude" name="longitude">
+                    <input type="hidden" id="latitude" name="latitude">
                     <div class="button">
                         <input type="submit" value="+ ADD BRANCH" name="submit" class = "submit-button">
                     </div>
@@ -59,8 +68,8 @@
                         <thead>
                             <thead>
                                 <th>Branch Name</th>
+                                <th>Address</th>
                                 <th>Date Added</th>
-                                <th>Tool</th>
                             </thead>
                         </thead>
                         <tbody id="tableBody">
@@ -76,26 +85,12 @@
             <P>Copyright &copy; 2021 CartMart</P>
         </div>
     </footer>
-    <script>
-        let myChart = document.getElementById('mychart').getContext('2d');
-        
-        let massPopChart = new Chart(myChart, {
-            type:'bar',
-            data:{
-                labels:['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                datasets:[{
-                    label:'Sales in Pesos',
-                    data:[
-                        "100",
-                        "500",
-                        "1000",
-                        "5000",
-                        "8505",
-                    ]
-                }]
-            },
-            options:{}
-        });
-    </script>
+    <div class="map-wrapper" id="mapWrapper">
+        <img src="images/icon/cancel.png" width="32" height="32" alt="" id="closeMap" onclick="closeMap();">
+        <div class="map-container">
+            <div id="map"></div>
+            <pre id="coordinates" class="coordinates"></pre>
+        </div>
+    </div>
 </body>
 </html>

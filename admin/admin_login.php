@@ -28,6 +28,16 @@
                         <h2>Let's start our day!</h2>
                         <form action="php/process_log.php" method="POST">
                             <div class="info">
+                                <input type="radio" name="choose" id="admin" value="admin" required>
+                                <label for="admin">
+                                    <p>Admin</p>
+                                </label>
+                                <input type="radio" name="choose" id="rider" value="rider" required>
+                                <label for="rider">
+                                    <p>Rider</p>
+                                </label>
+                            </div>
+                            <div class="info">
                                 <input type="email" name="email" required>
                                 <span>Email Address</span>
                             </div>

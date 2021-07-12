@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     $image = $_FILES['myfile'];
     $category = $_POST['category'];
     $img_name = $image['name'];
@@ -21,7 +23,10 @@
                 $img_destination = "../../images/banner/" . $img_new_name;
                 $db_path = "images/banner/" . $img_new_name;
 
-                $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+                require_once('connection.php');
+
+                $connection = new Connection();
+                $con = $connection->get_connection();
 
                 if (mysqli_connect_errno($con)) {
                     die("An error occurred: " . mysqli_connect_error());

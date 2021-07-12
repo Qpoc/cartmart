@@ -3,6 +3,27 @@
     function get_navigation(){
 
         $adminname = $_SESSION['adminname'];
+        $email = $_SESSION['adminemail'];
+        $img_path = "images/admin_profile/default.png";
+        require_once('connection.php');
+        $connection = new Connection();
+        $con = $connection->get_connection();
+
+        if (mysqli_connect_errno($con)) {
+            die("An error occured while connecting: " . mysqli_connect_error());
+        }else {
+            $query = "SELECT adminimg FROM adminimg WHERE email = '$email'";
+
+            if ($result = mysqli_query($con, $query)) {
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_array($result)) {
+                        $img_path = $row['adminimg'];
+                    }
+                }
+            }
+        }
+
+        mysqli_close($con);
 
         echo "<input type='checkbox' id='show-nav' checked>
         <div class='navigation-wrapper'>
@@ -11,7 +32,7 @@
                     <li>
                         <div class='profile'>
                             <div class='image'>
-                                <img src='images/admin_profile/cyrus.jpg' alt=''>
+                                <img src='$img_path' alt=''>
                             </div>
                             <div class='name'>
                                 <p>" . $adminname . "</p>
@@ -48,6 +69,26 @@
                                 </div>
                                 <div class='button'>
                                     <p>USERS</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href='admin.php'>
+                            <div class='reports'>
+                                <div class='image'>
+                                    <img src='images/icon/admin.png' alt='' width='32'>
+                                </div>
+                                <div class='button'>
+                                    <p>ADMIN</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href='rider.php'>
+                            <div class='reports'>
+                                <div class='image'>
+                                    <img src='images/icon/rider.png' alt='' width='32'>
+                                </div>
+                                <div class='button'>
+                                    <p>RIDER</p>
                                 </div>
                             </div>
                         </a>

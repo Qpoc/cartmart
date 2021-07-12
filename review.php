@@ -20,6 +20,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +55,7 @@
             require_once('php/header.php');
         ?>
     </header>
-    <main>
+    <main id="main">
         <div class="main-wrapper">
             <div class="account-navigation">
                 <div class="name">
@@ -68,7 +72,7 @@
                 <div class="navigate">
                     <h3><a href="my_orders.php">My Orders</a></h3>
                     <ul>
-                        <li><a href="">Track My Order</a></li>
+                        <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
                         <li><a href="cancellation.php">My Cancellations</a></li>
@@ -81,30 +85,38 @@
             <div class="main-container">
                 <h2>My Past Purchases, Reviews & Comments</h2>
                 <div class="recent-container">
-                    <div class="recent">
-                        <div class="options">
-                            <select name="" id="">
-                                <option value="5">To Be Reviewed</option>
-                                <option value="5">History</option>
-                            </select>
+                    <div class="recent" id="recent">
+                        <div class="options" id="options">
+                            <nav>
+                                <ul>
+                                    <li><p class="active">To be Reviewed</p></li>
+                                    <li><p>History</p></li>
+                                </ul>
+                            </nav>
+                            <script type="text/javascript">
+                                var elem = document.getElementById('options').getElementsByTagName('p');
+                                for (let index = 0; index < elem.length; index++) {
+                                    elem[index].addEventListener('click', function(){
+                                        document.getElementsByClassName('active')[0].className = "";
+                                        this.className = "active";
+                                        if (this.innerHTML.toLowerCase() == 'history') {
+                                            getReviewHistory();
+                                        }else if (this.innerHTML.toLowerCase() == 'to be reviewed'){
+                                            getOrderToReview();
+                                        }
+                                    });
+                                }
+                            </script>
                         </div>
-                        <table>
-                            <thead>
-                                <th>Purchased</th>
-                                <th>Review</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                   <td data-label="Items"> 
-                                        <div class="product-container">
-                                            <img src="images/products/60d4a7df815aa4.75843459.jpg" alt="">
-                                        </div>
-                                        <p>Vita Coco Milk</p>
-                                   </td>
-                                   <td data-label="Total"><input type="button" value="REVIEW"></td>
-                                </tr>
-                            </tbody>
+                        <table id="table">
+                            
+                            
+                                
+                            
                         </table>
+                        <script type="text/javascript">
+                            getOrderToReview();
+                        </script>
                     </div>
                 </div>
             </div>
@@ -115,9 +127,54 @@
             <P>Copyright &copy; 2021 CartMart</P>
         </div>
     </footer>
-    <div class="product-description">
+    <div class="product-description" id="product-description">
+        <div class="close">
+            <img src="images/Icon/cancel.png" alt="" width="32" height="32" onclick="closeReview()">
+        </div>
         <div class="wrapper" id="description-wrapper">
-            
+            <div class="img">
+                <img id="productimg" src="" alt="product image">
+                <p id="productname"></p>
+            </div>
+            <div class="rating">
+                <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+            </div>
+            <div class="reviewContainer" id="reviewContainer">
+                <script type="text/javascript">
+                    var star = document.getElementsByClassName('fa fa-star-o fa-2x');
+                    
+                    for (var i = 0; i < star.length; i++) {
+                        star[i].addEventListener('mouseover', function(){
+                            
+                            var starcmp = document.getElementsByTagName('i');
+
+                            for (var y = 0; y < starcmp.length; y++) {
+                                starcmp[y].className = "fa fa-star-o fa-2x";
+                            }
+
+                            this.className = "fa fa-star fa-2x";
+                            
+                            for (let index = 0; index < starcmp.length; index++) {
+                                if (starcmp[index].className != this.className) {
+                                    starcmp[index].className = "fa fa-star fa-2x";
+                                }else{
+                                    break;
+                                }
+                            }
+
+                        });
+                        star[i].addEventListener('click', function(){
+                            this.className = "fa fa-star-o fa-2x";
+                        });
+                    }
+                    
+
+                </script>
+            </div>
         </div>
     </div>
 <?php

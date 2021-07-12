@@ -20,6 +20,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +72,7 @@
                 <div class="navigate">
                     <h3><a href="my_orders.php">My Orders</a></h3>
                     <ul>
-                        <li><a href="">Track My Order</a></li>
+                    <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
                         <li><a href="cancellation.php">My Cancellations</a></li>

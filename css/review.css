@@ -25,14 +25,24 @@ main .main-container .recent-container .options {
     margin: 0 0 25px 25px;
 }
 
-main .main-container .recent-container .options select {
-    padding: 10px;
-    border: 2px rgb(9, 0, 139) solid;
-    border-radius: 5px;
+main .main-container .recent-container .options li {
+	display: inline-block;
+    list-style: none;
+	margin-left: 10px;
+}
+
+main .main-container .recent-container .options li p {
+	cursor: pointer;
+}
+
+main .main-container .recent-container .options li .active {
+	border-bottom: 5px rgb(9, 0, 139) solid;
 }
 
 main .main-container .recent-container .recent {
+	overflow: auto;
 	margin-top: 20px;
+	height: 400px;
 }
 
 main .main-container .recent-container .recent table {
@@ -47,7 +57,7 @@ main .main-container .recent-container .recent table {
 main .main-container .recent-container .recent table thead th,
 main .main-container .recent-container .recent table tbody tr td {
 	padding: 15px;
-	border: 2px rgb(9, 0, 139) solid;
+	border: 1px rgb(9, 0, 139) solid;
 }
 
 main .main-container .recent-container .recent table tbody tr td {
@@ -82,6 +92,167 @@ main .main-container .recent-container .recent table tbody tr td .product-contai
 	max-width: 100%;
 	max-height: 100%;
 }
+
+/* css for history table */
+
+main .main-container .recent-container .recent table td {
+    max-width: 500px;
+    width: 500px;
+}
+
+.wrapper-td .title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.wrapper-td .title .img {
+    width:64px;
+    height:64px;
+	margin-right: 20px;
+}
+
+.wrapper-td .title .img img {
+    max-width:100%;
+    max-height:100%;
+}
+
+.wrapper-td .comment-wrapper {
+	max-width: 100%;
+	width: 100%;
+	margin-top: 15px;
+}
+
+.wrapper-td .comment {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+    width: 80%;
+    text-align: justify;
+    text-justify: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(221, 221, 221);
+}
+
+/* Modal for showing review */
+body {
+	position: relative;
+}
+
+.product-description {
+	display: none;
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 50%;
+	min-height: 500px;
+	height: 500px;
+	background-color: rgb(64, 72, 90, 0.9);
+	border-radius: 10px;
+	color: rgb(254, 254, 254);
+	animation-name: showReview;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes showReview {
+	from {
+		transform: scale(0);
+	}to {
+		transform: scale(1);
+	}
+}
+
+.product-description .close {
+	text-align: right;
+}
+
+.product-description .close img {
+	cursor: pointer;
+	padding: 10px;
+	filter: invert(100%);
+	transition: all ease 0.5s;
+}
+
+.product-description .close img:hover {
+	transform: translateY(-5px);
+	transition: all ease 0.5s;
+}
+
+.product-description #description-wrapper {
+	display: flex;
+	flex-direction: column;
+	text-align:center;
+}
+
+.product-description .img {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.product-description .img p {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	text-align: justify;
+	text-justify: auto;
+	max-width: 400px;
+	margin-left: 20px;
+	height: 20%;
+	font-size: 30px;
+}
+
+.product-description .img img {
+	border-radius: 5px;
+	max-width: 128px;
+	max-height: 128px;
+}
+
+.product-description .rating {
+	margin-top: 50px
+}
+
+.product-description .reviewContainer .form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.product-description .reviewContainer .form textarea {
+	font-size: 20px;
+	width: 80%;
+}
+
+.product-description .reviewContainer .form input[type=button] {
+	cursor: pointer;
+	margin-top: 20px;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	background-color: rgb(9, 0, 139);
+	color: rgb(254, 254, 254);
+	transition: all ease 0.5s;
+}
+
+.product-description .reviewContainer .form input[type=review]:hover {
+	transform: translateY(-5px);
+	transition: all ease 0.5s;
+}
+
 
 /* responsive website */
 

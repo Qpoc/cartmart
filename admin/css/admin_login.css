@@ -70,7 +70,6 @@ main .wrapper .container .form {
 
 main .wrapper .container .form h2 {
     color: rgb(255, 255, 255);
-    margin-bottom: 65px;
 }
 
 main .wrapper .container .form .login {
@@ -81,7 +80,19 @@ main .wrapper .container .form .login {
 
 main .wrapper .container .form .login .info {
     position: relative;
-    margin-top: 40px;
+    margin-top: 30px;
+}
+
+main .wrapper .container .form .login .info:nth-child(1) {
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: center;
+}
+
+main .wrapper .container .form .login .info:nth-child(1) input[type=radio] {
+    margin-top: 0px;
+    margin-left: 10px;
 }
 
 main .wrapper .container .form .login .info input[type=email], main .wrapper .container .form .login .info input[type=password] {

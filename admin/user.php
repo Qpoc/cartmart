@@ -81,6 +81,20 @@ require_once('php/navigation.php');
         </tbody>
     </table>
 </div>
+<div class="user-wrapper" id="cartWrapper">
+    <div class="close-container">
+        <img src="../images/Icon/cancel.png" alt="" width="32" onclick="hideUserDetails()">
+    </div>
+    <table>
+        <thead>
+            <th>Photo</th>
+            <th>Name</th>
+        </thead>
+        <tbody id="cartDetails">
+            
+        </tbody>
+    </table>
+</div>
 </body>
 
 </html>

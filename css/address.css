@@ -40,6 +40,15 @@ main .main-container .information-container .information table {
     border-collapse: collapse;
 }
 
+main .main-container .information-container .information table td p {
+    display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	max-width: 500px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 main table tr td, main table th {
     padding: 10px;
     border: 2px rgb(9, 0, 139) solid;
@@ -59,6 +68,97 @@ main table tr td input[type=button], main .main-container .information-container
 main table tr td input[type=button]:hover, main .main-container .information-container input[type=button]:hover {
     transform: translateY(-5px);
     transition: all ease 0.5s;
+}
+
+/* Css for edit addresses */
+/* Map */
+body {
+    position: relative;
+}
+
+.map-wrapper {
+    display: none;
+    z-index: 5;
+    background-color: rgb(24, 25, 26, 0.8);
+    text-align:right;
+    position: absolute;
+    width: 75%;
+    height: 500px;
+	top: 50px;
+    left: 0;
+    right: 0;
+    margin:auto;
+    animation: showMap 0.5s ease 0s;
+}
+
+.map-wrapper .address-info {
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.map-wrapper .address-info input[type="text"] {
+	width: 300px;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+}
+
+.map-wrapper .address-info input[type="submit"] {
+	cursor: pointer;
+	background-color: rgb(9, 0, 139);
+	color: rgb(254, 254, 254);
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	transition: all ease 0.5s
+}
+
+.map-wrapper .address-info input[type="submit"]:hover {
+	transform: translateY(-5px);
+	transition: all ease 0.5s
+}
+
+.map-wrapper img {
+    cursor: pointer;
+    filter: invert(100%);
+    transition: all ease 0.5s
+}
+
+.map-wrapper img:hover {
+    transform:translateY(-5px);
+    transition: all ease 0.5s
+}
+
+.map-container {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+  
+}
+
+.map-container pre {
+    position: absolute;
+    top: 0;
+    font-size: 12px;
+    color:rgba(255, 255, 255);
+    background-color: rgb(24, 25, 26, 0.8);
+}
+
+.map-container #map {
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes showMap {
+    from {
+        transform: scale(0);
+    }to {
+        transform: scale(1);
+    }
 }
 
 /* responsive website */

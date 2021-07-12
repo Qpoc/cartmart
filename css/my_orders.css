@@ -21,6 +21,11 @@ main .main-container .recent-container  {
 	box-shadow: 0 10px 20px 0 rgb(109, 109, 109), 0 10px 20px rgb(244, 244, 244);
 }
 
+main .main-container .recent-container .recent {
+    overflow: auto;
+	height: 400px;
+}
+
 main .main-container .recent-container .options {
     margin: 0 0 25px 25px;
 }

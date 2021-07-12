@@ -1,9 +1,17 @@
-function getProductList() {
+function getProductList(value) {
     var xhr = new XMLHttpRequest();
 
     var table = document.getElementById('tableContainer');
     var offset = 0;
-    var param = "offset=" + offset;
+   
+    if (value !== undefined && !isNaN(value)) {
+        var param = "offset=" + offset + "&items=" + value;
+    }else if(value !== undefined && isNaN(value)) {
+        var param = "offset=" + offset + "&category=" + value;
+    }else if(value === undefined) {
+        var param = "offset=" + offset;
+    }
+    
     var output = "";
 
     xhr.open("POST", "php/get_product_list.php", true);
@@ -55,13 +63,19 @@ function getProductList() {
         if (y >= table.scrollHeight) {
             offset += 5;
 
-            param = "offset=" + offset;
+            if (value !== undefined && !isNaN(value)) {
+                var param = "offset=" + offset + "&items=" + value;
+            }else if(value !== undefined && isNaN(value)) {
+                var param = "offset=" + offset + "&cetegory=" + value;
+            }else if(value === undefined) {
+                var param = "offset=" + offset;
+            }        
 
             xhr.open("POST", "php/get_product_list.php", true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onload = function () {
                 if (this.status == 200) {
-
+                    
                     if (this.responseText != 'error') {
                         var data = JSON.parse(this.responseText);
 
@@ -102,7 +116,57 @@ function getProductList() {
 
     });
 
+}
 
+function searchProduct() {
+
+    var xhr = new XMLHttpRequest();
+    var text = document.getElementById('searchProduct').value;
+    
+    var param = "searchProduct=" + text;
+    
+    var output = "";
+
+    xhr.open("POST", "php/get_product_list.php", true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (this.status == 200) {
+            if (this.responseText != 'error') {
+                var data = JSON.parse(this.responseText);
+
+                for (var i in data) {
+                    output += "<tr>" +
+                        "<td><p>" + data[i].productname + "</p></td>" +
+                        "<td>" +
+                        "<div class='image'>" +
+                        "<img src='../" + data[i].productimg + "' alt=''>" +
+                        "</div>" +
+                        "</td>" +
+                        "<td>" +
+                        "<div class='view'>" +
+                        "<input type='button' value='VIEW' onclick=\"showModal('showDescription', '" + data[i].productID + "')\">" +
+                        "</div>" +
+                        "</td>" +
+                        "<td>" + data[i].quantity + "</td>" +
+                        "<td>&#8369;" + data[i].price + "</td>" +
+                        "<td>" + data[i].dateadded + "</td>" +
+                        "<td>" +
+                        "<div class='buttons'>" +
+                        "<input type='button' value='Edit' id='edit' onclick=\"showEdit('" + data[i].productID + "', '" + data[i].branchID + "')\">" +
+                        "<input type='button' value='Delete' id='delete' onclick=\"deleteProduct('" + data[i].productID + "', ' " + data[i].branchID + " ')\">" +
+                        "<input type='hidden' id='productid' value=\"" + data[i].productID + "\"" +
+                        "</div>" +
+                        "</td>" +
+                        "</tr>";
+                }
+
+                document.getElementById('product-info').innerHTML = output;
+            }
+        }
+
+    }
+
+    xhr.send(param);
 }
 
 function showModal(isShow, productID) {
@@ -209,6 +273,9 @@ function closeModal(isShow) {
     } else if (isShow == 'showDescription') {
         document.getElementById('containerDescription').style.display = 'none';
         document.getElementById('main').style.filter = 'blur(0)';
+    }else if (isShow == 'editcategory'){
+        document.getElementById('categoryModal').style.display = 'none';
+        document.getElementById('main').style.filter = 'blur(0)';
     }
 }
 
@@ -267,10 +334,8 @@ function showBranch() {
                 for (var i in data) {
                     output += "<tr>" +
                         "<td><p>" + data[i].branchname + "</p></td>" +
-                        "<td>" + data[i].dateadded + "</td>" +
-                        "<td>" +
-                        "<input type='button' value='DETAILS'>" +
-                        "</td>" +
+                        "<td><p>" + data[i].branchaddress + "</p></td>" +
+                        "<td><p>" + data[i].dateadded + "</p></td>" +
                         "</tr>";
                 }
 
@@ -302,7 +367,7 @@ function showCategory() {
                         "<td>" + data[i].producttype + "</td>" +
                         "<td>" + data[i].dateadded + "</td>" +
                         "<td>" +
-                        "<input type='button' value='EDIT'>" +
+                        "<input type='button' value='EDIT' onclick=\"editCategory('" + data[i].productcategory + "','"+ data[i].producttype +"')\">" +
                         "</td>" +
                         "</tr>";
                 }
@@ -336,7 +401,7 @@ function showCategory() {
                                 "<td>" + data[i].producttype + "</td>" +
                                 "<td>" + data[i].dateadded + "</td>" +
                                 "<td>" +
-                                "<input type='button' value='EDIT'>" +
+                                "<input type='button' value='EDIT' onclick=\"editCategory('" + data[i].productcategory + "','"+ data[i].producttype +"')\">" +
                                 "</td>" +
                                 "</tr>";
                         }
@@ -349,6 +414,15 @@ function showCategory() {
             xhr.send(param);
         }
     })
+}
+
+function editCategory(category, type) {
+    document.getElementById('hidCategory').value = category;
+    document.getElementById('hidType').value = type;
+    document.getElementById('editCategory').value = category;
+    document.getElementById('editType').value = type;
+    document.getElementById('categoryModal').style.display = 'block';
+    document.getElementById('main').style.filter = 'blur(1px)';
 }
 
 function getCategoryTypes(categoryName, isProductType) {

@@ -2,7 +2,9 @@
 
     session_start();
 
-    $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+    require_once('../connection.php');
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     if (mysqli_connect_errno($con)) {
         echo 'error';
@@ -10,7 +12,7 @@
     }else {
         $customerid = $_SESSION['sessioncustomerid'];
 
-        $query = "SELECT customerregistration.customerID, CONCAT(customertable.customerfname, ' ' , customertable.customerlname) as customername, customertable.customerfname, customertable.customerlname, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress from customerregistration INNER JOIN customertable ON customerregistration.customerID = customertable.customerID WHERE customerregistration.customerID = '$customerid'";
+        $query = "SELECT customerregistration.customerID, CONCAT(customertable.customerfname, ' ' , customertable.customerlname) as customername, customertable.customerfname, customertable.customerlname, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress, customerimg.customerimg, custgenderbirth.gender, custgenderbirth.birthday from customerregistration INNER JOIN customertable ON customerregistration.customerID = customertable.customerID LEFT JOIN customerimg ON customerregistration.customerID = customerimg.customerID LEFT JOIN custgenderbirth ON customerregistration.customerID = custgenderbirth.customerID WHERE customerregistration.customerID = '$customerid'";
 
         if ($result = mysqli_query($con, $query)) {
             while ($rows = mysqli_fetch_assoc($result)) {

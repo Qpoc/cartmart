@@ -16,6 +16,11 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid']) && isset($_POST['email'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+        $_SESSION['myrideremail'] = $_POST['email'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +36,10 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/track_order.css">
     <title>CartMart - My Account</title>
+    <script src="script/userSettings.js"></script>
     <script src="script/utilities.js"></script>
     <script src="script/product.js"></script>
+    <script src="script/map.js"></script>
 </head>
 <?php
     if (isset($_SESSION['sessioncustomerid'])) {
@@ -47,14 +54,17 @@
         ?>
     </header>
     <main id="main">
-        <div class="wrapper">
-            <div class="mycontainer">
-                <img src="images/Icon/searching.gif" alt="">
-                <h3>Looking for available driver</h3>
-                <p>Estimated time: 15 Minutes</p>
-            </div>
-            <div class="chat">
-                <img src="images/Icon/chat.png" alt="" title="Message your driver" onclick="showChatBox()">
+        <div class="status-container">
+            <div class="wrapper" id="updateContainer">
+                <div class="mycontainer">
+                    <img id="imgStatus" src="images/Icon/searching.gif" alt="">
+                </div>
+                <div class="trackText">
+                    <h3 id="status">Looking for available driver</h3>
+                </div>
+                <div class="chat">
+                    <img id="chatRider" src="images/Icon/message.png" alt="Chat your rider" onclick="showChatBox()" width="32" height="32">
+                </div>
             </div>
         </div>
     </main>
@@ -65,49 +75,113 @@
     </footer>
     <div class="wrapper-chat" id="chatBox">
         <div class="back">
-            <img src="images/icon//back.png" alt="" onclick="hideChatBox()">
+            <img src="images/Icon/back.png" alt="" onclick="hideChatBox()" width="32" height="32">
         </div>
         <div class="container" id="message-container">
             <div class="customer">
                 <p>Welcome to CartMart! Feel Free to contact our driver if you have any concerns</p>
             </div>
         </div>
-        <div class="textfield">
+        <div class="textfield" id="textfieldContainer">
             <textarea name="" id="message"></textarea>
-            <img src="images/icon/send.png" alt="" onclick="sendMessage()">
+            <img id="sendIcon" src="images/Icon/send.png" alt=''>
         </div>
     </div>
-    <script>
-        var offset = 0;
-        var container = document.getElementById('message-container');
-        var id = setInterval(function () {
+
+<?php
+   echo "<script>
+        var count = 0;
+        var updateStatus = setInterval(function() {
             var xhr = new XMLHttpRequest();
-            var param = "offset=" + offset;
-            xhr.open('POST', 'php/retrieve_msg.php', true);
+            var param = 'transactionid=' + '$_SESSION[transactionid]';
+            xhr.open('POST','php/product/update_status.php', true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
                 if (this.status == 200) {
-                    if (this.responseText != '') {
+                 
+                    if(this.responseText != '' && this.responseText != null){
                         var data = JSON.parse(this.responseText);
-                        var output = "<div class='customer'>" +
-                            "<p>" + data[0].txtmessage + "</p>" +
-                        "</div>";
-
-                        offset += 1;
-
-                        container.scrollTop = container.scrollHeight;
-
-                        document.getElementById('message-container').innerHTML += output;
+                        var status = data[0].transactstatus;
+                        
+                        var sendIcon = document.getElementById('sendIcon');
+                        sendIcon.onclick = function(){
+                            sendMessage(data[0].transactionID, data[0].email);
+                        }
+                     
+                        if(status == 'accepted'){
+                            if(document.getElementById('imgStatus').src != 'images/Icon/wait.gif'){
+                                document.getElementById('imgStatus').src = 'images/Icon/wait.gif';
+                            }
+                            document.getElementById('chatRider').style.display = 'block';
+                            document.getElementById('status').innerHTML = 'We found you a driver, please wait for a moment.';
+                        }else if (status == 'On the way to mall'){
+                            if(document.getElementById('imgStatus').src != 'images/Icon/delivery.gif'){
+                                document.getElementById('imgStatus').src = 'images/Icon/delivery.gif';
+                            }
+                            document.getElementById('chatRider').style.display = 'block';  
+                            document.getElementById('status').innerHTML = 'Your driver is on the way to the Mall';
+                        }else if (status == 'Gathering') {
+                            if(document.getElementById('imgStatus').src != 'images/Icon/shopping.gif'){
+                                document.getElementById('imgStatus').src = 'images/Icon/shopping.gif';
+                            }
+                            document.getElementById('chatRider').style.display = 'block';
+                            document.getElementById('status').innerHTML = 'Gathering your order';
+                        }else if (status == 'On the way to your home') {          
+                            if(document.getElementById('imgStatus').src != 'images/Icon/housedeliver.gif'){
+                                document.getElementById('imgStatus').src = 'images/Icon/housedeliver.gif';
+                            }
+                            document.getElementById('chatRider').style.display = 'block';
+             
+                            document.getElementById('status').innerHTML = 'On the way to your home';               
+                        }else if (status == 'Delivered') {
+                            if(document.getElementById('imgStatus').src != 'images/Icon/delivered.gif'){
+                                document.getElementById('imgStatus').src = 'images/Icon/delivered.gif';
+                            }
+                            document.getElementById('chatRider').style.display = 'none';
+                            document.getElementById('status').innerHTML = 'Your ordered has been delivered. Enjoy :)';
+                        }
                     }
                 }
             }
 
-            container.scrollTop = container.scrollHeight;
             xhr.send(param);
-            
-            
+
+        }, 3000);
+        
+        var offset = 0;
+        var container = document.getElementById('message-container');
+        var id = setInterval(function () {
+            retrieveMessage();
         }, 2000)
-    </script>
+
+        function retrieveMessage(){";
+            if(isset($_SESSION['transactionid'])){
+               echo "var xhr = new XMLHttpRequest();
+                var param = 'offset=' + offset + '&transactionid=' + '$_SESSION[transactionid]';
+                xhr.open('POST', 'php/retrieve_msg.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (this.status == 200) {
+                        if (this.responseText != '' && this.responseText != null) {
+                            var data = JSON.parse(this.responseText);
+                            var output = \"<div class='customer'>\" +
+                                \"<p>\" + data[0].txtmessage + \"</p>\" +
+                            \"</div>\";
+
+                            offset += 1;
+
+                            container.scrollTop = container.scrollHeight;
+
+                            document.getElementById('message-container').innerHTML += output;
+                        }
+                    }
+                }
+
+                xhr.send(param);";
+            }
+        echo "}
+    </script>";
+?>
 <?php
     get_navigation();
 ?>

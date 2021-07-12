@@ -1,0 +1,47 @@
+.wrapper-review table {
+    border-collapse: collapse;
+}
+
+.wrapper-review table th , .wrapper-review table td {
+    text-align: center;
+    border: 1px rgb(0, 0, 0) solid;
+    padding: 10px;
+}
+
+.wrapper-review table td {
+    max-width: 500px;
+    width: 500px;
+    max-height: 200px;
+    height: 200px;
+}
+
+.wrapper-review .wrapper-td .title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.wrapper-review .wrapper-td .title .img {
+    width:64px;
+    height:64px;
+}
+
+.wrapper-review .wrapper-td .title .img img {
+    max-width:100%;
+    max-height:100%;
+}
+
+.wrapper-review .wrapper-td .comment {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+    width: 80%;
+    text-align: justify;
+    text-justify: auto;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(221, 221, 221);
+}

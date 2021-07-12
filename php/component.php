@@ -4,13 +4,98 @@ function component($productimage, $title, $price, $productid, $branchid)
 {
 
     $wishlist = isWishlist($productid, $branchid);
+    $rating = getRating($productid, $branchid);
 
-    product($productimage, $title, $price, $productid, $branchid, $wishlist);
+    if ($rating !== null || $rating !== '') {
+        product($productimage, $title, $price, $productid, $branchid, $wishlist, $rating);
+    }else {
+        product($productimage, $title, $price, $productid, $branchid, $wishlist, 0);
+    }
+    
 
 }
 
-function product($productimage, $title, $price, $productid, $branchid, $wishlist)
+function product($productimage, $title, $price, $productid, $branchid, $wishlist, $rating)
 {
+
+    if ($rating['ratings'] == 5) {
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 5 && $rating['ratings'] >= 4.5){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star-half-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 4.5 && $rating['ratings'] >= 4){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 4 && $rating['ratings'] >= 3.5){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star-half-o'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 3.5 && $rating['ratings'] >= 3){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 3 && $rating['ratings'] >= 2.5){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star-half-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 2.5 && $rating['ratings'] >= 2){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 2 && $rating['ratings'] >= 1.5){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star-half-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 1.5 && $rating['ratings'] >= 1){
+        $star = "<i class='fa fa-star'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else if ($rating['ratings'] < 1 && $rating['ratings'] >= 0.5){
+        $star = "<i class='fa fa-star-half-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i> 
+        <sup>($rating[ratingcount])</sup>";
+    }else {
+        $star = "<i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>
+        <i class='fa fa-star-o'></i>";
+    }
+
     $element = "<div class='product'>
     <div class='wrapper'>
         <div class='product-image'>
@@ -23,11 +108,7 @@ function product($productimage, $title, $price, $productid, $branchid, $wishlist
     </div>
     </div>
     <div class='rating'>
-          <i class='fa fa-star'></i>
-          <i class='fa fa-star'></i>
-          <i class='fa fa-star'></i>
-          <i class='fa fa-star'></i>
-          <i class='fa fa-star-o'></i>
+          $star
     </div>
     <div class='price'>
         <p>&#8369; $price</p>
@@ -47,7 +128,9 @@ function product($productimage, $title, $price, $productid, $branchid, $wishlist
 
 function isWishlist($productid, $branchid) {
 
-    $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+    require_once('connection.php');
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     if (isset($_SESSION['sessioncustomerid'])) {
         $customerid = $_SESSION['sessioncustomerid'];
@@ -72,6 +155,25 @@ function isWishlist($productid, $branchid) {
     }
 
     return $wishlist;
+}
+
+function getRating($productid, $branchid){
+    require_once("connection.php");
+    $connection = new Connection();
+    $con = $connection->get_connection();
+
+    if (mysqli_connect_errno($con)) {
+        die("An error occured while connecting: " . mysqli_connect_error());
+    }else {
+        $query = "SELECT COUNT(productID) AS ratingcount, AVG(rating) AS ratings FROM productrating WHERE productID = '$productid' AND branchID = '$branchid';";
+
+        if ($result = mysqli_query($con, $query)) {
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_array($result);
+                return $row;
+            }
+        }
+    }
 }
 
 

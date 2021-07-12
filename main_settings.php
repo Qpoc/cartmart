@@ -20,6 +20,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +71,7 @@
                 <div class="navigate">
                     <h3><a href="my_orders.php">My Orders</a></h3>
                     <ul>
-                        <li><a href="">Track My Order</a></li>
+                        <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
                         <li><a href="cancellation.php">My Cancellations</a></li>
@@ -81,7 +85,7 @@
                 <h2>Manage My Account</h2>
                 <div class="information-container">
                     <div class="information">
-                        <h4>Personal Profile | <sup class="edit">EDIT</sup></h4>
+                        <h4>Personal Profile | <sup><a href="profile.php">EDIT</a></sup></h4>
                         <p id="editName"></p>
                         <p id="email"></p>
                     </div>
@@ -138,87 +142,8 @@
             <P>Copyright &copy; 2021 CartMart</P>
         </div>
     </footer>
-    <div class="product-description">
-        <div class="wrapper" id="description-wrapper">
-            <div class="title">
-                <h3>Edit Profile</h3>
-                <img src="images/Icon/cancel.png" id="close" alt="" width="32">
-            </div>
-            <form action="php/user_settings/update_user_info.php" method="POST" enctype="application/x-www-form-urlencoded">
-                <div class="editInfo">
-                    <input type="text" name="editFName" required>
-                    <span id="editFName">First Name</span>
-                    <sup>*</sup>
-                </div>
-                <div class="editInfo">
-                    <input type="text" name="editLName" required>
-                    <span id="editLName">Last Name</span>
-                    <sup>*</sup>
-                </div>
-                <div class="editInfo">
-                    <input type="email" name="editEmail" required>
-                    <span id="editEmail">Email Address</span>
-                    <sup>*</sup>
-                </div>
-                <div class="editInfo">
-                    <input type="text" name="editCellNum" required>
-                    <span id="editCellNum">Mobile Number</span>
-                    <sup>*</sup>
-                </div>
-                <div class="editInfo">
-                    <input name="birthday" placeholder="Select your Birthday" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
-                </div>
-                <div class="editInfo">
-                    <select name="gender" id="gender">
-                        <option value="">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-                <div class="button">
-                    <input type="submit" value="SUBMIT">
-                </div>
-            </form>
-        </div>
-    </div>
 <?php
     get_navigation();
 ?>
-<script type="text/javascript">
-
-var edit = document.getElementsByClassName('edit');
-var close = document.getElementById('close');
-
-close.addEventListener("click", function() {
-    document.getElementById('description-wrapper').style.display = 'none';
-    document.getElementById('main').style.filter = 'blur(0)';
-})
-
-for (let index = 0; index < edit.length; index++) {
-    edit[index].addEventListener("click", function() {
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST','php/user_settings/get_user_info.php', true);
-
-        xhr.onload = function() {
-            if (this.status == 200) {
-                if (this.responseText != '' && this.responseText != 'error') {
-                    var data = JSON.parse(this.responseText);
-                    document.getElementById('editFName').innerHTML = data[0].customerfname;
-                    document.getElementById('editLName').innerHTML = data[0].customerlname;
-                    document.getElementById('editEmail').innerHTML = data[0].emailaddress;
-                    document.getElementById('editCellNum').innerHTML = data[0].mobilenumber;
-                }
-            }
-        }
-
-        xhr.send();
-        
-        document.getElementById('description-wrapper').style.display = 'block';
-        document.getElementById('main').style.filter = 'blur(2px)';
-    })
-}
-
-</script>
 </body>
 </html>

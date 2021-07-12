@@ -1,0 +1,185 @@
+/* main css */
+
+main .main-wrapper .account-navigation {
+	display: none;
+}
+
+main .main-container {
+	display: flex;
+	flex-direction: column;
+}
+
+main .main-container h2 {
+	text-align: center;
+	margin: 20px 0 0 0;
+}
+
+main .main-container .recent-container  {
+    width: 100%;
+	background-color: rgb(244, 244, 244);
+	border-radius: 10px;
+	box-shadow: 0 10px 20px 0 rgb(109, 109, 109), 0 10px 20px rgb(244, 244, 244);
+}
+
+main .main-container .recent-container .recent {
+	height: 400px;
+	overflow: auto;
+}
+
+main .main-container .recent-container .options {
+    margin: 0 0 25px 25px;
+}
+
+main .main-container .recent-container .options input[type=button] {
+    cursor: pointer;
+    background-color: rgb(0, 174, 255);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: rgb(254, 254, 254);
+    transition: all ease 0.5s;
+}
+
+main .main-container .recent-container .options input[type=button]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+main .main-container .recent-container .recent {
+	margin-top: 20px;
+}
+
+main .main-container .recent-container .recent table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+	text-align: center;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+main .main-container .recent-container .recent table thead th,
+main .main-container .recent-container .recent table tbody tr td {
+	padding: 15px;
+	border: 2px rgb(9, 0, 139) solid;
+}
+
+main .main-container .recent-container .recent table tbody tr td {
+	font-size: 12px;
+}
+
+main .main-container .recent-container .recent table tbody tr td p img {
+    cursor: pointer;
+    filter: invert(35%) sepia(74%) saturate(5338%) hue-rotate(345deg) brightness(91%) contrast(86%);
+	transition: all ease 0.5s;
+}
+
+main .main-container .recent-container .recent table tbody tr td p img:hover {
+	transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+main .main-container .recent-container .recent table tbody tr td input[type=button] {
+    cursor: pointer;
+	padding: 10px;
+    background-color: rgb(9, 0, 139);
+    color: rgb(254, 254, 254);
+    border: none;
+    border-radius: 5px;
+    transition: all ease 0.5s;
+}
+
+main .main-container .recent-container .recent table tbody tr td input[type=button]:hover {
+	transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+main .main-container .recent-container .recent table tbody tr .product-container {
+	display: block;
+	margin: auto;
+	width: 64px;
+	height: 64px;
+}
+
+main .main-container .recent-container .recent table tbody tr td .product-container img {
+	display: block;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/* responsive website */
+
+
+@media only screen and (min-width: 1024px) {
+
+    main {
+        min-height: 79vh;
+    }
+
+    main .main-container h2 {
+        text-align: left;
+        margin: 20px 0 0px 0;
+    }
+
+	main .main-wrapper {
+        display: flex;
+	}
+
+    main .main-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    main .main-container .recent-container  {
+        width: 97.5%;
+    }
+    
+    main .main-container .recent-container .recent {
+        margin-top: 20px;
+    }
+    
+    main .main-container .recent-container .recent table {
+        width: 95%;
+    }
+
+	main .main-wrapper .account-navigation {
+		color: rgb(254, 254, 254);
+		display: block;
+		background-image: linear-gradient(rgb(64, 72, 90), rgb(24, 25, 26));
+		width: 25%;
+		margin: 20px;
+		padding: 20px;
+		border-radius: 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate {
+		padding: 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate h3 a {
+		color: rgb(0, 174, 255);
+		text-decoration: none;
+	}
+
+	main .main-wrapper .account-navigation .navigate li {
+		list-style: none;
+		padding: 5px 0 0 10px;
+	}
+
+	main .main-wrapper .account-navigation .navigate li a {
+		cursor: pointer;
+		text-decoration: none;
+		color: rgb(254, 254, 254);
+        transition: all ease 0.5s;
+	}
+
+	main .main-wrapper .account-navigation .navigate li a:hover {
+        color: rgb(0, 174, 255);
+		margin-left: 5px;
+		transition: all ease 0.5s;
+	}
+
+
+}

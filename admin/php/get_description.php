@@ -1,6 +1,8 @@
 <?php
 
-    $con = mysqli_connect('localhost','root','','marketdb');
+    require_once('connection.php');
+    $connection = new Connection();
+    $con = $connection->get_connection();
 
     if (mysqli_connect_errno($con)) {
         die('An error occured: ' . mysqli_connect_error());

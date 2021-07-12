@@ -330,27 +330,71 @@ main {
     max-width: 40px;
 }
 
+/* css for new review */
+
 .product-description .description-rating-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+.product-description .description-rating-wrapper li {
+    list-style: none;
+}
+
+.product-description .container-rate {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    border-bottom: 1px rgb(0, 0, 0) solid;
 }
 
 .product-description .container-rate input[type=button] {
     cursor: pointer;
-    border-top:  2px rgb(9, 0, 139) solid;
-    border-right:  2px rgb(9, 0, 139) solid;
-    border-left:  2px rgb(9, 0, 139) solid;
-    border-bottom: none;
+    background-color: rgb(243, 243, 243);
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.product-description .container-rate input[type=button]:nth-child(2) {
+    margin-left: 10px;
+}
+
+.product-description .container-rate input[type=button].active {
+    background-color: rgb(255, 255, 255);
+    border-top: 1px rgb(0, 0, 0)solid;
+    border-left: 1px rgb(0, 0, 0)solid;
+    border-right: 1px rgb(0, 0, 0)solid;
+}
+
+#description-container {
+    background-color: rgb(230, 230, 230);
     padding: 20px;
 }
 
-.product-description .container-rate input[type=button]:hover {
-    cursor: pointer;
-    border-top:  2px rgb(9, 0, 139) solid;
-    border-right:  2px rgb(9, 0, 139) solid;
-    border-left:  2px rgb(9, 0, 139) solid;
-    border-bottom: none;
-    padding: 20px;
+/* css for feedback */
+
+.container-review {
+    border-bottom: 1px rgb(206, 206, 206) solid;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+#description-container h1 {
+    margin-bottom: 30px;
+}
+
+.container-review .reviewname {
+    margin-bottom: 10px;
+}
+
+.container-review .reviewname p {
+    color: rgb(119, 119, 119);
+}
+
+.container-review .feedback p {
+    color: rgb(78, 78, 78);
 }
 /* Footer */
 

@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Css for main */
+
+main {
+    min-height: 90%;
+    height: 90%;
+    background-image: linear-gradient( rgb(211,235,239), rgb(255, 255, 255));
+}
+
+main .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .wrapper .container {
+    display: flex;
+    overflow: auto;
+    scroll-behavior: smooth;
+    padding: 20px;
+    max-width: 300px;
+}
+
+main .container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+main .wrapper .container .reports {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-right: 20px;
+    min-height: 150px;
+    height: 150px;
+    min-width: 275px;
+    background-color: rgb(3,62,102);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+main .wrapper .container .img-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+}
+
+main .wrapper .container .img-container img {
+    filter: opacity(0.4);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+main .wrapper .container .reports:nth-child(odd) {
+    background-color: rgb(13, 9, 158);
+}
+
+main .wrapper .container .reports:last-child {
+    margin-right: 0px;
+}
+
+main .wrapper .container .reports .title {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+main .wrapper .container .reports .content {
+    text-align: left;
+}
+
+main .wrapper .container .reports .content p {
+    font-size: 30px;
+}
+
+main .wrapper .container .reports .content .rate {
+    font-size: 20px;
+}
+
+main .transaction {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 300px;
+}
+
+main .transaction .img-container {
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    width: 100px;
+    height: 100px;
+}
+
+main .transaction .img-container img {
+    filter: opacity(0.4);
+    pointer-events: none;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+main .transaction .reports {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    min-height: 90px;
+    height: 90px;
+    max-width: 275px;
+    width: 275px;
+    background-color: rgba(80, 80, 80);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+main .transaction .reports:nth-child(2) .content p {
+    font-size: 30px;
+}
+
+main .transaction .reports .title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+main .transaction a {
+    color: rgb(255, 255, 255);
+}
+
+/* css for footer */
+
+footer {
+    min-height: 10%;
+    height: 10%;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(0,0,0);
+}
+
+footer .wrapper {
+    width: 100%;
+}
+
+footer .wrapper .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+footer .wrapper .container .nav .active {
+    color: rgb(13, 9, 158);
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    padding: 0 0 10px 0;
+}
+
+footer .wrapper .container .nav h3 {
+    cursor: pointer;
+    font-size: 12px;
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav .imgactive {
+    filter: invert(8%) sepia(75%) saturate(5793%) hue-rotate(246deg) brightness(95%) contrast(122%);
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav img {
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 16px;
+    height: 16px;
+    transition: all ease 0.5s;
+}
+
+footer .wrapper .container .nav h3:hover {
+    color: rgb(13, 9, 158, 0.5);
+    transition: all ease 0.5s;
+}
+
+/* responsive website */
+

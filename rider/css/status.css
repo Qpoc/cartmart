@@ -8,6 +8,10 @@ html, body {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Css for main */
 
 main {
@@ -221,6 +225,12 @@ footer {
     height: 10%;
 }
 
+footer a {
+    text-decoration: none;
+    color: rgb(0,0,0);
+}
+
+
 footer .wrapper {
     width: 100%;
 }
@@ -250,6 +260,7 @@ footer .wrapper .container .nav {
 
 footer .wrapper .container .nav h3 {
     cursor: pointer;
+    font-size: 12px;
     transition: all ease 0.5s;
 }
 

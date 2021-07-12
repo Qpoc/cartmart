@@ -20,6 +20,10 @@
         unset($_SESSION['descriptionquantity']);
     }
 
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +71,7 @@
                 <div class="navigate">
                     <h3><a href="my_orders.php">My Orders</a></h3>
                     <ul>
-                        <li><a href="">Track My Order</a></li>
+                        <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
                         <li><a href="cancellation.php">My Cancellations</a></li>
@@ -81,6 +85,16 @@
                 <h2>My Profile</h2>
                 <div class="information-container">
                     <div class="information">
+                        <h4>Profile Picture <sup>1 mb limit</sup></h4>
+                        <div class="profile-pic">
+                            <img id="profilePic" src="images/user_profile/default.png" onclick="document.getElementById('profileImage').click();"></img>
+                            <form method="POST" action="php/user_settings/update_profile.php" enctype="multipart/form-data">
+                                <input type="file" name="image" id="profileImage" onchange="showPreviewImage(event)">
+                                <input type="submit" value="EDIT CHANGES">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="information">
                         <h4>Full Name</h4>
                         <p id="profileName"></p>
                     </div>
@@ -93,16 +107,19 @@
                         <p id="cellNum">cypatungan@gmail.com</p>
                     </div>
                     <div class="information">
-                        <h4>Birthday</h4>
-                        <input name="birthday" placeholder="Select your Birthday" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
-                    </div>
-                    <div class="information">
-                        <h4>Gender</h4>
-                         <select name="gender" id="gender">
-                            <option value="" selected hidden>Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
+                        <form action="php/user_settings/add_birthday_gender.php" method="POST">
+                            <h4>Birthday</h4>
+                            <input id="birthday" name="birthday" placeholder="Select your Birthday" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" required />
+                            <h4>Gender</h4>
+                            <select name="gender" id="gender" required>
+                                <option value="" selected hidden>Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <div class="btnsubmit">
+                                <input type="submit" value="ADD">
+                            </div>
+                        </form>
                     </div>
                     <div class="information">
                         <div class="button">
@@ -127,32 +144,20 @@
             </div>
             <form action="php/user_settings/update_user_info.php" method="POST" enctype="application/x-www-form-urlencoded">
                 <div class="editInfo">
-                    <input type="text" name="editFName" required>
+                    <input type="text" name="editFName" id="editFNameField" required>
                     <span id="editFName">First Name</span>
                 </div>
                 <div class="editInfo">
-                    <input type="text" name="editLName" required>
+                    <input type="text" name="editLName" id="editLNameField" required>
                     <span id="editLName">Last Name</span>
                 </div>
                 <div class="editInfo">
-                    <input type="email" name="editEmail" required>
+                    <input type="email" name="editEmail" id="editEmailField" required>
                     <span id="editEmail">Email Address</span>
                 </div>
                 <div class="editInfo">
-                    <input type="text" name="editCellNum" required>
+                    <input type="text" name="editCellNum" id="editCellNumField" required>
                     <span id="editCellNum">Mobile Number</span>
-                </div>
-                <div class="editInfo">
-                    <input name="birthday" placeholder="Select your Birthday" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" />
-                </div>
-                <div class="editInfo">
-                    <p>
-                        <select name="gender" id="gender">
-                            <option value="" selected hidden>Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </p>
                 </div>
                 <div class="button">
                     <input type="submit" value="SUBMIT">
@@ -182,10 +187,10 @@ edit.addEventListener("click", function() {
         if (this.status == 200) {
             if (this.responseText != '' && this.responseText != 'error') {
                 var data = JSON.parse(this.responseText);
-                document.getElementById('editFName').innerHTML = data[0].customerfname;
-                document.getElementById('editLName').innerHTML = data[0].customerlname;
-                document.getElementById('editEmail').innerHTML = data[0].emailaddress;
-                document.getElementById('editCellNum').innerHTML = data[0].mobilenumber;
+                document.getElementById('editFNameField').value = data[0].customerfname;
+                document.getElementById('editLNameField').value = data[0].customerlname;
+                document.getElementById('editEmailField').value = data[0].emailaddress;
+                document.getElementById('editCellNumField').value = data[0].mobilenumber;
             }
         }
     }

@@ -22,6 +22,10 @@
     if (isset($_SESSION['descriptionquantity'])) {
         unset($_SESSION['descriptionquantity']);
     }
+
+    if (isset($_POST['transactionid'])) {
+        $_SESSION['transactionid'] = $_POST['transactionid'];
+    }
 ?>
 
 <!DOCTYPE html>

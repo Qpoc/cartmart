@@ -1,12 +1,15 @@
 <?php
     session_start();
 
+    require_once('connection.php');
+
     if (!isset($_SESSION['sessioncustomerid'])) {
         echo false;
     }else {
         if (isset($_POST['productid'])) {
            
-            $con = mysqli_connect('localhost', 'root', '', 'marketdb');
+            $connection = new Connection();
+            $con = $connection->get_connection();
 
             if (mysqli_connect_errno($con)) {
                 die("An error occured: " . mysqli_connect_error());
