@@ -1,5 +1,18 @@
 /* main css */
 
+body, html {
+	min-height: 100%;
+	height: 100%;
+}
+
+main {
+	height: 100%;
+}
+
+main .main-wrapper {
+	height: 100%;
+}
+
 main .main-wrapper .account-navigation {
 	display: none;
 }
@@ -7,6 +20,9 @@ main .main-wrapper .account-navigation {
 main .main-container {
 	display: flex;
 	flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 main .main-container h2 {
@@ -35,6 +51,7 @@ main .main-container .information-container .information {
 }
 
 main .main-container .information-container .information table {
+    table-layout: fixed;
     width: 100%;
     text-align: center;
     border-collapse: collapse;
@@ -97,7 +114,7 @@ body {
 }
 
 .map-wrapper .address-info input[type="text"] {
-	width: 300px;
+	width: 50%;
 	padding: 5px;
 	border: none;
 	border-radius: 5px;
@@ -169,6 +186,13 @@ body {
         min-height: 79vh;
     }
 
+	.map-wrapper .address-info input[type="text"] {
+		width: 300px;
+		padding: 5px;
+		border: none;
+		border-radius: 5px;
+	}
+
     main .main-container h2 {
         text-align: left;
         margin: 20px 0 0px 20px;
@@ -226,4 +250,67 @@ body {
 	}
 
 
+}
+
+/* table responsive */
+@media 
+only screen and (max-width: 760px) {
+
+	main .main-container {
+		width: 100%;
+    }
+
+    main .main-container .information-container .information {
+        width: 100%;
+    }
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+		text-align: right;
+	}
+	
+	thead tr { 
+		display: none;
+	}
+	
+	tr { 
+		border: 1px solid #ccc; 
+		margin-top: 20px;
+	}
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 5px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align: left;
+	}
+
+	td:nth-of-type(1)::before {
+		content: "Name:";
+	}
+
+	td:nth-of-type(2)::before {
+		content: "Address:";
+	}
+
+	td:nth-of-type(3)::before {
+		content: "Number:";
+	}
+
+	main .main-container .information-container .information table td p {
+		padding-top: 20px;
+		max-width: 300px;
+		margin: auto;
+	}
+	
 }

@@ -41,13 +41,14 @@
                     $category = $_POST['category'];
                     $type = $_POST['type'];
                     $brand = $_POST['brand'];
+                    $points = $_POST['points'];
                     $date = date('Y-m-d');
 
 
                     if (mysqli_connect_errno($con)) {
                         die("An error occured: " . mysqli_connect_error());
                     }else {
-                        $query = "INSERT INTO producttable (branchID, productID, productimg, productname, quantity, price, productdescription, productcategory, producttype, productbrand, dateadded) VALUES ('$branchid', '$productID', '$db_img_path', '$name', $quantity, $price, '$description' , '$category', '$type', '$brand', '$date')";
+                        $query = "INSERT INTO producttable (branchID, productID, productimg, productname, quantity, price, productdescription, productcategory, producttype, productbrand, dateadded, productpoints) VALUES ('$branchid', '$productID', '$db_img_path', '$name', $quantity, $price, '$description' , '$category', '$type', '$brand', '$date', $points)";
 
                         if (mysqli_query($con, $query)) {
                             header('location:../product_list.php');

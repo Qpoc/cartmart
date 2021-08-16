@@ -4,7 +4,6 @@
     if (!isset($_SESSION['adminname'])) {
         header("location:admin_login.php");
     }
-
     require_once('php/navigation.php');
 ?>
 
@@ -18,6 +17,7 @@
     <title>Admin</title>
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/admin_home.css">
+    <link rel="stylesheet" href="css/responsive/navigation-burger.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
     <script src="script/product.js"></script>
 </head>
@@ -45,15 +45,17 @@
                     <h1>DASHBOARD</h1>
                 </div>
                 <div class="dashboard-report">
-                    <div class="report">
-                        <div class="text">
-                            <h2 id="totalSalesMonth">0</h2>
-                            <p>Monthly Total Sales</p>
+                    <a href="sales.php">
+                        <div class="report">
+                            <div class="text">
+                                <h2 id="totalSalesMonth">0</h2>
+                                <p>Monthly Total Sales</p>
+                            </div>
+                            <div class="image">
+                                <img src="images/icon/sales.png" alt="" width="64">
+                            </div>
                         </div>
-                        <div class="image">
-                            <img src="images/icon/sales.png" alt="" width="64">
-                        </div>
-                    </div>
+                    </a>
                     <a href="product_list.php">
                         <div class="report">
                             <div class="text">
@@ -76,15 +78,17 @@
                             </div>
                         </div>
                     </a>
-                    <div class="report">
-                        <div class="text">
-                            <h2 id="salesToday">&#8369;0</h2>
-                            <p>Sales Today</p>
+                    <a href="sales.php">
+                        <div class="report">
+                            <div class="text">
+                                <h2 id="salesToday">&#8369;0</h2>
+                                <p>Sales Today</p>
+                            </div>
+                            <div class="image">
+                                <img src="images/icon/sales.png" alt="" width="64">
+                            </div>
                         </div>
-                        <div class="image">
-                            <img src="images/icon/sales.png" alt="" width="64">
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="wrapper-chart">
                     <div class="container-chart">

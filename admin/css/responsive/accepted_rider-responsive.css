@@ -1,0 +1,68 @@
+@media only screen and (max-width: 425px){
+    /* Rider details */
+    main .wrapper h1 {
+        padding: 20px;
+        text-align: center;
+    }
+
+    main .wrapper .table-container table th, main .wrapper .table-container table tr td {
+        padding: 5px;
+        border: 2px rgb(9, 0, 139) solid;
+        max-width: 100%;    
+    }
+
+    main .wrapper .table-container table tr td p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        padding: 23px;
+    }
+
+    main .wrapper .table-container table, thead, tbody, th, td, tr { 
+		display: block; 
+		text-align: right;
+	}
+	
+	main .wrapper .table-container thead tr { 
+		display: none;
+	}
+	
+	main .wrapper .table-container tr { 
+		border: 1px solid #ccc; 
+		margin-top: 20px;
+	}
+	
+	main .wrapper .table-container td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	main .wrapper .table-container td:before { 
+		position: absolute;
+		top: 6px;
+		left: 5px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align: left;
+	}
+
+	main .wrapper .table-container td:nth-of-type(1)::before {
+		content: "Name:";
+	}
+
+	main .wrapper .table-container td:nth-of-type(2)::before {
+		content: "Email Address:";
+	}
+
+	main .wrapper .table-container td:nth-of-type(3)::before {
+		content: "Mobile Number:";
+	}
+
+    main .wrapper .table-container td:nth-of-type(4)::before {
+		content: "Date Added:";
+	}
+    /*end Rider details*/
+}

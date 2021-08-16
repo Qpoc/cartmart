@@ -1,49 +1,24 @@
 function viewMap() {
-    const successCallback = (position) => {
-        mapboxgl.accessToken = 'pk.eyJ1Ijoia3Vwb2MiLCJhIjoiY2txdTlzaWxmMDJrNjJ3dDk2OXkwN3gxNCJ9.S5PnZaGfMfKwlF7OXiht4w';
-        var coordinates = document.getElementById('coordinates');
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [120.9809674, 14.5907332],
-            zoom: 15
-        });
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia3Vwb2MiLCJhIjoiY2txdTlzaWxmMDJrNjJ3dDk2OXkwN3gxNCJ9.S5PnZaGfMfKwlF7OXiht4w';
+    var coordinates = document.getElementById('coordinates');
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [120.9809674, 14.5907332],
+        zoom: 15
+    });
 
-        var marker = new mapboxgl.Marker({
-            draggable: true
-        })
-            .setLngLat([120.9809674, 14.5907332])
-            .addTo(map);
+    var marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat([120.9809674, 14.5907332])
+        .addTo(map);
 
-        map.on('idle', function () {
-            map.resize()
-        })
-
-        function onDragEnd() {
-            var lngLat = marker.getLngLat();
-            coordinates.style.display = 'block';
-            coordinates.innerHTML =
-                'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://us1.locationiq.com/v1/reverse.php?key=pk.d88d529910dc274215d4880e78558a0e&lat=" + lngLat.lat + "&lon=" + lngLat.lng + "&format=json", true);
-            xhr.onload = function () {
-                if (this.status == 200) {
-
-                    var data = JSON.parse(this.responseText);
-                    console.log(data);
-                    document.getElementById("addressField").value = data.display_name;
-                    document.getElementById('longitude').value = lngLat.lng;
-                    document.getElementById('latitude').value = lngLat.lat;
-                }
-            }
-            xhr.send();
-        }
-
-
+    function onDragEnd() {
         var lngLat = marker.getLngLat();
         coordinates.style.display = 'block';
         coordinates.innerHTML =
-            'Longitude: ' + lngLat.lng + '<br/>Latitude: ' + lngLat.lat;
+            'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "https://us1.locationiq.com/v1/reverse.php?key=pk.d88d529910dc274215d4880e78558a0e&lat=" + lngLat.lat + "&lon=" + lngLat.lng + "&format=json", true);
         xhr.onload = function () {
@@ -51,25 +26,39 @@ function viewMap() {
 
                 var data = JSON.parse(this.responseText);
                 console.log(data);
-
                 document.getElementById("addressField").value = data.display_name;
                 document.getElementById('longitude').value = lngLat.lng;
                 document.getElementById('latitude').value = lngLat.lat;
             }
         }
         xhr.send();
-        searchAddress(map, marker);
-        marker.on('dragend', onDragEnd);
     }
 
-    const errorCallback = (error) => {
-        console.log(error);
-    }
 
-    const watchID = navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
-        enableHighAccuracy: true,
-        timeout: 5000
-    });
+    var lngLat = marker.getLngLat();
+    coordinates.style.display = 'block';
+    coordinates.innerHTML =
+        'Longitude: ' + lngLat.lng + '<br/>Latitude: ' + lngLat.lat;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://us1.locationiq.com/v1/reverse.php?key=pk.d88d529910dc274215d4880e78558a0e&lat=" + lngLat.lat + "&lon=" + lngLat.lng + "&format=json", true);
+    xhr.onload = function () {
+        if (this.status == 200) {
+
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+
+            document.getElementById("addressField").value = data.display_name;
+            document.getElementById('longitude').value = lngLat.lng;
+            document.getElementById('latitude').value = lngLat.lat;
+        }
+    }
+    xhr.send();
+    searchAddress(map, marker);
+    marker.on('dragend', onDragEnd);
+
+    map.on('idle', function () {
+        map.resize()
+    })
 
     document.getElementById('mapWrapper').style.display = 'block';
 }

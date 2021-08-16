@@ -1,0 +1,100 @@
+/* css for navigation */
+
+body {
+    position: relative;
+}
+
+.navigation-container {
+    text-align: right;
+    background-color: rgb(44, 44, 44);
+}
+
+.navigation-container label img {
+    filter: invert(100%);
+    padding: 10px;
+}
+
+.navigation {
+    position: fixed;
+    left: -1000px;
+    right:0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 70%;
+    background-image: linear-gradient(rgb(94, 94, 94), rgb(44, 44, 44));
+    color: rgb(255, 255, 255);
+    transition: all ease 0.5s
+}
+
+.navigation .profile {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.navigation .profile .img {
+    display: block;
+    margin: auto;
+    width: 64px;
+    height: 64px;
+}
+
+.navigation .profile .img img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.navigation .profile p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.navigation .profile input[type="button"] {
+    padding: 5px;
+    background-color: rgb(42,166,243);
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+}
+
+.navigation .profile {
+    width: 100%;
+    height: 200px;
+    background-color: rgb(32, 32, 32, 0.8);
+}
+
+#navigation {
+    display: none;
+}
+
+#navigation:checked ~ .navigation {
+    left: 0;
+    transition: all ease 0.5s
+}
+
+.navigation .nav nav {
+    padding-top: 20px;
+    text-align:left;
+}
+
+.navigation .nav li {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.navigation .nav li img {
+    filter: invert(100%);
+    margin-right: 20px;
+}
+
+.navigation .nav li {
+    list-style: none;
+}
+
+.navigation .nav li a {
+    color: rgb(255, 255, 255);
+}

@@ -51,6 +51,7 @@
                                 </div>
                             </div>
                         </a>
+                        <a href='sales.php'>
                         <div class='reports'>
                             <div class='image'>
                                 <img src='images/icon/sales.png' alt='' width='32'>
@@ -59,6 +60,7 @@
                                 <p>SALES</p>
                             </div>
                         </div>
+                        </a>
                     </li>
                     <li>
                         <h5>MANAGE</h5>
@@ -154,5 +156,19 @@
         </div>";
     }
 
+
+//     <li>
+//     <h5>GAMIFICATION</h5>
+//     <a href='challenges.php'> 
+//         <div class='reports'>
+//             <div class='image'>
+//                 <img src='images/icon/gamification.png' alt='' width='32'>
+//             </div>
+//             <div class='button'>
+//                 <p>CHALLENGES</p>
+//             </div>
+//         </div>
+//     </a>
+// </li>
 
 ?>

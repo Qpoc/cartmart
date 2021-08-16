@@ -168,6 +168,17 @@ function loadCheckout(productid, isMultipleQuantity, quantity, branchid) {
                 }
 
                 if (data[i].customername !== undefined) {
+                    var points = "";
+
+                    if (data[i].customerpoints != null) {
+                        points =  "<label class='switch'>" +
+                        "<input id='coinbox' type='checkbox' onchange=\"getCoins(" + data[i].customerpoints + ")\">" +
+                        "<span class='slider round'></span>" +
+                        "</label><sup id='supCoins' style='font-size:12px;'>Use CartMart Points: " + data[i].customerpoints + "</sup>" +
+                        "<input type='hidden' name='hidCoins' id='hidCoins' value='" + data[i].customerpoints + "'>" +
+                        "<input type='hidden' id='hidTotalPrice' value=''>";
+                    }
+
                     var delfee = calculateDelFee(data[i].custLng, data[i].custLat, branchLng, branchLat);
                     output2 += "<h1>Order Summary</h1>" +
                         "<div class='wrapper-bill-info'>" +
@@ -177,6 +188,7 @@ function loadCheckout(productid, isMultipleQuantity, quantity, branchid) {
                         "<p><span>HOME:</span> " + data[i].customeraddress + "</p> " +
                         "<p><img src='images/Icon/phone-call.png' alt='' width='16'> " + data[i].mobilenumber + "</p> " +
                         "<p><img src='images/Icon/email.png' alt='' width='16'> " + data[i].emailaddress + "</p> " +
+                        "<p>Mode of Payment: <select name='mod' onchange='changeMOP(this.value)'><option value='COD' selected>Cash on Delivery</option><option value='credit'>Credit/Debit Card</option></select></p>" +
                         "</div>" +
                         "</div>" +
                         "<div class='wrapper-voucher'>" +
@@ -193,10 +205,11 @@ function loadCheckout(productid, isMultipleQuantity, quantity, branchid) {
                         "<input type='hidden' name='subtotal' value='" + totalprice + "'/>" +
                         "<p>Delivery Fee: &#8369;" + parseFloat(delfee) + "</p>" +
                         "<input type='hidden' name='deliveryFee' value='" + parseFloat(delfee) + "'/>" +
-                        "<p>Total <sub>(Vat included)</sub>: &#8369;" + parseFloat(totalprice + delfee) + "</p>" +
-                        "<input type='hidden' name='totalPrice' value='" + parseFloat(totalprice + delfee) + "'/>" +
+                        "<p id='txtTotal'>Total <sub>(Vat included)</sub>: &#8369;" + parseFloat(totalprice + delfee) + "</p>" +
+                        "<input type='hidden' id='totalPrice' name='totalPrice' value='" + parseFloat(totalprice + delfee) + "'/>" +
+                        points +
                         "<input type='submit' value='PLACE ORDER' id='placeOrder'>" +
-                        "</div>"
+                        "</div>" +
                     "</div>";
 
                     document.getElementById('view-cart-container').innerHTML += output;
@@ -211,6 +224,52 @@ function loadCheckout(productid, isMultipleQuantity, quantity, branchid) {
     }
 
     xhr.send(param);
+
+}
+
+function changeMOP(value) {
+    if (value == 'credit') {
+        document.getElementById('formPlaceOrder').action = 'checkout/create-checkout-session.php';
+    }else if (value == 'COD'){
+        document.getElementById('formPlaceOrder').action = 'php/product/process_order.php';
+    }
+
+}
+
+function getCoins(coins) {
+    
+    var elem = document.getElementById('coinbox');
+
+    if (elem.checked) {
+        var totalPrice = document.getElementById('totalPrice');
+        var discountedPrice = totalPrice.value - coins;
+
+        if (discountedPrice < 0) {
+            coins = coins - totalPrice.value;
+            discountedPrice = 0;
+        }else if (discountedPrice >= 0){
+            coins = 0;
+        }
+
+        document.getElementById('supCoins').innerHTML = "Use CartMart Points: " + coins;
+        document.getElementById('hidCoins').value =  coins;
+        document.getElementById('txtTotal').innerHTML = "Total <sub>(Vat included)</sub>: <span style='color:red; text-decoration:line-through;'>&#8369;" + totalPrice.value + "</span> &#8369;" + discountedPrice;
+        document.getElementById('hidTotalPrice').value = totalPrice.value;
+        document.getElementById('totalPrice').value = discountedPrice;
+    }else {
+        var discountedPrice = document.getElementById('totalPrice');
+        var totalPrice = parseFloat(discountedPrice.value) + parseFloat(document.getElementById('hidCoins').value);
+  
+
+        totalPrice += coins;
+
+        document.getElementById('supCoins').innerHTML = "Use CartMart Points: " + coins;
+        document.getElementById('hidCoins').value =  coins;
+        document.getElementById('totalPrice').value = document.getElementById('hidTotalPrice').value;
+        document.getElementById('txtTotal').innerHTML = "Total <sub>(Vat included)</sub>: &#8369;" + document.getElementById('hidTotalPrice').value;
+        
+    }
+
 
 }
 
@@ -302,6 +361,17 @@ function multipleCheckout() {
                 }
 
                 if (i == data.length - 1 && data[i].customername !== undefined) {
+                    var points = "";
+
+                    if (data[i].customerpoints != null) {
+                        points =  "<label class='switch'>" +
+                        "<input id='coinbox' type='checkbox' onchange=\"getCoins(" + data[i].customerpoints + ")\">" +
+                        "<span class='slider round'></span>" +
+                        "</label><sup id='supCoins' style='font-size:12px;'>Use CartMart Points: " + data[i].customerpoints + "</sup>" +
+                        "<input type='hidden' name='hidCoins' id='hidCoins' value='" + data[i].customerpoints + "'>" +
+                        "<input type='hidden' id='hidTotalPrice' value=''>";
+                    }
+
                     var delfee = calculateDelFee(data[i].custLng, data[i].custLat, branchLng, branchLat);
                     output2 += "<h1>Order Summary</h1>" +
                         "<div class='wrapper-bill-info'>" +
@@ -311,6 +381,7 @@ function multipleCheckout() {
                         "<p><span>HOME:</span> " + data[i].customeraddress + "</p> " +
                         "<p><img src='images/Icon/phone-call.png' alt='' width='16'> " + data[i].mobilenumber + "</p> " +
                         "<p><img src='images/Icon/email.png' alt='' width='16'> " + data[i].emailaddress + "</p> " +
+                        "<p>Mode of Payment: <select name='mod' onchange='changeMOP(this.value)'><option value='COD' selected>Cash on Delivery</option><option value='credit'>Credit/Debit Card</option></select></p>" +
                         "</div>" +
                         "</div>" +
                         "<div class='wrapper-voucher'>" +
@@ -326,11 +397,12 @@ function multipleCheckout() {
                         "<p>Subtotal: &#8369;" + totalprice + "</p>" +
                         "<input type='hidden' name='subtotal' value='" + totalprice + "'/>" +
                         "<p>Delivery Fee: &#8369;" + delfee + "</p>" +
-                        "<input type='hidden' name='deliveryFee' value='" + delfee + "'/>" +
-                        "<p>Total <sub>(Vat included)</sub>: &#8369;" + parseFloat(totalprice + delfee) + "</p>" +
-                        "<input type='hidden' name='totalPrice' value='" + parseFloat(totalprice + delfee) + "'/>" +
+                        "<input type='hidden' name='deliveryFee' value='" + parseFloat(delfee) + "'/>" +
+                        "<p id='txtTotal'>Total <sub>(Vat included)</sub>: &#8369;" + parseFloat(totalprice + delfee) + "</p>" +
+                        "<input type='hidden' id='totalPrice' name='totalPrice' value='" + parseFloat(totalprice + delfee) + "'/>" +
+                        points +
                         "<input type='submit' value='PLACE ORDER' id='placeOrder'>" +
-                        "</div>"
+                        "</div>" +
                     "</div>";
 
                     document.getElementById('view-cart-container').innerHTML += output;
@@ -509,13 +581,19 @@ function showDescription(productid, branchid) {
 
     xhr.onload = function () {
         if (this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            var output = "";
+            if (this.responseText != null && this.responseText.trim().length != 0) {
+                var data = JSON.parse(this.responseText);
+                var output = "";
 
             for (var i in data) {
                 if (data[i].productimg !== undefined && data[i].price !== undefined && data[i].productname !== undefined && data[i].quantity !== undefined) {
                     var wishlist = document.getElementById(productid).style.filter;
                     var wishlistBtnColor = "";
+                    var points = "";
+           
+                    if (data[i].productpoints != 0 && data[i].productpoints != null) {
+                        points = "<p style='text-align:center; margin-top: 10px;'> Point Rewards: " + data[i].productpoints + "</p>";
+                    }
 
                     if (wishlist == 'invert(36%) sepia(98%) saturate(3866%) hue-rotate(334deg) brightness(109%) contrast(101%)') {
                         wishlistBtnColor = "<img id='" + i + "' class='wishlist' src='images/Icon/heart.png' width='32' height='32' onclick=\" addToWishlist('" + productid + "','" + i + "', true, '" + branchid + "')\" style='filter: invert(36%) sepia(98%) saturate(3866%) hue-rotate(334deg) brightness(109%) contrast(101%);'>";
@@ -536,6 +614,7 @@ function showDescription(productid, branchid) {
                         "<div class='wrapper'>" +
                         "<div class='image'>" +
                         "<img src=\"" + data[i].productimg + "\" alt=''>" +
+                        points +
                         "</div>" +
                         "</div>" +
                         "<div class='title'>" +
@@ -574,7 +653,7 @@ function showDescription(productid, branchid) {
                         "</div>";
                 }
             }
-
+    
             document.getElementById('description-wrapper').innerHTML = output;
             document.getElementById('description').style.display = 'grid';
             document.getElementById('main').style.filter = 'blur(2px)';
@@ -585,6 +664,7 @@ function showDescription(productid, branchid) {
                     document.getElementsByClassName('active')[0].className = "";
                     this.className = "active";
                 });
+            }
             }
         }
     }

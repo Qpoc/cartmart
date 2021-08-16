@@ -14,9 +14,9 @@
             $query = "SELECT DISTINCT productcategory FROM itemcategory";
         }else if(isset($_POST['offset'])) {
             $offset = $_POST['offset'];
-            $query = "SELECT * FROM itemcategory ORDER BY productcategory,producttype LIMIT 10 OFFSET $offset";
+            $query = "SELECT * FROM itemcategory ORDER BY productcategory,producttype LIMIT 15 OFFSET $offset";
         }else if (isset($_POST['productType'])) {
-            $category = $_POST['category'];
+            $category = mysqli_real_escape_string($con, $_POST['category']);
             $query = "SELECT producttype FROM itemcategory WHERE productcategory = '$category'";
         }
         

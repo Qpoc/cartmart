@@ -1,0 +1,178 @@
+/*aDMIN RESPONSIOVE WEBSITE*/
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 320px){
+    
+    /*ADMIN SIGN IN*/
+    main input[type="submit"] {
+        margin-left: 50px;
+        
+    }
+
+    main .sign-up-form .wrapper-sign .container:nth-child(4) .info p {
+        text-align: center;
+    }
+
+    main .sign-up-form .wrapper-sign .container:nth-child(4) {
+        margin-top: 30px;
+        margin-left: 23px;
+        background-color:lightskyblue;
+    }
+    /*END ADMIN SIGN IN*/
+
+    
+}
+
+/* Small devices (phones, 600px and down) */
+@media only screen and (max-width: 425px){
+
+    /* ADMIN_LOGIN */
+    header .wrapper {
+        width: 50%;
+    }
+
+    header .wrapper .branding {
+        display: flex;
+        flex-wrap: wrap;
+        justify-self: center;
+        max-width: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    main .text{
+        display: none;
+    }
+
+    main .form{
+        margin-top: 20px;
+        width: 100px;
+        padding: 10px;
+        display: block;
+        font-size: 10pt;
+        margin: 10px;
+        text-align: justified;
+    }
+
+    main .wrapper .container .form .text p{
+        display: block;
+        text-align: justified;
+    }
+    /* END ADMIN LOGIN*/
+
+    /* ADMIN SIGN-UP*/
+    main .background { 
+        height: 20%;
+        background-image: none;
+    }
+    
+    main .sign-up-form {
+        max-height: 100%;
+        align-content: center;
+        flex-basis: 100%;
+        margin-top: 15px;
+        text-align: left;
+    }
+
+    main .sign-up-form .wrapper-sign {
+        padding: 1px;
+        width: 100%;
+    }
+
+    main .sign-up-form .wrapper-sign h1{
+        font-size: 18pt;
+        text-align: center;
+    }
+
+    main .sign-up-form .wrapper-sign .container .file-upload{
+        text-align: center;
+    }
+
+    main .sign-up-form .wrapper-sign .container:nth-child(4) {
+        margin-top: 30px;
+        margin-left: 23px;
+        height: 100%;
+        background-color:lightskyblue;
+    }
+
+    main .sign-up-form .wrapper-sign .container:nth-child(4) .info p {
+        text-align: center;
+    }
+
+    main input[type="submit"] {
+        margin-left: 150px;
+    }
+
+    main input[type="file"] {
+        margin-left: 78px;
+    }
+    /*END ADMIN SIGN UP*/
+
+   
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px)
+{
+    /*ADMIN LOG IN*/
+    header .wrapper {
+      
+        text-align: center;
+        width: 85%;
+    }
+
+    header .wrapper .branding {
+     
+        align-items: center;
+        max-width: 100%;
+        width: 100%;
+
+        display: block;
+    }
+
+    main .wrapper {
+        min-height: 70%;
+        height: 70%;
+    }
+    
+    main .wrapper .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        justify-self: center;
+        min-height: 100%;
+        height: 100%;
+    }
+    
+    main .wrapper .container .text {
+        display: none;
+    }
+    /*END ADMIN LOGIN*/
+
+    /*ADMIN SIGN UP*/
+    main .wrapper .container .form {
+        margin-top: 20px;
+        width: 80%;
+        height: 80%;
+        padding: 20px;
+        display: block;
+        font-size: 10pt;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    main .wrapper .container .form .login {
+        padding: 20px;
+        height: 50%;
+        min-height: 50%;
+    }
+
+    .text p{
+        display: block;
+        text-align: justified;
+    }
+    /* END ADMIN SIGN UP */
+}
+

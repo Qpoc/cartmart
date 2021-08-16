@@ -47,7 +47,7 @@
 </head>
 <?php
     if (isset($_SESSION['sessioncustomerid'])) {
-        echo "<body onload='onLoadCart()'>";
+        echo "<body onload =\"loadCartUserInfo('review')\">";
     }else {
         echo "<body>";
     }
@@ -61,7 +61,7 @@
         <div class="main-wrapper">
             <div class="account-navigation">
                 <div class="name">
-                    <h4>Hi, John Cyrus Patungan</h4>
+                    <h4 id="name">Hi,</h4>
                 </div>
                 <div class="navigate">
                     <h3><a href="main_settings.php">Manage My Account</a></h3>

@@ -61,6 +61,17 @@
                 if (!mysqli_query($this->con, $query)) {
                     echo "Error encountered: " . mysqli_error($this->con);
                 }
+
+                //create table
+                $query = "CREATE TABLE IF NOT EXISTS customerpoints(
+                    customerID VARCHAR(9) NOT NULL PRIMARY KEY,
+                    customerpoints INT NOT NULL,
+                    FOREIGN KEY (customerID) REFERENCES customertable(customerID)
+                )";
+
+                if (!mysqli_query($this->con, $query)) {
+                    echo "Error encountered: " . mysqli_error($this->con);
+                }
                 
                 //create table
                 $query = "CREATE TABLE IF NOT EXISTS branchtable(
@@ -90,7 +101,8 @@
                     productcategory VARCHAR(100) NOT NULL,
                     producttype VARCHAR(100) NOT NULL,
                     productbrand VARCHAR(100) NOT NULL,
-                    dateadded DATE NOT NULL
+                    dateadded DATE NOT NULL,
+                    productpoints INT NOT NULL
                 )";
 
                 if (!mysqli_query($this->con, $query)) {
@@ -171,6 +183,18 @@
                 //create table
                 $query = "CREATE TABLE IF NOT EXISTS categorybackground(
                     categoryimage VARCHAR(500) NOT NULL,
+                    productcategory VARCHAR(100) NOT NULL,
+                    PRIMARY KEY (productcategory),
+                    FOREIGN KEY (productcategory) REFERENCES itemcategory(productcategory)
+                )";
+    
+                if (!mysqli_query($this->con, $query)) {
+                    echo "Error encountered: " . mysqli_error($this->con);
+                }
+
+                //create table
+                $query = "CREATE TABLE IF NOT EXISTS categoryicon(
+                    categoryicon VARCHAR(500) NOT NULL,
                     productcategory VARCHAR(100) NOT NULL,
                     PRIMARY KEY (productcategory),
                     FOREIGN KEY (productcategory) REFERENCES itemcategory(productcategory)
@@ -268,6 +292,18 @@
                     echo "Error encountered: " . mysqli_error($this->con);
                 }
 
+                //create table
+                $query = "CREATE TABLE IF NOT EXISTS riderimg(
+                    email VARCHAR(100) NOT NULL,
+                    riderimg VARCHAR(500) NOT NULL,
+                    PRIMARY KEY (email),
+                    FOREIGN KEY (email) REFERENCES ridertable (email)
+                )";
+    
+                if (!mysqli_query($this->con, $query)) {
+                    echo "Error encountered: " . mysqli_error($this->con);
+                }
+
                 // Transaction
                 
                 $query = "CREATE TABLE IF NOT EXISTS transactiontable(
@@ -278,6 +314,7 @@
                     totalprice REAL NOT NULL,
                     dateadded DATE NOT NULL,
                     accept VARCHAR(10) NOT NULL,
+                    modepayment VARCHAR(20) NOT NULL,
                     PRIMARY KEY (transactionID),
                     FOREIGN KEY (customerID) REFERENCES customertable(customerID)
                 )";
@@ -358,6 +395,20 @@
                     echo "Error encountered: " . mysqli_error($this->con);
                 }
 
+                // // challenges
+
+                // $query = "CREATE TABLE IF NOT EXISTS riderchallenges(
+                //     challengeID VARCHAR(9) NOT NULL,
+                //     title VARCHAR(100) NOT NULL,
+                //     condition VARCHAR() NOT NULL,
+                //     PRIMARY KEY (transactionID),
+                //     FOREIGN KEY (transactionID) REFERENCES transactiontable(transactionID)
+                // )";
+
+                // if (!mysqli_query($this->con, $query)) {
+                //     echo "Error encountered: " . mysqli_error($this->con);
+                // }
+
             }else {
                 return false;
             }
@@ -366,7 +417,13 @@
 
         public function getProductData($iscategory) {
             if ($iscategory == false) {
-                $query = "SELECT * FROM producttable ORDER BY RAND() LIMIT 5";
+                $query = "SELECT * FROM producttable ORDER BY RAND() LIMIT 6";
+            }else if ($iscategory == '99'){
+                $query = "SELECT * FROM producttable WHERE PRICE <= '$iscategory' ORDER BY RAND() LIMIT 6";
+            }else if ($iscategory == "WHAT'S NEW?"){
+                $query = "SELECT * FROM producttable WHERE dateadded >= NOW() - INTERVAL 5 DAY ORDER BY RAND() LIMIT 6";
+            }else if ($iscategory == "BEVERAGES"){
+                $query = "SELECT * FROM producttable WHERE productcategory = '$iscategory' ORDER BY RAND() LIMIT 6";
             }else {
                 $query = "SELECT * FROM producttable ORDER BY RAND() LIMIT 6";
             }
@@ -379,6 +436,7 @@
             }   
             
         }
+        
 
         public function getDisProdType($category) {
 

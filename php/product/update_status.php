@@ -13,7 +13,7 @@
 
         $transactionid = $_POST['transactionid'];
 
-        $query = "SELECT transactionstatus.transactionID, transactionstatus.transactstatus, ridertransaction.email FROM transactionstatus INNER JOIN ridertransaction ON transactionstatus.transactionID = ridertransaction.transactionID WHERE transactionstatus.transactionID = '$transactionid'";
+        $query = "SELECT transactionstatus.transactionID, transactionstatus.transactstatus, ridertransaction.email, transactiontable.customerid, customertable.longitude AS custlong, customertable.latitude AS custlat, ordertable.branchid, branchtable.longitude AS brlong, branchtable.latitude AS brlat FROM transactionstatus INNER JOIN ridertransaction ON transactionstatus.transactionID = ridertransaction.transactionID INNER JOIN transactiontable ON transactionstatus.transactionID = transactiontable.transactionid INNER JOIN customertable ON transactiontable.customerid = customertable.customerid INNER JOIN ordertable ON transactionstatus.transactionID = ordertable.transactionID INNER JOIN branchtable ON ordertable.branchid = branchtable.branchid WHERE transactionstatus.transactionID = '$transactionid'";
 
         if ($result = mysqli_query($con, $query)) {
             if (mysqli_num_rows($result) > 0) {

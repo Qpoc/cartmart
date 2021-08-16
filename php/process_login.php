@@ -19,7 +19,7 @@
          echo "Error encounter: " . mysqli_connect_error();
      }
 
-     $query = "SELECT CONCAT(customerfname, ' ' , customerlname ) as customername, customerregistration.customerID, customerusername, customerpassword FROM customerregistration 
+     $query = "SELECT CONCAT(customerfname, ' ' , customerlname) as customername, customerregistration.customerID, customerusername, customerpassword, customertable.emailaddress FROM customerregistration 
      INNER JOIN customertable ON customerregistration.customerID = customertable.customerID
      WHERE customerusername = '$username' AND customerpassword = '$password'";
 
@@ -31,6 +31,7 @@
         $_SESSION['sessionusername'] = $username;
         $_SESSION['sessionpassword'] = $password;
         $_SESSION['sessioncustomername'] = $row['customername'];
+        $_SESSION['sessioncustomeremail'] = $row['emailaddress'];
         header("location:../index.php");
      }else {
         echo "<script>alert('Invalid Username and Password')</script>";

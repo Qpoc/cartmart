@@ -41,12 +41,13 @@
                     $type = $_POST['edittype'];
                     $brand = $_POST['editbrand'];
                     $productid = $_POST['editProdid'];
+                    $points = $_POST['editpoints'];
                 
 
                     if (mysqli_connect_errno($con)) {
                         die("An error occured: " . mysqli_connect_error());
                     }else {
-                        $query = "UPDATE producttable SET branchID = '$branchid', productID = '$productid', productimg = '$db_img_path', productname = '$name', quantity = $quantity, price = $price, productdescription = '$description', productcategory = '$category', producttype = '$type', productbrand = '$brand' WHERE branchID = '$branchid' AND productID = '$productid'";
+                        $query = "UPDATE producttable SET branchID = '$branchid', productID = '$productid', productimg = '$db_img_path', productname = '$name', quantity = $quantity, price = $price, productdescription = '$description', productcategory = '$category', producttype = '$type', productbrand = '$brand', productpoints = '$points' WHERE branchID = '$branchid' AND productID = '$productid'";
 
                         if (mysqli_query($con, $query)) {
                             header('location:../product_list.php');

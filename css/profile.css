@@ -1,5 +1,13 @@
 /* main css */
 
+main {
+	height: 100%;
+}
+
+main .main-wrapper {
+	height: 100%;
+}
+
 main .main-wrapper .account-navigation {
 	display: none;
 }
@@ -128,8 +136,8 @@ body {
 	left: 0;
 	right: 0;
 	margin: auto;
-	width: 500px;
-	height: 325px;
+	width: 35%;
+	height: 35%;
 	background-color: rgb(64, 72, 90, 0.9);
 	border-radius: 10px;
 	animation-name: showEdit;
@@ -229,20 +237,32 @@ body {
 
 /* responsive website */
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
+
+	body, html {
+		min-height: auto;
+		height: auto;
+	}
 
     main {
         min-height: 79vh;
     }
 
+	#description-wrapper {
+		width: 45%;
+		height: 30%;
+		text-align: center;
+	}
+	
+	main .main-container {
+		display: flex;
+		flex-direction: column;
+		
+	}
+
 	main .main-wrapper {
 		display: flex;
 	}
-
-    main .main-container {
-        display: flex;
-        flex-direction: column;
-    }
 
     main .main-container .information-container {
         display: grid;
@@ -327,5 +347,51 @@ body {
         margin: 20px 0 20px 20px;
     }
 
+
+}
+
+@media only screen and (max-width: 768px){
+
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	body, html {
+		min-height: auto;
+		height: auto;
+	}
+
+	span {
+		display: none;
+	}
+
+	.edit-info {
+		margin: auto;
+	}
+
+	#description-wrapper {
+		width: 100%;
+		height: 30%;
+		text-align: center;
+	}
+
+	#description-wrapper form .button {
+		margin-left: 0;
+		margin: auto;
+		margin-top: 20px;
+	}
+
+	#description-wrapper .editInfo {
+		text-align: center;
+		width: 100%;
+	}
+
+	#description-wrapper .editInfo input[type=text], #description-wrapper .editInfo input[type=email], #description-wrapper .editInfo input[type=date], #description-wrapper .editInfo select {
+		padding: 5px;
+		margin: auto;
+		margin-top: 20px;
+		width: 80%;
+	}
 
 }

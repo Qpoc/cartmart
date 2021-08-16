@@ -94,12 +94,6 @@ main .main-container .recent-container .recent table tbody tr td .product-contai
 }
 
 /* css for history table */
-
-main .main-container .recent-container .recent table td {
-    max-width: 500px;
-    width: 500px;
-}
-
 .wrapper-td .title {
     display: flex;
     justify-content: flex-start;
@@ -152,9 +146,9 @@ body {
 	left: 0;
 	right: 0;
 	margin: auto;
-	width: 50%;
-	min-height: 500px;
-	height: 500px;
+	width: 100%;
+	min-height: 550px;
+	height: 550px;
 	background-color: rgb(64, 72, 90, 0.9);
 	border-radius: 10px;
 	color: rgb(254, 254, 254);
@@ -211,7 +205,7 @@ body {
 	max-width: 400px;
 	margin-left: 20px;
 	height: 20%;
-	font-size: 30px;
+	font-size: 20px;
 }
 
 .product-description .img img {
@@ -258,6 +252,20 @@ body {
 
 
 @media only screen and (min-width: 1024px) {
+
+	.product-description {
+		display: none;
+		position: absolute;
+		z-index: 3;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 50%;
+		min-height: 550px;
+		height: 550px;
+	}
 
     main {
         min-height: 79vh;
@@ -328,4 +336,55 @@ body {
 	}
 
 
+}
+
+/* responsive table */
+
+@media 
+only screen and (max-width: 760px)  {
+
+	main .main-container {
+		width: 100%;
+    }
+
+    main .main-container .information-container .information {
+        width: 100%;
+    }
+
+	table, thead, tbody, th, td, tr { 
+		table-layout: fixed;
+		display: block; 
+	}
+	
+	thead th { 
+		display: none;
+	}
+	
+	tr { 
+		border: 1px solid #ccc; 
+		margin-top: 20px;
+	}
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 20px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align: left;
+	}
+
+	main .main-container .information-container .information table td p {
+		max-width: 200px;
+		margin: auto;
+	}
+	
 }

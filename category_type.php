@@ -7,6 +7,14 @@
 
     $database = new CreateDB();
 
+    if (isset($_POST['productid']) && isset($_POST['branchid']) && isset($_POST['productname']) && isset($_POST['price']) && isset($_POST['image'])) {
+        $_SESSION['productid'] = $_POST['productid'];
+        $_SESSION['branchid'] = $_POST['branchid'];
+        $_SESSION['productname'] = $_POST['productname'];
+        $_SESSION['price'] = $_POST['price'];
+        $_SESSION['image'] = $_POST['image'];
+    }
+
     if (isset($_POST['category']) && !isset($_POST['type'])) {
         $_SESSION['category'] = $_POST['category'];
     }else if (isset($_POST['category']) && isset($_POST['type'])) {
@@ -26,6 +34,7 @@
     if (isset($_POST['transactionid'])) {
         $_SESSION['transactionid'] = $_POST['transactionid'];
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +48,8 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/searchbar.css">
+    <script src="script/search.js"></script>
     <link media="all" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="images/Icon/eco-bag.png">
     <title>CartMart - Home</title>
@@ -55,7 +66,7 @@
     ?>
 <header>
     <?php
-    require_once('php/header.php');
+        require_once('php/header.php');
     ?>
 </header>
 <main id="main">
@@ -65,6 +76,8 @@
                 if (isset($_SESSION['category']) && isset($_SESSION['type'])) {
                     echo "<h4><a href='index.php'>Home</a> 
                     > <a href='categories.php' onclick=\"getProdByCategoryOn('$_SESSION[category]')\">$_SESSION[category]</a> > <a href='category_type.php' onclick=\"getProductByCategory('$_SESSION[category]','$_SESSION[type]')\">$_SESSION[type]</a></h4>";
+                }else if(isset($_SESSION['productid']) && isset($_SESSION['branchid']) && isset($_SESSION['productname']) && isset($_SESSION['price']) && isset($_SESSION['image'])){
+                    echo "<h4><a href='index.php'>Home</a> > <span>Search Results:</span></h4>";
                 }
             ?>
         </h4>
@@ -173,7 +186,6 @@
     })
 
 </script>
-
 <?php
 get_navigation();
 ?>

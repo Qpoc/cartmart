@@ -1,6 +1,11 @@
 <?php
     session_start();
 
+    if (!isset($_SESSION['adminname'])) {
+        header("location:admin_login.php");
+    }
+    
+
     require_once('php/navigation.php');
 ?>
 
@@ -13,6 +18,8 @@
     <title>Admin</title>
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/product_list.css">
+    <link rel="stylesheet" href="css/responsive/navigation-burger.css">
+    <link rel="stylesheet" href="css/responsive/product_list-responsive.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <script src="script/utilities.js"></script>
@@ -161,6 +168,10 @@
                     <input type="text" required name="brand">
                     <span>Product Brand:</span>
                 </div>
+                <div class="product-input">
+                    <input type="text" required name="points" id="points">
+                    <span>Product Points:</span>
+                </div>
                 <input type="submit" value="ADD PRODUCT" name="submit">
             </div>
         </form>
@@ -228,6 +239,10 @@
                 <div class="product-input">
                     <input type="text" required name="editbrand" id="editBrand">
                     <span>Product Brand:</span>
+                </div>
+                <div class="product-input">
+                    <input type="text" required name="editpoints" id="editpoints">
+                    <span>Product Points:</span>
                 </div>
                 <input type="hidden" id="editProdid" name="editProdid">
                 <input type="hidden" id="editBranchid" name="editBranchid">

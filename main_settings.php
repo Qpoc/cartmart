@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/main_settings.css">
+    <link rel="stylesheet" href="css/searchbar.css">
+    <script src="script/search.js"></script>
     <title>CartMart - My Account</title>
     <script src="script/userSettings.js"></script>
     <script src="script/product.js"></script>
@@ -74,7 +76,6 @@
                         <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
-                        <li><a href="cancellation.php">My Cancellations</a></li>
                     </ul>
                 </div>
                 <div class="navigate">
@@ -95,43 +96,6 @@
                         <p id="bookName"></p>
                         <p id="bookAddress"></p>
                         <p id="bookCellNum"></p>
-                    </div>
-                </div>
-                <div class="recent-container">
-                    <div class="recent">
-                        <h3>Recent Activities</h3>
-                        <table>
-                            <thead>
-                                <th>Order ID</th>
-                                <th>Placed On</th>
-                                <th>Items</th>
-                                <th>Total</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                   <td data-label="Order ID">6356985847</td>
-                                   <td data-label="Date">June 28, 2021</td>
-                                   <td data-label="Items"> 
-                                        <div class="product-container">
-                                            <img src="images/products/60d4a7df815aa4.75843459.jpg" alt="">
-                                        </div>
-                                        <p>Vita Coco Milk</p>
-                                   </td>
-                                   <td data-label="Total">&#8369; 350.25</td>
-                                </tr>
-                                <tr>
-                                   <td data-label="Order ID">6356985847</td>
-                                   <td data-label="Date">June 28, 2021</td>
-                                   <td data-label="Items"> 
-                                        <div class="product-container">
-                                            <img src="images/products/60d4a7df815aa4.75843459.jpg" alt="">
-                                        </div>
-                                        <p>Vita Coco Milk</p>
-                                   </td>
-                                   <td data-label="Total">&#8369; 350.25</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

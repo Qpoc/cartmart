@@ -16,7 +16,8 @@ main .status-container {
     align-items:center;
     text-align: center;
     height: 100%;
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 50px;
 }
 
 main .mycontainer {
@@ -193,3 +194,41 @@ textarea:focus, .textfield:hover > textarea {
     transition: all ease 0.5s;
 }
 
+#map {
+    display: none;
+    width: 50%;
+    height: 500px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#distance {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#distance h4 {
+    display: block;
+    margin: auto;
+}
+
+#duration {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#duration h3 {
+    display: block;
+    margin: auto;
+}
+
+#duration h3 sup {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+@media only screen and (max-width: 768px) {
+    #map {
+        width: 95%;
+    }
+}

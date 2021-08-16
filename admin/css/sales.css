@@ -1,0 +1,419 @@
+/* Global declaration */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Artifakt Element;
+}
+
+body {
+    position: relative;
+    height: 100%;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+header , main, footer {
+    width: 100%;
+}
+
+/* header */
+
+header {
+    z-index: 1;
+}
+
+header .wrapper {
+    background-color: rgb(9, 0, 139);
+    color: rgb(255, 255, 255);
+}
+
+header .wrapper .container .branding {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+header .wrapper .container .branding label img {
+    cursor: pointer;
+    filter: invert(100%);
+    margin: 0 20px 0 20px;
+}
+
+header .wrapper .container .branding h2 {
+    margin-left: 10px;
+}
+
+/* Css for navigation side bar */
+
+main {
+    display: flex;
+    max-height: 100%;
+}
+
+.navigation-wrapper {
+    overflow: hidden;
+    background-image: linear-gradient(rgb(64,72,90),rgb(24, 25, 26));
+    width: 0;
+    max-height: 100%;
+    transition: all ease 1s;
+}
+
+#show-nav:checked ~ .navigation-wrapper {
+    width: 25%;
+    transition: all ease 1s;
+}
+
+.navigation-wrapper .navigation-container {
+    display: flex;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.navigation-wrapper .navigation-container li {
+    margin-top: 10px;
+    list-style: none;
+}
+
+.navigation-wrapper .navigation-container li a {
+    text-decoration: none;
+}
+
+.navigation-wrapper .navigation-container li h5 {
+    margin-bottom: 20px;
+    color: rgba(109, 124, 160, 0.9);
+    padding: 10px;
+    background-color: rgb(34, 39, 49);
+}
+
+.navigation-wrapper .navigation-container .profile {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.navigation-wrapper .navigation-container .profile .image {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+}
+
+.navigation-wrapper .navigation-container .profile .image img {
+    margin-right: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+}
+
+.navigation-wrapper .navigation-container .profile .image  {
+    margin-right: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+}
+
+.navigation-wrapper .navigation-container .reports {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin: auto;
+    margin-top: 15px;
+    transition: all ease 0.5s;
+}
+
+.navigation-wrapper .navigation-container .reports:hover {
+   transform: translateY(-5px);
+   background-color: rgb(34, 39, 49, 0.5);
+   transition: all ease 0.5s;
+}
+
+.navigation-wrapper .navigation-container .reports img {
+    filter: invert(100%);
+}
+
+.navigation-wrapper .navigation-container .reports P {
+    border: none;
+    text-overflow: ellipsis;
+    width: 150px;
+    background-color: rgb(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+/* CSS for main */
+
+main {
+    min-height: 87vh;
+    background-color: rgb(226,229,238);
+}
+
+main .wrapper {
+    width: 100%;
+    background-color: rgb(226,229,238);
+}
+
+main .wrapper nav {
+    margin-left: 65px;
+}
+
+main .wrapper nav li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 20px;
+}
+
+main .wrapper nav li a {
+    text-decoration: none;
+    color: rgb(24, 25, 26);
+}
+
+main .wrapper nav li a:hover {
+    color: rgb(0,132,255);
+}
+
+main .wrapper nav li .active {
+    color: rgb(0,132,255);
+}
+
+main .wrapper h1 {
+    padding: 20px;
+}
+
+main .wrapper .table-container {
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgb(9, 0, 139, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 80%;
+    height: 480px;
+    background-color: rgb(255, 255, 255);
+}
+      
+main .wrapper .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+main .wrapper .table-container table th, main .wrapper .table-container table tr td {
+    padding: 5px;
+    border: 2px rgb(9, 0, 139) solid;
+    max-width: 150px;
+}
+
+main .wrapper .table-container table tr td p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    margin: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+main .wrapper .table-container table tr td input[type="button"] {
+    cursor: pointer;
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    background-color:rgb(9, 0, 139);
+    border-radius: 5px;
+    border: none;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .table-container table tr td input[type="button"]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+/* css for view details */
+
+body {
+    position: relative;
+}
+
+body .user-wrapper {
+    display: none;
+    overflow: auto;
+    position: absolute;
+    background-color: rgb(34, 39, 49, 0.8);
+    color: rgba(255, 255, 255);
+    padding: 20px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 650px;
+    height: 175px;
+    margin: auto;
+    animation-name: showUserDetails;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showUserDetails {
+    from {
+        transform: scale(0);
+    }to {
+        transform: scale(1);
+    }
+}
+
+body .user-wrapper .close-container {
+    text-align: right;
+}
+
+body .user-wrapper .close-container img {
+    cursor: pointer;
+    text-align: right;
+    filter: invert(100%);
+    transition: all ease 0.5s;
+}
+
+body .user-wrapper img:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+body .user-wrapper table {
+    margin: auto;
+    width: 100%;
+    height: 70%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+body .user-wrapper table input[type="text"], body .user-wrapper table input[type="password"] {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+}
+
+body .user-wrapper table .button {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+body .user-wrapper table .button input[type="button"] {
+    cursor: pointer;
+    padding: 5px;
+    margin: 10px 0 10px 0;
+    width: 100%;
+    border: none;
+    transition: all ease 0.5s;
+}
+
+body .user-wrapper table .button input[type="button"]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+
+body .user-wrapper table .button input[type="button"]:nth-child(1) {
+    background-color: rgb(13,9,158);
+    color: rgb(255, 255, 255);
+}
+
+body .user-wrapper table .button input[type="button"]:nth-child(2) {
+    background-color: rgb(0,132,255);
+    color: rgb(255, 255, 255);
+}
+
+body .user-wrapper table th, body .user-wrapper table td {
+    padding: 5px;
+    border: 2px rgb(255, 255, 255) solid;
+}
+
+/* css for view cart */
+.cartImg {
+    display: block;
+    margin: auto;
+    width:128px;
+    height:128px;
+}
+
+.cartImg img {
+    pointer-events: none;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#cartWrapper {
+    overflow: auto;
+    width: 500px;
+    height: 500px;
+}
+
+#cartWrapper p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    width: 350px;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+}
+
+#footer-wrapper {
+    color: rgb(255, 255, 255);
+    background-color: rgb(9, 0, 139);
+    text-align: center;
+}
+
+@media only screen and (max-width: 411px){
+
+          
+    main .wrapper .table-container table {
+        width: 50%;
+        border-collapse: collapse;
+        text-align: center;
+        display: block;
+        margin: auto;
+    }
+
+    thead, tbody, th, td, tr { 
+        display: block;
+		text-align: right;
+	}
+	
+	thead tr { 
+		display: none;
+	}
+	
+	tr { 
+		border: 1px solid #ccc; 
+		margin-top: 20px;
+	}
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 5px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align: left;
+	}
+
+}

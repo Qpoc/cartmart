@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/list_track_order.css">
+    <link rel="stylesheet" href="css/searchbar.css">
+    <script src="script/search.js"></script>
     <title>CartMart - My Account</title>
     <script src="script/userSettings.js"></script>
     <script src="script/utilities.js"></script>
@@ -59,7 +61,7 @@
         <div class="main-wrapper">
             <div class="account-navigation">
                 <div class="name">
-                    <h4>Hi, John Cyrus Patungan</h4>
+                    <h4 id="name">Hi,</h4>
                 </div>
                 <div class="navigate">
                     <h3><a href="main_settings.php">Manage My Account</a></h3>
@@ -75,11 +77,10 @@
                         <li><a href="list_track_order.php">Track My Order</a></li>
                         <li><a href="review.php">My Reviews</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
-                        <li><a href="cancellation.php">My Cancellations</a></li>
                     </ul>
                 </div>
                 <div class="navigate">
-                    <h3><a href="">Do you want to be a part of us? Let us know :)</a></h3>
+                    <h3><a href="admin/admin_reg.php">Do you want to be a part of us? Let us know :)</a></h3>
                 </div>
             </div>
             <div class="main-container">

@@ -1,0 +1,85 @@
+@media only screen and (max-width: 540px){
+
+    .table-container td {
+        overflow: hidden;
+        text-align: center;
+    }
+   
+    .information {
+        width: 50%
+    }
+
+    .button {
+        width: 50%;
+    }
+
+    main .wrapper h1{
+        text-align: center;
+        font-size: 23pt;
+    }
+    
+    /* TABLE */
+
+    main .container .table-container table th, main .wrapper .table-container table tr td {
+        padding: 5px;
+        border: 2px rgb(9, 0, 139) solid;
+        max-width: 100%;    
+    }
+
+    main .container .table-container table tr td p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        padding: 23px;
+    }
+
+    main .container .table-container table, thead, tbody, th, td, tr { 
+		display: block; 
+		text-align: right;
+	}
+	
+	main .container .table-container thead tr { 
+		display: none;
+	}
+	
+	main .container .table-container tr { 
+		border: 1px solid #ccc; 
+		margin-top: 20px;
+	}
+	
+	main .container .table-container td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	main .container .table-container td:before { 
+		position: absolute;
+		top: 6px;
+		left: 5px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align: left;
+	}
+
+    /* MAP */
+
+    .map-wrapper {
+        display: none;
+        z-index: 5;
+        background-color: rgb(24, 25, 26, 0.8);
+        text-align:right;
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        top: 100px;
+        left: 0;
+        right: 0;
+        margin-left:auto;
+        margin-right:auto;
+        animation: showMap 0.5s ease 0s;
+    }
+  
+}

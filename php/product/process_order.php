@@ -10,6 +10,9 @@
         die("An error occurred: " . mysqli_connect_error());
         header("location:../../checkout.php");
     }else {
+
+        date_default_timezone_set("Asia/Manila");
+
         $combiStr = "abcdefghijklmnopqrstuvwxyz0123456789";
         $transactionid = substr(uniqid(str_shuffle($combiStr)), 3 , 9);
         $_SESSION['transactionid'] = $transactionid;
@@ -22,10 +25,12 @@
         $subtotal = $_POST['subtotal'];
         $del_fee = $_POST['deliveryFee'];
         $total_price = $_POST['totalPrice'];
+        $mod = $_POST['mod'];
         $accept = 'false';
         $date = date('Y-m-d');
+        $points = $_POST['hidCoins'];
 
-        $query = "INSERT INTO transactiontable (transactionID, customerID, subtotal, delfee, totalprice, dateadded, accept) VALUES ('$transactionid', '$customerid', $subtotal, '$del_fee', $total_price, '$date', '$accept')";
+        $query = "INSERT INTO transactiontable (transactionID, customerID, subtotal, delfee, totalprice, dateadded, accept, modepayment) VALUES ('$transactionid', '$customerid', $subtotal, '$del_fee', $total_price, '$date', '$accept', '$mod')";
 
         if (mysqli_query($con, $query)) {
             $output = "";
@@ -39,7 +44,20 @@
             $query = "INSERT INTO ordertable (transactionID, branchID, productID, quantity, itemprice) VALUES " . $output;
 
             if (mysqli_query($con, $query)) {
-                header("location:../../track_order.php");
+                // additional
+                $query = "UPDATE customerpoints SET customerpoints = '$points' WHERE customerid = '$customerid'";
+
+                if (mysqli_query($con, $query)) {
+                    $_SESSION['transactionid'] = $transactionid;
+                    $_SESSION['totalPrice'] = $total_price;
+                    $_SESSION['dateorder'] = $date;
+                    require "../../Mailer/mail.php";
+                    header("location:../../track_order.php");
+                }else {
+                    die("An error occurred: " . mysqli_error($con));
+                    header("location:../../checkout.php");
+                }
+
             }else {
                 die("An error occurred: " . mysqli_error($con));
                 header("location:../../checkout.php");

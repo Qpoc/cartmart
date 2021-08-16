@@ -20,7 +20,7 @@
                         <option value='address'>Address Book</option>
                         <option value='voucher'>Vouchers</option>
                         <option value='order'>My Order</option>
-                        <option value=''>Track My Order</option>
+                        <option value='track'>Track My Order</option>
                         <option value='review'>My Reviews</option>
                         <option value='wishlist'>My Wishlist</option>
                         <option value='cancellation'>My Cancellations</option>
@@ -31,10 +31,9 @@
         echo"</ul>
                     <ul>
                     <li><a href='index.php'>HOME</a></li>
-                    <li><a href=''>ESSENTIALS</a></li>
-                    <li><a href=''>HOT DEALS</a></li>
-                    <li><a href=''>CONTACT US</a></li>
-                    <li><a href=''>ABOUT US</a></li>
+                    <li><a href='faq.php'>FAQ</a></li>
+                    <li><a href='contact_us.php'>CONTACT US</a></li>
+                    <li><a href='about_us.php'>ABOUT US</a></li>
                 </ul>
                 <ul>
                     <h3>CATEGORIES</h3>
@@ -86,9 +85,11 @@
                 }
                 echo "</ul>
                 <ul>
+                <div id='fb-root'></div>
+                <script async defer crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=254968876131539&autoLogAppEvents=1' nonce='ZlZhmLPD'></script>
                    <h3>CONTACT US</h3>
                    <div class='contact'>
-                        <img src='images/Icon/facebook.png' alt='' width='32'>
+                   <a target='_blank' href='https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcartmart.epizy.com%2F&amp;src=sdkpreparse'><img src='images/Icon/facebook.png' alt='' width='32'></a>
                         <img src='images/Icon/twitter.png' alt='' width='32'>
                         <img src='images/Icon/gmail-logo.png' alt='' width='32'>
                         <img src='images/Icon/instagram.png' alt='' width='32'>

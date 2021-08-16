@@ -3,7 +3,6 @@
     session_start();
 
     $image = $_FILES['myfile'];
-    $category = $_POST['category'];
     $img_name = $image['name'];
     $img_type = $image['type'];
     $img_tmp = $image['tmp_name'];
@@ -27,6 +26,8 @@
 
                 $connection = new Connection();
                 $con = $connection->get_connection();
+
+                $category = mysqli_real_escape_string($con, $_POST['category']);
 
                 if (mysqli_connect_errno($con)) {
                     die("An error occurred: " . mysqli_connect_error());

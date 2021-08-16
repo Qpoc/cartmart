@@ -1,5 +1,18 @@
 /* main css */
 
+body, html {
+	min-height: 100%;
+	height: 100%;
+}
+
+main {
+	height: 100%;
+}
+
+main .main-wrapper {
+	height: 100%;
+}
+
 main .main-wrapper .account-navigation {
 	display: none;
 }
@@ -147,4 +160,89 @@ main .main-container .recent-container .recent table tbody tr td .product-contai
 	}
 
 
+}
+
+/* responsive table */
+
+@media 
+only screen and (max-width: 760px)  {
+
+	main .main-container {
+		width: 100%;
+    }
+
+    main .main-container .information-container .information {
+        width: 100%;
+    }
+
+	main .main-container .recent-container .recent table tbody tr .product-container {
+		display: flex;
+		justify-content: flex-end;
+		margin: 0;
+		width: 100%;
+	}
+
+	main .main-container .recent-container .recent table tbody tr td .product-container img {
+		margin: 0;
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+		text-align: right;
+	}
+	
+	thead tr { 
+		display: none;
+	}
+	
+	tr { 
+		border: 1px solid #ccc; 
+		margin-top: 20px;
+	}
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+		text-align: right;
+	}
+
+	img {
+		text-align: right;
+	}
+	
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 5px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align: left;
+	}
+
+	td:nth-of-type(1)::before {
+		content: "Order ID:";
+	}
+
+	td:nth-of-type(2)::before {
+		content: "Placed On:";
+	}
+
+	td:nth-of-type(3)::before {
+		content: "Items:";
+	}
+
+	td:nth-of-type(4)::before {
+		content: "Total:";
+	}
+
+	main .main-container .information-container .information table td p {
+		max-width: 200px;
+		margin: auto;
+	}
+	
 }

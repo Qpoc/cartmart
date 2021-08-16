@@ -15,7 +15,7 @@
         $offset = $_POST['offset'];
         $date = date('Y-m-d');
 
-        $query = "SELECT transactiontable.transactionID, transactiontable.customerID, transactiontable.subtotal, transactiontable.delfee, transactiontable.totalprice, transactiontable.dateadded, ridertransaction.email, CONCAT(ridertable.fname, ' ', ridertable.lname) AS ridername, ridertable.mobile, transactionstatus.transactstatus FROM transactiontable INNER JOIN ridertransaction ON transactiontable.transactionID = ridertransaction.transactionID INNER JOIN ridertable ON ridertransaction.email = ridertable.email LEFT JOIN transactionstatus ON transactiontable.transactionID = transactionstatus.transactionID WHERE transactiontable.customerID = '$customerid' AND transactiontable.accept = 'true' LIMIT 6 OFFSET $offset";
+        $query = "SELECT transactiontable.transactionID, transactiontable.customerID, transactiontable.subtotal, transactiontable.delfee, transactiontable.totalprice, transactiontable.dateadded, transactiontable.accept, ridertransaction.email, CONCAT(ridertable.fname, ' ', ridertable.lname) AS ridername, ridertable.mobile, transactionstatus.transactstatus FROM transactiontable LEFT JOIN ridertransaction ON transactiontable.transactionID = ridertransaction.transactionID LEFT JOIN ridertable ON ridertransaction.email = ridertable.email LEFT JOIN transactionstatus ON transactiontable.transactionID = transactionstatus.transactionID WHERE transactiontable.customerID = '$customerid' LIMIT 6 OFFSET $offset";
 
         if ($result = mysqli_query($con, $query)) {
             if (mysqli_num_rows($result) > 0) {

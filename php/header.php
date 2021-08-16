@@ -1,8 +1,11 @@
-<div class="wrapper"> 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=254968876131539&autoLogAppEvents=1" nonce="ZlZhmLPD"></script>
+
+<div class="wrapper">
     <div class="wrapper-header">
         <div class="shared-social">
             <ul>
-                <li><a href="http://www.facebook.com"><img src="images/Icon/facebook.png" alt="" width="16"></a></li>
+                <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcartmart.epizy.com%2F&amp;src=sdkpreparse"><img src="images/Icon/facebook.png" alt="" width="16"></a></li>
                 <li><a href="http://www.instagram.com"><img src="images/Icon/instagram.png" alt="" width="16"></a></li>
                 <li><a href="http://www.facebook.com"><img src="images/Icon/twitter.png" alt="" width="16"></a></li>
                 <li><a href="http://www.facebook.com"><img src="images/Icon/gmail-logo.png" alt="" width="16"></a></li>
@@ -34,34 +37,54 @@
         </div>
         <div id="search-bar">
             <div class="field-wrapper">
-                <form action="" id="search">
-                    <input type="text" placeholder="Search">
-                </form>
+                <input type="text" id="searchProduct" placeholder="Search">
                 <div class="search-icon">
                     <img src="images/Icon/loupe.png" alt="" width="20">
                 </div>
+                <div class="search-result" id="search-result">
+                    
+                </div>
+                <script type="text/javascript">
+                    var elem = document.getElementById('searchProduct');
+                    elem.addEventListener("keyup", function(){
+                        if (this.value.trim().length != 0) {
+                            searchProduct(this.value.trim());
+                        }else if(this.value.length == 0){
+                            closeSearchProduct();
+                        }
+                    });
+                </script>
             </div>
         </div>
         <div id="account-wrapper">
-            <!-- <?php 
-                if (isset($_SESSION['sessioncustomerid'])) {
-                    echo "<div id=profile-container>";
-                    echo "<img src='images/user_profile/cyrus.jpg' id='profile' alt=''>";
-                    echo "</div>";
-                }
-            ?> -->
+            <!-- <?php
+                    if (isset($_SESSION['sessioncustomerid'])) {
+                        echo "<div id=profile-container>";
+                        echo "<img src='images/user_profile/cyrus.jpg' id='profile' alt=''>";
+                        echo "</div>";
+                    }
+                    ?> -->
             <div id="dropdown">
                 <?php
-                    if (isset($_SESSION['sessioncustomername'])) {
-                        echo "<select name='usersetting' id='' onchange='selectedSetting(this.value)'>";
-                        echo "<option value=$_SESSION[sessioncustomername] selected hidden disabled>$_SESSION[sessioncustomername]</option>";
-                        echo "<option value='manage'>Manage My Account</option>";
-                        echo "<option value='track'>Track My Order</option>";
-                        echo "<option value='logout'>Log out</option>";
-                        echo "</select>";
+                if (isset($_SESSION['sessioncustomername'])) {
+                    echo "<select name='usersetting' id='' onchange='selectedSetting(this.value)'>";
+                    echo "<option value=$_SESSION[sessioncustomername] selected hidden disabled>$_SESSION[sessioncustomername]</option>";
+                    echo "<option value='manage'>Manage My Account</option>";
+                    echo "<option value='track'>Track My Order</option>";
+                    echo "<option value='logout'>Log out</option>";
+                    echo "</select>";
+                } else {
+                    if (basename($_SERVER['PHP_SELF']) == 'login.php') {
+                        echo "<a href='signup.php'>Create an account</a>";
+                    }else if (basename($_SERVER['PHP_SELF']) == 'signup.php') {
+                        echo "<a href='login.php'>Log in</a>";
+                    }else if (basename($_SERVER['PHP_SELF']) == 'index.php'){
+                        echo "<a href='login.php'>Log in</a>";
                     }else {
                         echo "<a href='login.php'>Log in</a>";
                     }
+                    
+                }
                 ?>
             </div>
             <div id="cart">
@@ -73,21 +96,21 @@
                     <div class='cart-wrapper'>
                         <div class='cart-container'>
                             <div class='cart-item-wrapper' id="cart-item-wrapper">
-                             
+
                             </div>
                             <div class='button-container' id="button-container">
                                 <?php
-                                    if (!isset($_SESSION['sessioncartquantity'])) {
-                                        echo "<h5 id='empty-cart-text'>Only registered users can add to cart. Please Sign in or create an account</h5>";
-                                    }
+                                if (!isset($_SESSION['sessioncartquantity'])) {
+                                    echo "<h5 id='empty-cart-text'>Only registered users can add to cart. Please Sign in or create an account</h5>";
+                                }
                                 ?>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div id="cart-number">
                     <?php
-                        echo "<h6 id='cart-quantity'>0</h6>";
+                    echo "<h6 id='cart-quantity'>0</h6>";
                     ?>
                 </div>
             </div>
@@ -106,53 +129,51 @@
                     <div class='ind-category'>
                         <?php
 
-                            require_once('php/connection.php');
-                            $connection = new Connection();
-                            $con = $connection->get_connection();
-                            
-                            if (mysqli_connect_errno($con)) {
-                                die("An error occurred: " . mysqli_connect_error());
-                            }else {
-                                $query = "SELECT DISTINCT productcategory, producttype FROM itemcategory";
-                                $count = 0;
-                                $category = [];
+                        require_once('php/connection.php');
+                        $connection = new Connection();
+                        $con = $connection->get_connection();
 
-                                if ($result = mysqli_query($con, $query)) {
-                                    if (mysqli_num_rows($result) > 0) {
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            
-                                            if (!in_array($row['productcategory'], $category)) {
-                                                $category[$count++] = $row['productcategory'];
+                        if (mysqli_connect_errno($con)) {
+                            die("An error occurred: " . mysqli_connect_error());
+                        } else {
+                            $query = "SELECT DISTINCT productcategory, producttype FROM itemcategory";
+                            $count = 0;
+                            $category = [];
 
-                                                $query = "SELECT producttype FROM itemcategory WHERE productcategory = '$row[productcategory]'";
+                            if ($result = mysqli_query($con, $query)) {
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
 
-                                                if ($result2 = mysqli_query($con, $query)) {
-                                                    if (mysqli_num_rows($result2) > 0) {
-                                                        echo "<div class='category-button'>
+                                        if (!in_array($row['productcategory'], $category)) {
+                                            $category[$count++] = $row['productcategory'];
+
+                                            $query = "SELECT producttype FROM itemcategory WHERE productcategory = '$row[productcategory]'";
+
+                                            if ($result2 = mysqli_query($con, $query)) {
+                                                if (mysqli_num_rows($result2) > 0) {
+                                                    echo "<div class='category-button'>
                                                         <label for='showType'>
                                                             <h5>$row[productcategory] <sup onclick=\"getProdByCategoryOn('$row[productcategory]')\">View All</sup></h5>
                                                         </label>
                                                         <input type='checkbox' class='show-type' id='showType'>
                                                         <div class='category-type'>
                                                         <ul>";
-                                                        while ($row2 = mysqli_fetch_assoc($result2)) {
-                                                           
-                                                            echo "<li id='$row2[producttype]' onclick=\"getProductByCategory('$row[productcategory]','$row2[producttype]')\">$row2[producttype]</li>";
-                                                                
-                                                        }
+                                                    while ($row2 = mysqli_fetch_assoc($result2)) {
 
-                                                        echo "</ul>
+                                                        echo "<li id='$row2[producttype]' onclick=\"getProductByCategory('$row[productcategory]','$row2[producttype]')\">$row2[producttype]</li>";
+                                                    }
+
+                                                    echo "</ul>
                                                         </div>
                                                         </div>";
-                                                    }
                                                 }
                                             }
-
                                         }
                                     }
                                 }
-                                mysqli_close($con);
                             }
+                            mysqli_close($con);
+                        }
 
 
                         ?>
@@ -160,14 +181,13 @@
                 </div>
             </div>
         </div>
-        <div id="navigation-bar">
+        <div id="navigation-bar" style="margin-left: 550px;">
             <nav>
                 <ul>
                     <li><a href="index.php">HOME</a></li>
-                    <li><a href="">ESSENTIALS</a></li>
-                    <li><a href="">HOT DEALS</a></li>
-                    <li><a href="">CONTACT US</a></li>
-                    <li><a href="">ABOUT US</a></li>
+                    <li><a href="faq.php">FAQ</a></li>
+                    <li><a href="contact_us.php">CONTACT US</a></li>
+                    <li><a href="about_us.php">ABOUT US</a></li>
                 </ul>
             </nav>
         </div>

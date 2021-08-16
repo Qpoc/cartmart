@@ -22,6 +22,7 @@ function loadAcceptedOrders() {
             if (this.responseText != '' && this.responseText != null && this.responseText != 'error') {
                 var data = JSON.parse(this.responseText);
                 var output = "";
+                var modepayment = "";
                 var img_path = "";
 
                 for (var i in data) {
@@ -29,6 +30,12 @@ function loadAcceptedOrders() {
                         img_path = "../images/user_profile/default.png";
                     }else if (data[i].customerimg != null) {
                         img_path = "../" + data[i].customerimg;
+                    }
+
+                    if (data[i].modepayment == "COD") {
+                        modepayment = "Cash on Delivery";
+                    }else if(data[i].modepayment == "credit"){
+                        modepayment = "Online Payment";
                     }
 
                     output += "<div class='status-update'>" +
@@ -49,6 +56,7 @@ function loadAcceptedOrders() {
                     "<h4>" + data[i].personname + "</h4> " +
                     "<p>" + data[i].customeraddress + "</p> " +
                     "<p>" + data[i].mobilenumber + " " + data[i].emailaddress + "</p> " +
+                    "<p>MOP: " + modepayment + "</p>" +
                     "</div> " +
                     "<div class='button' id='buttonContainer'> " +
                     "<input type='button' value='DETAILS' onclick=\"showOrderDetails('" + data[i].transactionID + "', '" + data[i].customerID + "')\"> " +
