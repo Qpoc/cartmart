@@ -1,0 +1,78 @@
+@media only screen and (max-width: 425px){
+
+    /* ADMIN_LOGIN */
+    header .wrapper {
+        width: 50%;
+    }
+
+    header .wrapper .branding {
+        display: flex;
+        flex-wrap: wrap;
+        justify-self: center;
+        max-width: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    main .text{
+        display: none;
+    }
+
+    main .form{
+        margin-top: 20px;
+        width: 100px;
+        padding: 10px;
+        display: block;
+        font-size: 10pt;
+        margin: 10px;
+        text-align: justified;
+    }
+
+    main .wrapper .container .form .text p{
+        display: block;
+        text-align: justified;
+    }
+
+    main .sign-up-form .wrapper-sign .info input[type="submit"] {
+        position: relative;  
+    }
+    /* END ADMIN LOGIN*/
+}
+
+@media only screen and (max-width: 768px)
+{
+    /*ADMIN LOG IN*/
+    header .wrapper {
+      
+        text-align: center;
+        width: 85%;
+    }
+
+    header .wrapper .branding {
+     
+        align-items: center;
+        max-width: 100%;
+        width: 100%;
+        display: block;
+    }
+
+    main .wrapper {
+        min-height: 70%;
+        height: 70%;
+    }
+    
+    main .wrapper .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        justify-self: center;
+        min-height: 100%;
+        height: 100%;
+    }
+    
+    main .wrapper .container .text {
+        display: none;
+    }
+    /*END ADMIN LOGIN*/
+}

@@ -31,7 +31,7 @@
             $productid = $_POST['productid'];
             $branchid = $_POST['branchid'];
 
-            $query = "SELECT producttable.productID, producttable.branchID, producttable.productimg, producttable.productname, producttable.quantity, producttable.price, producttable.productdescription, producttable.productcategory, producttable.producttype, producttable.productbrand, producttable.dateadded, branchtable.branchname FROM producttable INNER JOIN branchtable ON producttable.branchID = branchtable.branchID WHERE producttable.productID = '$productid' AND producttable.branchID = '$branchid'";
+            $query = "SELECT producttable.productID, producttable.branchID, producttable.productimg, producttable.productname, producttable.quantity, producttable.price, producttable.productdescription, producttable.productcategory, producttable.producttype, producttable.productbrand, producttable.dateadded, producttable.productpoints, branchtable.branchname FROM producttable INNER JOIN branchtable ON producttable.branchID = branchtable.branchID WHERE producttable.productID = '$productid' AND producttable.branchID = '$branchid'";
         }else if (isset($_POST['searchProduct'])){
             $search = mysqli_real_escape_string($con, $_POST['searchProduct']);
 

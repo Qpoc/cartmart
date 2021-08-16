@@ -113,8 +113,6 @@ main .transaction .reports .profile .information {
     padding: 10px;
     max-width: 200px;
     width: 200px;
-    height: 70px;
-    max-height: 70px;
     overflow: hidden;
     grid-column: 2/4;
     background-color: rgb(54, 54, 54);

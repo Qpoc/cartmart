@@ -22,6 +22,7 @@ function showEdit(productid, branchid) {
                     document.getElementById('editBrand').value = data[i].productbrand;
                     document.getElementById('editProdid').value = productid;
                     document.getElementById('editBranchid').value = branchid;
+                    document.getElementById('editpoints').value = data[i].productpoints;
                 }
             }
 
@@ -92,4 +93,46 @@ function getNumUser() {
     }
 
     xhr.send();
+}
+
+function showCatIcon() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "php/show_category.php");
+
+
+    xhr.onload = function () {
+        if (this.status == 200) {
+            if (this.responseText != null && this.responseText != 'error') {
+                var data = JSON.parse(this.responseText);
+                var output = "<option value='' selected hidden>Select a category</option>";
+                for (var i in data) {
+                    output += "<option value='" + data[i].productcategory + "'>" + data[i].productcategory + "</option>";
+                }
+
+                document.getElementById('getIconCategory').innerHTML = output;
+            }
+        }
+    }
+
+    xhr.send();
+
+    document.getElementById('categoryIcon').style.display = 'block';
+    document.getElementById('main').style.filter = 'blur(1px)';
+}
+
+function closeCatIcon() {
+    document.getElementById('categoryIcon').style.display = 'none';
+    document.getElementById('main').style.filter = 'none';
+}
+
+function previewIcon(event){
+    
+    var output = document.getElementById('outputIcon');
+
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src);
+    }
 }

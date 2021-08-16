@@ -1,6 +1,10 @@
 <?php
     session_start();
 
+    if (!isset($_SESSION['rideremail'])) {
+        header("location:../admin/admin_login.php");
+    }
+
     require_once('php/navigation.php');
     require_once('php/connection.php');
 
@@ -19,6 +23,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/accepted_cust.css">
+    <link rel="stylesheet" href="css/navigation.css">
     <script src="script/accept.js"></script>
     <script src="script/utilities.js"></script>
     <title>CartMart</title>
@@ -37,38 +42,23 @@
 ?>
 <body>
     <main>
+        <div class="navigation-container">
+            <label for="navigation">
+                <img src="images/icon/menu.png" alt="nav" width="32" height="32">
+            </label>
+        </div>
         <div class="wrapper" id="acceptedCustContainer">
             <div class="header">
                 <h4>List of your accepted customers</h4>
-                <input type="button" value="VIEW ALL ORDERS">
             </div>
         </div>
     </main>
-    <footer>
-        <?php
-            navigation();
-        ?>
-    </footer>
     <div class="wrapper-chat" id="chatBox">
         
     </div>
-    <script>
-        var navigation = document.getElementsByTagName("h3");
-
-        for (let index = 0; index < navigation.length; index++) {
-            navigation[index].addEventListener("click", function() {
-                var current = document.getElementsByClassName("active");
-                var image = document.getElementsByName("imgnav");
-                var currentImg = document.getElementsByClassName("imgactive");
-
-                current[0].className = "";
-                currentImg[0].className = "";
-                image[index].className = "imgactive"
-                console.log("OUTPUT : index", index);
-                this.className = "active";
-            });
-        }
-    </script>
+    <?php
+        navigation();
+    ?>
 </body>
 
 </html>

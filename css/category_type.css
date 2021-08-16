@@ -221,6 +221,7 @@ main h4 a:hover {
 .product-description .product-information .image {
     height: 300px;
     width: 300px;
+    margin-bottom: 50px;
 }
 
 .product-description .product-information .image img {

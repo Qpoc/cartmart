@@ -1,0 +1,63 @@
+/* css for search result  */
+
+#search-bar {
+    position: relative;
+}
+
+#search-bar .search-result {
+    display: none;
+    position: absolute;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    min-height: 50px;
+    background-color: rgb(255, 255, 255);
+    border: 1px rgb(9, 0, 139) solid;
+    border-radius: 10px;
+}
+
+#search-bar .search-result .img-wrapper {
+    display: flex;
+    cursor: pointer;
+    align-items:center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    border-bottom: 1px rgb(214, 214, 214) solid;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+#search-bar .search-result .img-wrapper:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+#search-bar .search-result .img-wrapper .imgcontainer {
+    width: 64px;
+    height: 64px;
+}
+
+#search-bar .search-result .img-wrapper .imgcontainer img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#search-bar .search-result .img-wrapper .productname {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    width: 400px;
+    overflow: hidden;
+}
+
+#search-bar .search-result .img-wrapper .productname h4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+}

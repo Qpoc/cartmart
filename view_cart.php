@@ -44,6 +44,8 @@
     <script src="script/userSettings.js"></script>
     <script src="script/utilities.js"></script>
     <script src="script/product.js"></script>
+    <link rel="stylesheet" href="css/searchbar.css">
+    <script src="script/search.js"></script>
     <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="

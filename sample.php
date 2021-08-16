@@ -1,49 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/sample.css">
-    <link media="all" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <div class="wrapper-review">
-        <table>
-            <thead>
-                <th>Products rating & review</th>
-                <th>Date</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="wrapper-td">
-                            <div class="title">
-                                <div class="img">
-                                    <img src="images/products/60ddbd2a55c890.78060575.jpg" width="64" height="64" alt="">
-                                </div>
-                                <div class="product-name">
-                                    <h3>Vita Coco</h3>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="comment-wrapper">
-                                <div class="comment">
-                                    <h5>My Comment:</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum cumque perferendis quasi molestias nemo nihil similique fugiat fugit blanditiis quis iure minima est, dolorem cupiditate mollitia adipisci earum facilis placeat.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>2021-07-08</td>
-                </tr>
-            </tbody>
-        </table>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="h-25 carousel-inner">
+            <div class="item active">
+                <img src="images/banner/beverages.jpg" alt="Chania">
+                <div class="carousel-caption">
+                    <h3>Los Angeles</h3>
+                    <p>LA is always so much fun!</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/banner/60e17e81e5ddc1.03782604.jpg" alt="Chicago">
+                <div class="carousel-caption">
+                    <h3>Chicago</h3>
+                    <p>Thank you, Chicago!</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/banner/60e17e90eb7ff9.57670222.jpg" alt="New York">
+                <div class="carousel-caption">
+                    <h3>New York</h3>
+                    <p>We love the Big Apple!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
+
 </body>
+
 </html>

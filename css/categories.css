@@ -20,11 +20,9 @@ main {
 }
 
 .product-header .wrapper .container h1 {
-    font-size: 50px;
     color: rgb(255, 255, 255, 0.8);
     text-decoration: underline;
     font-size: 10em;
-    
 }
 
 .product-presentation .container {
@@ -235,6 +233,7 @@ main {
 .product-description .product-information .image {
     height: 300px;
     width: 300px;
+    margin-bottom: 50px;
 }
 
 .product-description .product-information .image img {
@@ -408,6 +407,20 @@ main {
 /* Responsive website */
 
 @media only screen and (max-width: 1024px) {
+
+    .product-header {
+        position: relative;
+        height: 100%;
+    }
+
+    .product-header .wrapper .container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
 
     main {
         min-height: 93vh;
@@ -590,7 +603,46 @@ main {
 
 }
 
+@media only screen and (max-width: 768px) {
+    .product-header {
+        position: relative;
+        height: 100%;
+    }
+
+    .product-header .wrapper .container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+
+    .product-header .wrapper .container h1 {
+        font-size: 8em;
+    }
+}
+
 @media only screen and (max-width: 540px) {
+
+    .product-header {
+        position: relative;
+        height: 100%;
+    }
+
+    .product-header .wrapper .container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+
+    .product-header .wrapper .container h1 {
+        font-size: 3em;
+    }
+
     #search-bar input[type=text] {
         width: 200px;
     }

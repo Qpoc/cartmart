@@ -3,6 +3,10 @@
 
     require_once('php/navigation.php');
 
+    if (!isset($_SESSION['rideremail'])) {
+        header("location:../admin/admin_login.php");
+    }
+
     if (isset($_SESSION['transactionid']) && isset($_SESSION['customerid'])) {
         unset($_SESSION['transactionid']);
         unset($_SESSION['customerid']);
@@ -17,12 +21,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/rider_home.css">
+    <link rel="stylesheet" href="css/navigation.css">
     <script src="script/utilities.js"></script>
+    <script src="script/onload.js"></script>
     <title>CartMart</title>
 </head>
 
-<body>
+<body onload="loadData()">
     <main>
+        <div class="navigation-container">
+            <label for="navigation">
+                <img src="images/icon/menu.png" alt="nav" width="32" height="32">
+            </label>
+        </div>
         <div class="wrapper">
             <div class="container" id="earnings">
                 <div class="reports">
@@ -30,7 +41,7 @@
                         <h2>EARNINGS FOR THE DAY</h2>
                     </div>
                     <div class="content">
-                        <p>&#8369;40.00</p>
+                        <p id="earnDay">&#8369;0</p>
                     </div>
                     <div class="img-container">
                         <img src="images/icon/earnings.png" alt="">
@@ -41,13 +52,14 @@
                         <h2>EARNINGS FOR THE MONTH</h2>
                     </div>
                     <div class="content">
-                        <p>&#8369;40.00</p>
+                        <p id="earnMonth">&#8369;0</p>
                     </div>
                     <div class="img-container">
                         <img src="images/icon/earnings.png" alt="">
                     </div>
                 </div>
-                <div class="reports">
+                <!-- Optional -->
+                <!-- <div class="reports">
                     <div class="title">
                         <h2>PERFORMANCE</h2>
                     </div>
@@ -59,7 +71,7 @@
                     <div class="img-container">
                         <img src="images/icon/rating.png" alt="">
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="transaction">
                 <div class="reports">
@@ -67,8 +79,8 @@
                         <h2>ORDERS</h2>
                     </div>
                     <div class="content">
-                        <p>Pending orders: 105 - <a href="rider_order_list.php">Details</a></p>
-                        <p>Ongoing orders: 5/5 - <a href="accepted_cust.php">Details</a></p>
+                        <p id="pending">Pending orders: 0</p>
+                        <p id="ongoing">Ongoing orders: 0</p>
                     </div>
                 </div>
                 <div class="reports">
@@ -76,20 +88,14 @@
                         <h2>BOOKS MADE TODAY</h2>
                     </div>
                     <div class="content">
-                        <p>10</p>
+                        <p id='books'>0</p>
                     </div>
                     <div class="img-container">
                         <img src="images/icon/booking.png" alt="">
                     </div>
                 </div>
             </div>
-        </div>
     </main>
-    <footer>
-        <?php
-            navigation();
-        ?>
-    </footer>
     <script>
         function scrollHorizontally(e) {
             e = window.event || e;
@@ -99,25 +105,10 @@
         }
 
         document.getElementById('earnings').addEventListener('mousewheel', scrollHorizontally, false);
-
     </script>
-    <script>
-        var navigation = document.getElementsByTagName("h3");
-
-        for (let index = 0; index < navigation.length; index++) {
-            navigation[index].addEventListener("click", function() {
-                var current = document.getElementsByClassName("active");
-                var image = document.getElementsByName("imgnav");
-                var currentImg = document.getElementsByClassName("imgactive");
-
-                current[0].className = "";
-                currentImg[0].className = "";
-                image[index].className = "imgactive"
-                console.log("OUTPUT : index", index);
-                this.className = "active";
-            });
-        }
-    </script>
+    <?php
+        navigation();
+    ?>
 </body>
 
 </html>

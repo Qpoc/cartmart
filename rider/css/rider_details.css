@@ -1,0 +1,136 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	min-height: 100%;
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* Css for main */
+
+main {
+	min-height: 90%;
+	height: 90%;
+	background-image: linear-gradient(rgb(211, 235, 239), rgb(255, 255, 255));
+}
+
+main .wrapper, main .wrapper .container{
+	height: 100%;
+}
+
+main .wrapper .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+    overflow: hidden;
+}
+
+main .wrapper .container .header {
+    cursor: pointer;
+    position: relative;
+    padding: 40px;
+    background-color: rgb(0, 192, 240);
+    text-align: center;
+    width: 100%;
+}
+
+main .wrapper .container .header .img {
+    position: relative;
+    display: block;
+    margin: auto;
+	width: 64px;
+    height: 64px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+main .wrapper .container input[type="text"], main .wrapper .container input[type="email"] {
+    background-color: transparent;
+    border: none;
+}
+
+main .wrapper .container .header input[type="file"], main .wrapper .container .header input[type="submit"] {
+    display:none;
+}
+
+main .wrapper .container .header .img img {
+	max-width: 100%;
+    max-height: 100%;
+    border-radius: 100%;
+}
+
+main .wrapper .container .header .edit {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color:rgb(255, 255, 255);
+    overflow: hidden;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container .header:hover .img > .edit {
+    bottom: 0;
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container .header .edit p {
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+main .wrapper .container .header .guide:nth-child(2) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgb(41, 41, 41, 0.8);
+    color:rgb(255, 255, 255);
+}
+
+main .wrapper .container .header .guide:nth-child(2) p {
+    font-size: 12px;
+}
+
+main .wrapper .container .content {
+    width: 100%;
+}
+
+main .wrapper .container .content .information {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    padding: 20px;
+}
+
+main .wrapper .container .content .information p:nth-child(2){
+    font-size: 13px;
+}
+
+main .wrapper .container .content .button input[type=submit] {
+    cursor: pointer;
+    padding: 5px;
+    background-color: rgb(42,166,243);
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    transition: all ease 0.5s;
+}
+
+main .wrapper .container .content .button input[type=submit]:hover {
+    transform: translateY(-5px);
+    transition: all ease 0.5s;
+}
+

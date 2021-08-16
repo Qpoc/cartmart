@@ -323,7 +323,7 @@ function showApplicantDetails(validID, email, applicant) {
     "<input type='button' value='ACCEPT' onclick=\"acceptApplicant(this.value,'" + email + "', '" + applicant + "')\">" + 
     "<input type='button' value='REJECT' onclick=\"acceptApplicant(this.value,'" + email + "', '" + applicant + "')\")\">";
    
-    document.getElementById('imgContainer').innerHTML += output;
+    document.getElementById('imgContainer').innerHTML = output;
     document.getElementById('userWrapper').style.display = 'block';
 }
 
@@ -369,4 +369,160 @@ function showPreviewImage(event) {
     output.onload = function () {
         URL.revokeObjectURL(output.src) // free memory
     }
+}
+
+function showIconCat() {
+    document.getElementById('catIconContainer').style.display = 'block';
+}
+
+function loadSalesDetails() {
+    var xhr = new XMLHttpRequest();
+    var offset = 0;
+    var param = "product=" + 'withsales' + "&offset=" + offset;
+    xhr.open("POST", "php/sales/call_prod_sales.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (this.status == 200) {
+            if (this.responseText != null && this.responseText.trim().length != 0) { 
+                var data = JSON.parse(this.responseText);
+                var output = "";
+
+                for (var i in data) {
+                    output += "<tr>" +
+                    "<td><p>" + data[i].branchname + "</p></td>" +
+                    "<td>" +
+                    "<div class='productimg'>" +
+                    "<img src='../" + data[i].productimg + "' alt='' width='64' height='64'>" +
+                    "<div class='productname'>" +
+                    "<p>" + data[i].productname + "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</td>" +
+                    "<td><p>" + data[i].totalsales + "</p></td>" +
+                    "</tr>";
+                }
+
+                document.getElementById('tableBody').innerHTML = output;
+            }
+        }
+    }
+
+    xhr.send(param);
+
+    var elem = document.getElementById('tableContainer');
+
+    elem.addEventListener("scroll", function() {
+        var y = elem.scrollTop + elem.offsetHeight;
+
+        if (y >= elem.scrollHeight) {
+            offset += 5;
+
+            param = "product=" + 'withsales' + "&offset=" + offset;
+            xhr.open("POST", "php/sales/call_prod_sales.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    if (this.responseText != null && this.responseText.trim().length != 0) { 
+                        var data = JSON.parse(this.responseText);
+                        var output = "";
+
+                        for (var i in data) {
+                            output += "<tr>" +
+                            "<td><p>" + data[i].branchname + "</p></td>" +
+                            "<td>" +
+                            "<div class='productimg'>" +
+                            "<img src='../" + data[i].productimg + "' alt='' width='64' height='64'>" +
+                            "<div class='productname'>" +
+                            "<p>" + data[i].productname + "</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "</td>" +
+                            "<td><p>" + data[i].totalsales + "</p></td>" +
+                            "</tr>";
+                        }
+
+                        document.getElementById('tableBody').innerHTML += output;
+                    }
+                }
+            }
+
+            xhr.send(param);
+        }
+    });
+}
+
+function loadNonSalesDetails() {
+    var xhr = new XMLHttpRequest();
+    var offset = 0;
+    var param = "product=" + 'nonsales' + "&offset=" + offset;
+    xhr.open("POST", "php/sales/call_prod_sales.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (this.status == 200) {
+            if (this.responseText != null && this.responseText.trim().length != 0) { 
+                var data = JSON.parse(this.responseText);
+                var output = "";
+
+                for (var i in data) {
+                    output += "<tr>" +
+                    "<td><p>" + data[i].branchname + "</p></td>" +
+                    "<td>" +
+                    "<div class='productimg'>" +
+                    "<img src='../" + data[i].productimg + "' alt='' width='64' height='64'>" +
+                    "<div class='productname'>" +
+                    "<p>" + data[i].productname + "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</td>" +
+                    "<td><p>0</p></td>" +
+                    "</tr>";
+                }
+
+                document.getElementById('tableBody').innerHTML = output;
+            }
+        }
+    }
+
+    xhr.send(param);
+
+    var elem = document.getElementById('tableContainer');
+
+    elem.addEventListener("scroll", function() {
+        var y = elem.scrollTop + elem.offsetHeight;
+
+        if (y >= elem.scrollHeight) {
+            offset += 5;
+
+            param = "product=" + 'nonsales' + "&offset=" + offset;
+            xhr.open("POST", "php/sales/call_prod_sales.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    if (this.responseText != null && this.responseText.trim().length != 0) { 
+                        var data = JSON.parse(this.responseText);
+                        var output = "";
+
+                        for (var i in data) {
+                            output += "<tr>" +
+                            "<td><p>" + data[i].branchname + "</p></td>" +
+                            "<td>" +
+                            "<div class='productimg'>" +
+                            "<img src='../" + data[i].productimg + "' alt='' width='64' height='64'>" +
+                            "<div class='productname'>" +
+                            "<p>" + data[i].productname + "</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "</td>" +
+                            "<td><p>0</p></td>" +
+                            "</tr>";
+                        }
+
+                        document.getElementById('tableBody').innerHTML += output;
+                    }
+                }
+            }
+
+            xhr.send(param);
+        }
+    });
 }

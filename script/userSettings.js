@@ -1,5 +1,4 @@
 function loadCartUserInfo(pageName) {
-
     var xhr = new XMLHttpRequest();
 
     xhr.open('POST', 'php/load_cart.php', true);
@@ -56,8 +55,10 @@ function loadCartUserInfo(pageName) {
         getUserInformation(pageName);
     } else if (pageName == 'wishlist') {
         getUserWishList();
+        getUserInformation(pageName);
     } else if (pageName == 'track') {
         getTrackOrder();
+        getUserInformation(pageName);
     }
 
 }
@@ -166,10 +167,17 @@ function getUserInformation(pageName) {
     xhr.onload = function () {
         if (this.status == 200) {
             if (this.responseText != 'error') {
-
+                
                 var data = JSON.parse(this.responseText);
+                var points = 0;
+
+                if (data[0].customerpoints != null) { 
+                    points = data[0].customerpoints;
+                }
+
                 if (pageName == 'manage') {
-                    document.getElementById('name').innerHTML = 'Hi, ' + data[0].customername;
+                    
+                    document.getElementById('name').innerHTML = 'Hi, ' + data[0].customername + "<sup style='margin-left: 10px; font-weight:normal; font-size:10px;'> You have: " + points + " points</sup>";
                     document.getElementById('editName').innerHTML = data[0].customername;
                     document.getElementById('email').innerHTML = data[0].emailaddress;
                     document.getElementById('bookName').innerHTML = data[0].customername;
@@ -182,17 +190,19 @@ function getUserInformation(pageName) {
                         document.getElementById('profilePic').src = "images/user_profile/default.png";
                     }
 
-                    document.getElementById('name').innerHTML = 'Hi, ' + data[0].customername;
+                    document.getElementById('name').innerHTML = 'Hi, ' + data[0].customername + "<sup style='margin-left: 10px; font-weight:normal; font-size:10px;'> You have: " + points + " points</sup>";
                     document.getElementById('profileName').innerHTML = data[0].customername;
                     document.getElementById('addressEmail').innerHTML = data[0].emailaddress;
                     document.getElementById('cellNum').innerHTML = data[0].mobilenumber;
                     document.getElementById('birthday').value = data[0].birthday;
                     document.getElementById('gender').value = data[0].gender;
                 } else if (pageName == 'address') {
-                    document.getElementById('name').innerHTML = 'Hi, ' + data[0].customername;
+                    document.getElementById('name').innerHTML = 'Hi, ' + data[0].customername + "<sup style='margin-left: 10px; font-weight:normal; font-size:10px;'> You have: " + points + " points</sup>";
                     document.getElementById('infoName').innerHTML = data[0].customername;
                     document.getElementById('infoAddress').innerHTML = data[0].customeraddress;
                     document.getElementById('cellNum').innerHTML = data[0].mobilenumber;
+                }else {
+                    document.getElementById('name').innerHTML = 'Hi, ' + data[0].customername + "<sup style='margin-left: 10px; font-weight:normal; font-size:10px;'> You have: " + points + " points</sup>";
                 }
             } else {
                 window.location = 'main_settings.php';
@@ -250,7 +260,6 @@ function deleteWishlist(productID) {
 
     xhr.onload = function () {
         if (this.status == 200) {
-            alert(this.responseText);
             getUserWishList();
         }
     }
@@ -305,7 +314,7 @@ function getOrderDetails() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         if (this.status == 200) {
-            if (this.responseText != null && this.responseText != '') {
+            if (this.responseText != null && this.responseText.trim() != 0) {
                 var data = JSON.parse(this.responseText);
                 var output = "";
 
@@ -343,7 +352,7 @@ function getOrderDetails() {
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function () {
                 if (this.status == 200) {
-                    if (this.responseText != null && this.responseText != '') {
+                    if (this.responseText != null && this.responseText.trim() != 0) {
                         var data = JSON.parse(this.responseText);
                         var output = "";
 
@@ -381,7 +390,7 @@ function getOrderToReview() {
     xhr.onload = function () {
         if (this.status == 200) {
             var responseString = this.responseText.trim();
-            if (this.responseText != null && responseString.length != 0) {
+            if (this.responseText != null && this.responseText.trim().length != 0) {
                 var data = JSON.parse(this.responseText);
                 var output = "<thead>" +
                     "<th>Order ID</th>" +
@@ -437,7 +446,7 @@ function getOrderToReview() {
 
     container.addEventListener("scroll", function () {
         var y = container.scrollTop + container.offsetHeight;
-
+        
         if (y >= container.scrollHeight) {
             offset += 5;
 
@@ -446,7 +455,7 @@ function getOrderToReview() {
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onload = function () {
                 if (this.status == 200) {
-                    if (this.responseText != null && this.responseText != '') {
+                    if (this.responseText != null && this.responseText.trim().length != 0) {
                         var data = JSON.parse(this.responseText);
                         var output = "";
 

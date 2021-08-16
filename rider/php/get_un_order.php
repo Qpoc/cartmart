@@ -10,7 +10,7 @@
 
         $offset = $_POST['offset'];
 
-        $query = "SELECT transactiontable.transactionID, transactiontable.customerID, CONCAT(customertable.customerfname, ' ', customertable.customerlname) AS customername, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress, customerimg.customerimg FROM transactiontable INNER JOIN customertable ON transactiontable.customerID = customertable.customerID LEFT JOIN customerimg ON transactiontable.customerID = customerimg.customerID WHERE transactiontable.accept = 'false' LIMIT 5 OFFSET $offset";
+        $query = "SELECT transactiontable.transactionID, transactiontable.customerID, transactiontable.modepayment, CONCAT(customertable.customerfname, ' ', customertable.customerlname) AS customername, customertable.customeraddress, customertable.mobilenumber, customertable.emailaddress, customerimg.customerimg FROM transactiontable INNER JOIN customertable ON transactiontable.customerID = customertable.customerID LEFT JOIN customerimg ON transactiontable.customerID = customerimg.customerID WHERE transactiontable.accept = 'false' LIMIT 5 OFFSET $offset";
 
         if ($result = mysqli_query($con,$query)) {
             if (mysqli_num_rows($result) > 0) {

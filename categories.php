@@ -31,9 +31,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/categories.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/categories.css">
+    <link rel="stylesheet" href="css/searchbar.css">
+    <script src="script/search.js"></script>
     <link media="all" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="images/Icon/eco-bag.png">
     <title>CartMart - Home</title>
@@ -74,7 +75,7 @@
                 changeBackground();
                 function changeBackground() {
                     var xhr = new XMLHttpRequest();
-                    var param = \"category=\" + '$_SESSION[category]';
+                    var param = \"category=\" + encodeURIComponent('$_SESSION[category]');
                 
                     xhr.open('POST', 'php/product/get_bg_path.php', true);
                     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

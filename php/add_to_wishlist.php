@@ -1,6 +1,10 @@
 <?php
     session_start();
 
+    if (!isset($_SESSION['sessioncustomerid'])) {
+        header("location:../index.php");
+    }
+
     require_once('connection.php');
     
     $connection = new Connection();

@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['adminname'])) {
+    header("location:admin_login.php");
+}
+
+
 require_once('php/navigation.php');
 ?>
 
@@ -15,10 +20,11 @@ require_once('php/navigation.php');
     <title>Admin</title>
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/rider.css">
+    <link rel="stylesheet" href="css/responsive/navigation-burger.css">
+    <link rel="stylesheet" href="css/responsive/rider-responsive.css">
     <script src="script/utilities.js"></script>
     <script src="script/onload.js"></script>
     <script src="script/product.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
 </head>
 
 <body onload="loadRider()">

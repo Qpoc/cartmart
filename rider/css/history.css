@@ -1,0 +1,64 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	min-height: 100%;
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* Css for main */
+
+main {
+	min-height: 90%;
+	height: 90%;
+	background-image: linear-gradient(rgb(211, 235, 239), rgb(255, 255, 255));
+}
+
+main .wrapper, main .wrapper .container{
+	height: 100%;
+}
+
+main .wrapper .container {
+	display: flex;
+	flex-direction: column;
+	padding-top: 20px;
+	align-items: center;
+	text-align: center;
+}
+
+main .wrapper .container .history {
+	background-color: rgba(26, 26, 26, 0.8);
+	padding: 20px;
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+	width: 80%;
+	margin-bottom: 20px;
+}
+
+main .wrapper .container .history .header {
+	border-bottom: 1px rgb(255, 255, 255) solid;
+}
+
+main .wrapper .container .history .header h3 {
+	font-weight: normal;
+}
+
+main .wrapper .container .history .header sup {
+	font-size: 10px;
+}
+
+main .wrapper .container .content {
+	margin-top: 30px;
+	text-align: left;
+}
+
+main .wrapper .container .content p:nth-child(2){
+	margin-top: 10px;
+}

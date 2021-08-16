@@ -86,12 +86,20 @@ function loadCustomerOrders() {
                 var data = JSON.parse(this.responseText);
                 var output = "";
                 var img_path = "";
+                var modepayment = "";
 
                 for (var i in data) {
+
                     if (data[i].customerimg == null) {
                         img_path = "../images/user_profile/default.png";
                     }else if (data[i].customerimg != null) {
                         img_path = "../" + data[i].customerimg;
+                    }
+
+                    if (data[i].modepayment == "COD") {
+                        modepayment = "Cash on Delivery";
+                    }else if(data[i].modepayment == "credit"){
+                        modepayment = "Online Payment";
                     }
 
                     output += "<div class='reports'>" +
@@ -103,6 +111,7 @@ function loadCustomerOrders() {
                     "<h4>" + data[i].customername + "</h4> " +
                     "<p>" + data[i].customeraddress + "</p> " +
                     "<p>" + data[i].mobilenumber + " " + data[i].emailaddress + "</p> " +
+                    "<p>MOP: " + modepayment + "</p>" + 
                     "</div> " +
                     "<div class='button' id='" + data[i].transactionID + "'> " +
                     "<input type='button' value='DETAILS' onclick=\"showOrderDetails('" + data[i].transactionID + "', '" + data[i].customerID + "')\"> " +
@@ -238,4 +247,15 @@ function loadOrderList(transactionid, customerid) {
     xhr.send(param);
 
     // Ajax call scroll
+}
+
+function showPreviewImage(event) {
+    console.log(event.target.files[0]);
+    var output = document.getElementById('riderimg');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+
+    document.getElementById('btnSubmit').click();
 }

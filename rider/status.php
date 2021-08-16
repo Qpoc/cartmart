@@ -3,6 +3,10 @@
 
     require_once('php/navigation.php');
 
+    if (!isset($_SESSION['rideremail'])) {
+        header("location:../admin/admin_login.php");
+    }
+
     if (isset($_SESSION['transactionid']) && isset($_SESSION['customerid'])) {
         unset($_SESSION['transactionid']);
         unset($_SESSION['customerid']);

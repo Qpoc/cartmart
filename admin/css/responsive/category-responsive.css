@@ -1,0 +1,79 @@
+@media only screen and (max-width: 425px){
+    /* edit details */
+    main .wrapper h1 {
+        padding: 20px;
+        text-align: center;
+    }
+
+    main .wrapper .container .table-container table th, main .wrapper .table-container table tr td {
+        padding: 5px;
+        border: 2px rgb(9, 0, 139) solid;
+        max-width: 100%;    
+    }
+
+    main .wrapper .container .table-container table tbody tr td p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        padding: 23px;
+    }
+
+    main .wrapper .container .table-container table, thead, tbody, th, td, tr { 
+		display: block; 
+		text-align: right;
+	}
+	
+	main .wrapper .container .table-container thead tr { 
+		display: none;
+	}
+	
+	main .wrapper .container .table-container tr { 
+		border: 1px solid #ccc; 
+		margin-top: 20px;
+	}
+	
+	main .wrapper .container .table-container td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	main .wrapper .container .table-container td:before { 
+		position: absolute;
+		top: 6px;
+		left: 5px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align: left;
+	}
+
+	main .wrapper .container .table-container td:nth-of-type(1)::before {
+		content: "Category:";
+	}
+
+	main .wrapper .container .table-container td:nth-of-type(2)::before {
+		content: "Type:";
+	}
+
+	main .wrapper .container .table-container td:nth-of-type(3)::before {
+		content: "Date Added:";
+	}
+
+    main .wrapper .container .table-container td:nth-of-type(4)::before {
+		content: "Tool:";
+	}
+    /*end edit details*/
+
+	/*Edit Details Pop up*/
+	.category-modal .wrapper {
+		width: 80%;
+	}
+
+	/*Add Background Image Pop Up*/
+	body #productcontainer {
+		width: 80%;
+	}
+
+}

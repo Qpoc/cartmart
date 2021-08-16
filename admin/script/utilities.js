@@ -293,12 +293,12 @@ function showPreviewImage(event) {
 
 function deleteProduct(productID, branchID) {
     var ID = productID;
-    alert(branchID);
+
     var isDelete = confirm('Do you want to delete this product?');
 
     if (isDelete) {
         xhr = new XMLHttpRequest();
-        var param = 'productid=' + ID + "&branchid=" + branchID;
+        var param = 'productid=' + encodeURIComponent(ID) + "&branchid=" + encodeURIComponent(branchID);
 
 
         xhr.open("POST", "php/delete_product.php");
@@ -363,7 +363,7 @@ function showCategory() {
 
                 for (var i in data) {
                     output += "<tr>" +
-                        "<td><p>" + data[i].productcategory + "</p></td>" +
+                        "<td>" + data[i].productcategory + "</td>" +
                         "<td>" + data[i].producttype + "</td>" +
                         "<td>" + data[i].dateadded + "</td>" +
                         "<td>" +
@@ -384,7 +384,7 @@ function showCategory() {
         var y = table.scrollTop + table.offsetHeight;
 
         if (y >= table.scrollHeight) {
-            offset += 10;
+            offset += 15;
             var param = "offset=" + offset;
 
             xhr.open('POST', 'php/show_category.php', true);
@@ -397,7 +397,7 @@ function showCategory() {
 
                         for (var i in data) {
                             output += "<tr>" +
-                                "<td><p>" + data[i].productcategory + "</p></td>" +
+                                "<td>" + data[i].productcategory + "</td>" +
                                 "<td>" + data[i].producttype + "</td>" +
                                 "<td>" + data[i].dateadded + "</td>" +
                                 "<td>" +
@@ -427,7 +427,7 @@ function editCategory(category, type) {
 
 function getCategoryTypes(categoryName, isProductType) {
     var xhr = new XMLHttpRequest();
-    var param = "category=" + categoryName + "&productType=" + isProductType;
+    var param = "category=" + encodeURIComponent(categoryName) + "&productType=" + encodeURIComponent(isProductType);
 
     xhr.open("POST", "php/show_category.php", true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

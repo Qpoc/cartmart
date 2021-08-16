@@ -1,6 +1,11 @@
 <?php
     session_start();
 
+    if (!isset($_SESSION['adminname'])) {
+        header("location:admin_login.php");
+    }
+    
+
     require_once('php/navigation.php');
 ?>
 
@@ -14,7 +19,10 @@
     <title>Admin</title>
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/category.css">
+    <link rel="stylesheet" href="css/responsive/category-responsive.css">
+    <link rel="stylesheet" href="css/responsive/navigation-burger.css">
     <script src="script/utilities.js"></script>
+    <script src="script/product.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
 </head>
 <body onload="showCategory()">
@@ -40,18 +48,15 @@
             <form action="php/add_category.php" method="POST">
                 <div class='container'>
                     <div class="information">
-                        <input type="text" name="category_name" required>
-                        <span>Category</span>
+                        <input type="text" name="category_name" placeholder="Category" required>
                     </div>
                     <div class="information">
-                        <input type="text" name="category_type" required>
-                        <span>Type</span>
+                        <input type="text" name="category_type" placeholder="Type" required>
                     </div>
                     <div class="button">
                         <input type="submit" value="+ ADD CATEGORY" name="submit" class = "submit-button">
-                    </div>
-                    <div class="button">
-                        <input type="button" value="+ ADD/EDIT BACKGROUND IMAGE TO CATEGORY" onclick="showModal('showAddbgImg', 'false')">
+                        <input type="button" value="+ ADD BACKGROUND CATEGORY" onclick="showModal('showAddbgImg', 'false')">
+                        <input id="addCatIcon" type="button" value="+ ADD ICON CATEGORY" onclick="showCatIcon()">
                     </div>
                 </div>
             </form>
@@ -80,7 +85,7 @@
             <P>Copyright &copy; 2021 CartMart</P>
         </div>
     </footer>
-    <div class="wrapper-add-product">
+<div class="wrapper-add-product">
     <div class="container-add-product" id="productcontainer">
         <div class="title">
             <h2>Add Background Image</h2>
@@ -100,9 +105,33 @@
                     <select name="category" id="getCategory" required onchange="changeSampleTxt(this.value)">
                         
                     </select>
-                    <span>Category:</span>
                 </div>
                 <input type="submit" value="CHANGE BACKGROUND" name="submit">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="wrapper-add-product">
+    <div class="container-add-product" id="categoryIcon">
+        <div class="title">
+            <img src="../images/Icon/cancel.png" alt="" width="32" onclick="closeCatIcon()">
+        </div>
+        <h2>Add Category Icon</h2>
+        <form action="php/add_category_icon.php" method="POST" enctype="multipart/form-data">
+            <div class="product-information">
+                <div class="preview-image">
+                    <img src="" alt="" id="outputIcon">
+                </div>
+                <div>
+                    <label for="myfile">Select an Icon: <sup id="limit">1mb limit</sup> </label>
+                    <input type="file" id="iconfile" name="iconfile" onchange="previewIcon(event)" required>
+                </div>
+                <div class="product-input">
+                    <select name="getIconCategory" id="getIconCategory" required>
+                        
+                    </select>
+                </div>
+                <input type="submit" value="CHANGE ICON" name="submit">
             </div>
         </form>
     </div>

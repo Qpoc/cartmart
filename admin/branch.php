@@ -1,6 +1,11 @@
 <?php
     session_start();
 
+    if (!isset($_SESSION['adminname'])) {
+        header("location:admin_login.php");
+    }
+    
+
     require_once('php/navigation.php');
 ?>
 
@@ -14,6 +19,8 @@
     <title>Admin</title>
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/branch.css">
+    <link rel="stylesheet" href="css/responsive/branch-responsive.css">
+    <link rel="stylesheet" href="css/responsive/navigation-burger.css">
     <!-- mapbox -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>

@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['adminname'])) {
+    header("location:admin_login.php");
+}
+
 require_once('php/navigation.php');
 ?>
 
@@ -15,6 +19,8 @@ require_once('php/navigation.php');
     <title>Admin</title>
     <link rel="icon" href="../images/Icon/eco-bag.png">
     <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/responsive/navigation-burger.css">
+    <link rel="stylesheet" href="css/responsive/user-responsive.css">
     <script src="script/utilities.js"></script>
     <script src="script/onload.js"></script>
     <script src="script/product.js"></script>
@@ -87,8 +93,8 @@ require_once('php/navigation.php');
     </div>
     <table>
         <thead>
-            <th>Photo</th>
             <th>Name</th>
+            <th>Photo</th>
         </thead>
         <tbody id="cartDetails">
             
