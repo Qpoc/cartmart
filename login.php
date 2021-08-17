@@ -15,6 +15,7 @@
     if (isset($_SESSION['buynow'])) {
         unset($_SESSION['buynow']);
         unset($_SESSION['branchid']);
+        echo "hello";
     }
 
     if (isset($_SESSION['category'])) {
